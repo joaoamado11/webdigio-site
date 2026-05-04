@@ -557,11 +557,466 @@
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
   </a>
 
+  <!-- ===== AI Chat Widget ===== -->
+  <button class="chat-bubble" id="chatBubble" aria-label="Abrir chat">
+    <svg class="chat-bubble__icon chat-bubble__icon--open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      <path d="M8 9h8"/><path d="M8 13h4"/>
+    </svg>
+    <svg class="chat-bubble__icon chat-bubble__icon--close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-window__header">
+      <div class="chat-window__avatar">W</div>
+      <div>
+        <div class="chat-window__title">Webdigio</div>
+        <div class="chat-window__status">Llama 3.3 · online</div>
+      </div>
+      <button class="chat-window__close" id="chatClose" aria-label="Fechar chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="chat-window__body" id="chatBody">
+      <div class="chat-window__msg chat-window__msg--bot" id="chatGreeting"></div>
+      <div class="chat-window__suggestions" id="chatSuggestions"></div>
+    </div>
+    <div class="chat-window__footer">
+      <input type="text" class="chat-window__input" id="chatInput"
+             placeholder="Escreva a sua mensagem..."
+             autocomplete="off" spellcheck="false">
+      <button class="chat-window__send" id="chatSendBtn" aria-label="Enviar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <style>
+    /* ---- Chat Bubble ---- */
+    .chat-bubble {
+      position: fixed; bottom: 6.5rem; right: 2rem; z-index: 998;
+      width: 3.5rem; height: 3.5rem;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #fff;
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(59,130,246,0.35);
+      transition: all 0.3s;
+      animation: chatPulse 2s ease-in-out infinite;
+    }
+    .chat-bubble:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(59,130,246,0.5); animation: none; }
+    @keyframes chatPulse {
+      0%, 100% { box-shadow: 0 4px 24px rgba(59,130,246,0.35); }
+      50% { box-shadow: 0 4px 36px rgba(59,130,246,0.55); }
+    }
+    .chat-bubble__icon { width: 1.75rem; height: 1.75rem; }
+    .chat-bubble__icon--close { display: none; }
+
+    /* ---- Chat Window ---- */
+    .chat-window {
+      position: fixed; bottom: 6.5rem; right: 2rem; z-index: 997;
+      width: 380px; max-width: calc(100vw - 2rem);
+      height: 520px; max-height: calc(100vh - 10rem);
+      background: var(--color-surface);
+      border: 1px solid rgba(59,130,246,0.15);
+      border-radius: 16px;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      opacity: 0; pointer-events: none;
+      transform: translateY(16px) scale(0.96);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+    .chat-window--open {
+      opacity: 1; pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    .chat-window__header {
+      padding: 0.875rem 1rem;
+      border-bottom: 1px solid rgba(59,130,246,0.1);
+      display: flex; align-items: center; gap: 0.625rem;
+      background: rgba(255,255,255,0.02);
+      user-select: none;
+    }
+    .chat-window__avatar {
+      width: 34px; height: 34px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #3B82F6, #60A5FA);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700; font-size: 1rem;
+      color: #fff; flex-shrink: 0;
+    }
+    .chat-window__title {
+      font-family: var(--font-heading);
+      font-weight: 600; font-size: 0.875rem;
+      color: var(--color-text);
+    }
+    .chat-window__status {
+      font-size: 0.625rem;
+      color: #22C55E;
+      display: flex; align-items: center; gap: 0.2rem;
+    }
+    .chat-window__status::before {
+      content: ''; width: 5px; height: 5px;
+      background: #22C55E; border-radius: 50%;
+    }
+    .chat-window__close {
+      margin-left: auto;
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent; border: none;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .chat-window__close:hover { background: rgba(255,255,255,0.06); color: var(--color-text); }
+    .chat-window__close svg { width: 1rem; height: 1rem; }
+
+    .chat-window__body {
+      flex: 1; overflow-y: auto;
+      padding: 1rem;
+      display: flex; flex-direction: column; gap: 0.625rem;
+      scroll-behavior: smooth;
+    }
+    .chat-window__msg {
+      max-width: 85%;
+      padding: 0.625rem 0.875rem;
+      border-radius: 12px;
+      font-size: 0.8125rem; line-height: 1.5;
+      animation: msgPop 0.25s ease-out;
+      word-break: break-word;
+    }
+    @keyframes msgPop {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chat-window__msg--bot {
+      align-self: flex-start;
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(59,130,246,0.12);
+      color: var(--color-text);
+      border-bottom-left-radius: 3px;
+    }
+    .chat-window__msg--bot strong { color: #fff; }
+    .chat-window__msg--user {
+      align-self: flex-end;
+      background: var(--color-primary);
+      color: #fff;
+      border-bottom-right-radius: 3px;
+    }
+    .chat-window__msg--typing {
+      align-self: flex-start;
+      display: flex; gap: 3px;
+      padding: 0.75rem 0.875rem;
+    }
+    .chat-window__msg--typing span {
+      width: 5px; height: 5px;
+      background: var(--color-text-muted);
+      border-radius: 50%;
+      animation: dotBounce 1.3s ease-in-out infinite;
+    }
+    .chat-window__msg--typing span:nth-child(2) { animation-delay: 0.18s; }
+    .chat-window__msg--typing span:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes dotBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
+      30% { transform: translateY(-5px); opacity: 1; }
+    }
+
+    .chat-window__suggestions {
+      display: flex; flex-wrap: wrap; gap: 0.375rem;
+      margin-top: 0.25rem;
+    }
+    .chat-window__suggestion {
+      font-family: var(--font-body);
+      font-size: 0.71875rem;
+      padding: 0.375rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(59,130,246,0.15);
+      background: var(--color-surface);
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .chat-window__suggestion:hover {
+      border-color: var(--color-primary);
+      color: var(--color-text);
+      background: rgba(59,130,246,0.08);
+    }
+
+    .chat-window__footer {
+      padding: 0.75rem 0.875rem;
+      border-top: 1px solid rgba(59,130,246,0.1);
+      display: flex; gap: 0.5rem;
+    }
+    .chat-window__input {
+      flex: 1;
+      padding: 0.625rem 0.875rem;
+      border-radius: 10px;
+      border: 1px solid rgba(59,130,246,0.12);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .chat-window__input:focus { border-color: var(--color-primary); }
+    .chat-window__input::placeholder { color: var(--color-text-dim); }
+    .chat-window__send {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: var(--color-primary);
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .chat-window__send:hover { background: var(--color-primary-dark); }
+    .chat-window__send svg { width: 1.125rem; height: 1.125rem; color: #fff; }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 480px) {
+      .chat-bubble { bottom: 5.5rem; right: 1.25rem; width: 3rem; height: 3rem; }
+      .chat-bubble__icon { width: 1.5rem; height: 1.5rem; }
+      .chat-window { bottom: 5.5rem; right: 0.5rem; width: calc(100vw - 1rem); height: 460px; border-radius: 14px; }
+    }
+  </style>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="js/three-hero.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/chat-config.js"></script>
+  <script>
+  /* ============================================================
+     Webdigio AI Chat — Groq Llama 3.3 70B
+     ============================================================ */
+  (function () {
+    'use strict';
+
+    var GROQ_KEY = window.WEBDIGIO_CHAT_KEY || '';
+    var API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+
+    var SYSTEM_PROMPT = [
+      'Tu és o assistente virtual da Webdigio, uma agência digital premium em Portugal.',
+      'Responde SEMPRE em português de Portugal, de forma simpática, profissional e direta.',
+      '',
+      '## Info da empresa',
+      '- Preço: 690€, pagamento único. Sem mensalidades.',
+      '- Prazo de entrega: 2 a 5 dias úteis.',
+      '- Serviços: web design, UI/UX, desenvolvimento, SEO, copywriting, product thinking.',
+      '- O pacote inclui: até 5 páginas, design responsivo, textos com IA, SEO base, WhatsApp integrado, domínio + alojamento no 1º ano.',
+      '- Setores: saúde e clínicas, estética e bem-estar, restauração, serviços técnicos, profissionais independentes, comércio local.',
+      '- Contacto: geral@webdigio.pt e WhatsApp.',
+      '- Diferenciais: zero mensalidades, entrega rápida, foco em resultados, transparência total.',
+      '',
+      '## Regras',
+      '- Respostas curtas (2-4 frases) salvo se pedirem detalhes.',
+      '- Se não souberes algo, sê honesto e oferece contacto com a equipa humana.',
+      '- Perguntas fora do âmbito: responde educadamente que és especializado em Webdigio.',
+      '- Oferece sempre o próximo passo: marcar conversa, ver exemplos, pedir contacto.',
+      '- Usa markdown (**negrito**, listas) quando ajudar.'
+    ].join('\n');
+
+    var conversationHistory = [];
+    var isOpen = false;
+    var isProcessing = false;
+
+    // DOM
+    var chatBubble = document.getElementById('chatBubble');
+    var chatWindow = document.getElementById('chatWindow');
+    var chatClose = document.getElementById('chatClose');
+    var chatBody = document.getElementById('chatBody');
+    var chatGreeting = document.getElementById('chatGreeting');
+    var chatSuggestions = document.getElementById('chatSuggestions');
+    var chatInput = document.getElementById('chatInput');
+    var chatSendBtn = document.getElementById('chatSendBtn');
+
+    var INITIAL_SUGGESTIONS = ['Preço e pacotes', 'Prazo de entrega', 'O que fazem?', 'Falar com alguém'];
+
+    // Init greeting
+    chatGreeting.textContent = 'Olá! Sou o assistente virtual da Webdigio. Posso ajudar com preços, prazos, serviços — ou qualquer dúvida sobre o site do seu negócio. Como posso ajudar?';
+    buildSuggestions(INITIAL_SUGGESTIONS);
+
+    function buildSuggestions(items) {
+      chatSuggestions.innerHTML = '';
+      var labels = items || INITIAL_SUGGESTIONS;
+      for (var i = 0; i < labels.length; i++) {
+        var btn = document.createElement('button');
+        btn.className = 'chat-window__suggestion';
+        btn.textContent = labels[i];
+        chatSuggestions.appendChild(btn);
+      }
+    }
+
+    // Toggle chat
+    chatBubble.addEventListener('click', function () {
+      isOpen = !isOpen;
+      if (isOpen) {
+        chatWindow.classList.add('chat-window--open');
+        chatBubble.querySelector('.chat-bubble__icon--open').style.display = 'none';
+        chatBubble.querySelector('.chat-bubble__icon--close').style.display = 'block';
+        chatBubble.style.background = 'var(--color-text-dim)';
+        chatBubble.style.animation = 'none';
+        chatInput.focus();
+      } else {
+        chatWindow.classList.remove('chat-window--open');
+        chatBubble.querySelector('.chat-bubble__icon--open').style.display = 'block';
+        chatBubble.querySelector('.chat-bubble__icon--close').style.display = 'none';
+        chatBubble.style.background = 'var(--color-primary)';
+        chatBubble.style.animation = 'chatPulse 2s ease-in-out infinite';
+      }
+    });
+
+    chatClose.addEventListener('click', function () { chatBubble.click(); });
+
+    // API call
+    function callGroq(userMsg) {
+      return new Promise(function (resolve, reject) {
+        var messages = [{ role: 'system', content: SYSTEM_PROMPT }];
+        for (var i = Math.max(0, conversationHistory.length - 20); i < conversationHistory.length; i++) {
+          var h = conversationHistory[i];
+          if (h.content) messages.push({ role: h.role, content: h.content });
+        }
+        messages.push({ role: 'user', content: userMsg });
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', API_URL, true);
+        xhr.timeout = 15000;
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('Authorization', 'Bearer ' + GROQ_KEY);
+
+        xhr.onload = function () {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            try {
+              var data = JSON.parse(xhr.responseText);
+              var text = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+              if (text) resolve(text.trim());
+              else reject(new Error('Resposta vazia'));
+            } catch (e) { reject(new Error('Parse error')); }
+          } else {
+            reject(new Error(xhr.status === 429 ? 'Limite excedido' : xhr.status === 401 ? 'Chave inválida' : 'Erro ' + xhr.status));
+          }
+        };
+        xhr.onerror = function () { reject(new Error('Erro de rede')); };
+        xhr.ontimeout = function () { reject(new Error('Timeout')); };
+
+        xhr.send(JSON.stringify({
+          model: 'llama-3.3-70b-versatile',
+          messages: messages,
+          temperature: 0.7,
+          max_completion_tokens: 350
+        }));
+      });
+    }
+
+    // Local fallback
+    var LOCAL_KB = [
+      { q: ["preço","custa","custo","valor","pacote","orçamento","quanto"], a: "**690€** — pagamento único, sem mensalidades. Inclui até 5 páginas, design moderno, textos com IA, SEO base, WhatsApp, domínio e alojamento no 1º ano." },
+      { q: ["prazo","dias","entrega","demora","tempo"], a: "**2 a 5 dias úteis**. Enquanto agências demoram semanas, entregamos em menos de uma semana." },
+      { q: ["serviço","oferecem","fazem","agência","webdigio"], a: "Agência digital premium: **web design, UI/UX, desenvolvimento, SEO, copywriting e product thinking**." },
+      { q: ["contacto","falar","whatsapp","email","humano"], a: "Fale connosco no **WhatsApp** ou **geral@webdigio.pt**. Respondemos em menos de 24 horas." },
+      { q: ["ola","oi","bom dia","boa tarde","boa noite"], a: "Olá! Bem-vindo à Webdigio. Em que posso ajudar?" },
+      { q: ["obrigado","obrigada","valeu","thanks"], a: "Sempre às ordens! Qualquer dúvida, é só perguntar." }
+    ];
+
+    function localFallback(text) {
+      var low = text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+      for (var i = 0; i < LOCAL_KB.length; i++) {
+        for (var j = 0; j < LOCAL_KB[i].q.length; j++) {
+          if (low.indexOf(LOCAL_KB[i].q[j]) !== -1) return LOCAL_KB[i].a;
+        }
+      }
+      return 'Peço desculpa, não tenho a certeza se percebi. Pode reformular? Se preferir, diga **"contacto"** para falar com a equipa.';
+    }
+
+    // Chat logic
+    function addMsg(type, text) {
+      var div = document.createElement('div');
+      div.className = 'chat-window__msg chat-window__msg--' + type;
+      if (type === 'bot') {
+        div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+      } else {
+        div.textContent = text;
+      }
+      chatBody.insertBefore(div, chatSuggestions);
+      chatBody.scrollTop = chatBody.scrollHeight;
+      return div;
+    }
+
+    function showTyping() {
+      var div = document.createElement('div');
+      div.className = 'chat-window__msg chat-window__msg--typing';
+      div.id = 'typingInd';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      chatBody.insertBefore(div, chatSuggestions);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function removeTyping() { var el = document.getElementById('typingInd'); if (el) el.remove(); }
+
+    function handleMessage(text) {
+      if (!text.trim() || isProcessing) return;
+      text = text.trim();
+      isProcessing = true;
+
+      addMsg('user', text);
+      showTyping();
+      chatInput.value = '';
+      chatSendBtn.style.opacity = '0.5';
+
+      function done(response) {
+        removeTyping();
+        addMsg('bot', response);
+
+        var suggs = INITIAL_SUGGESTIONS;
+        var low = response.toLowerCase();
+        if (low.indexOf('690') !== -1 || low.indexOf('preço') !== -1) suggs = ['O que está incluído?', 'Prazo de entrega', 'Falar com alguém'];
+        else if (low.indexOf('whatsapp') !== -1 || low.indexOf('contacto') !== -1) suggs = ['Ver preços', 'Ver serviços'];
+        buildSuggestions(suggs);
+
+        chatSendBtn.style.opacity = '1';
+        isProcessing = false;
+      }
+
+      function fail(errMsg) {
+        removeTyping();
+        var local = localFallback(text);
+        addMsg('bot', local);
+        chatSendBtn.style.opacity = '1';
+        isProcessing = false;
+      }
+
+      callGroq(text).then(function (resp) {
+        conversationHistory.push({ role: 'user', content: text });
+        conversationHistory.push({ role: 'assistant', content: resp });
+        if (conversationHistory.length > 30) conversationHistory = conversationHistory.slice(-30);
+        done(resp);
+      }).catch(function (err) {
+        fail(err.message);
+      });
+    }
+
+    // Events
+    chatSendBtn.addEventListener('click', function () { handleMessage(chatInput.value); });
+    chatInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleMessage(chatInput.value); }
+    });
+    chatSuggestions.addEventListener('click', function (e) {
+      if (e.target.classList.contains('chat-window__suggestion')) handleMessage(e.target.textContent);
+    });
+  })();
+  </script>
 </body>
 </html>
