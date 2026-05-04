@@ -1,5 +1,5 @@
 /* ============================================================
-   Webdigio — Interactive 3D Hero (Gold/Warm Edition)
+   Webdigio — Interactive 3D Hero (Blue/Tech Edition)
    Dynamic geometric core, orbiting rings, particles, mouse-driven
    ============================================================ */
 
@@ -32,30 +32,30 @@
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setClearColor(0x000000, 0);
 
-  // --- Lights (warm/gold tones) ---
-  scene.add(new THREE.AmbientLight(0x4a3a20, 1.2));
+  // --- Lights (blue/cyan tones) ---
+  scene.add(new THREE.AmbientLight(0x1a2a44, 1.2));
 
-  var goldLight = new THREE.PointLight(0xCA8A04, 3, 20);
-  goldLight.position.set(4, 2, 5);
-  scene.add(goldLight);
+  var blueLight = new THREE.PointLight(0x3B82F6, 3, 20);
+  blueLight.position.set(4, 2, 5);
+  scene.add(blueLight);
 
-  var amberLight = new THREE.PointLight(0xEAB308, 3, 20);
-  amberLight.position.set(-4, -1, 4);
-  scene.add(amberLight);
+  var cyanLight = new THREE.PointLight(0x60A5FA, 3, 20);
+  cyanLight.position.set(-4, -1, 4);
+  scene.add(cyanLight);
 
-  var warmLight = new THREE.PointLight(0xfff8ee, 1.5, 15);
-  warmLight.position.set(0, 4, 6);
-  scene.add(warmLight);
+  var whiteLight = new THREE.PointLight(0xeef2ff, 1.5, 15);
+  whiteLight.position.set(0, 4, 6);
+  scene.add(whiteLight);
 
   // --- Central Core (Icosahedron) ---
   var coreGeo = new THREE.IcosahedronGeometry(1.1, 2);
   var coreMat = new THREE.MeshPhysicalMaterial({
-    color: 0xCA8A04,
-    metalness: 0.15,
+    color: 0x3B82F6,
+    metalness: 0.1,
     roughness: 0.1,
     clearcoat: 0.5,
     clearcoatRoughness: 0.08,
-    emissive: 0x1a1000,
+    emissive: 0x001133,
     emissiveIntensity: 0.4,
   });
   var core = new THREE.Mesh(coreGeo, coreMat);
@@ -64,7 +64,7 @@
   // --- Wireframe outer shell ---
   var shellGeo = new THREE.IcosahedronGeometry(1.4, 1);
   var shellMat = new THREE.MeshBasicMaterial({
-    color: 0xEAB308,
+    color: 0x60A5FA,
     wireframe: true,
     transparent: true,
     opacity: 0.25,
@@ -72,26 +72,26 @@
   var shell = new THREE.Mesh(shellGeo, shellMat);
   scene.add(shell);
 
-  // --- Orbiting Torus Ring 1 (gold) ---
+  // --- Orbiting Torus Ring 1 ---
   var ring1Geo = new THREE.TorusGeometry(2.2, 0.03, 16, 100);
   var ring1Mat = new THREE.MeshStandardMaterial({
-    color: 0xEAB308,
-    metalness: 0.5,
+    color: 0x60A5FA,
+    metalness: 0.4,
     roughness: 0.25,
-    emissive: 0x1a1000,
+    emissive: 0x001122,
     emissiveIntensity: 0.5,
   });
   var ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
   ring1.rotation.x = Math.PI / 2.5;
   scene.add(ring1);
 
-  // --- Orbiting Torus Ring 2 (amber) ---
+  // --- Orbiting Torus Ring 2 ---
   var ring2Geo = new THREE.TorusGeometry(2.6, 0.025, 16, 100);
   var ring2Mat = new THREE.MeshStandardMaterial({
-    color: 0xCA8A04,
-    metalness: 0.5,
+    color: 0x3B82F6,
+    metalness: 0.4,
     roughness: 0.25,
-    emissive: 0x1a0800,
+    emissive: 0x001133,
     emissiveIntensity: 0.4,
   });
   var ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
@@ -99,10 +99,10 @@
   ring2.rotation.y = Math.PI / 4;
   scene.add(ring2);
 
-  // --- Orbiting Ring 3 (warm white) ---
+  // --- Orbiting Ring 3 ---
   var ring3Geo = new THREE.TorusGeometry(3.0, 0.02, 16, 80);
   var ring3Mat = new THREE.MeshStandardMaterial({
-    color: 0xfff8ee,
+    color: 0x93C5FD,
     metalness: 0.4,
     roughness: 0.2,
     transparent: true,
@@ -115,12 +115,12 @@
 
   // --- Small orbiting cubes ---
   var cubes = [];
-  var cubeColors = [0xCA8A04, 0xEAB308, 0xA16207, 0xD4A017, 0xB8860B, 0x9A6B03];
+  var cubeColors = [0x3B82F6, 0x60A5FA, 0x2563EB, 0x1D4ED8, 0x93C5FD, 0x4F8AF7];
   for (var c = 0; c < 6; c++) {
     var cubeGeo = new THREE.BoxGeometry(0.15, 0.15, 0.15);
     var cubeMat = new THREE.MeshPhysicalMaterial({
       color: cubeColors[c],
-      metalness: 0.2,
+      metalness: 0.15,
       roughness: 0.12,
       clearcoat: 0.5,
     });
@@ -135,7 +135,7 @@
     cubes.push(cube);
   }
 
-  // --- Particles (warm white/gold) ---
+  // --- Particles ---
   var particlesCount = 500;
   var particlesGeo = new THREE.BufferGeometry();
   var positions = new Float32Array(particlesCount * 3);
@@ -149,7 +149,7 @@
   }
   particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   var particlesMat = new THREE.PointsMaterial({
-    color: 0xEAB308,
+    color: 0x60A5FA,
     size: 0.04,
     blending: THREE.AdditiveBlending,
     depthWrite: false,
@@ -172,7 +172,7 @@
   }
   dotsGeo.setAttribute('position', new THREE.BufferAttribute(dotPositions, 3));
   var dotsMat = new THREE.PointsMaterial({
-    color: 0xCA8A04,
+    color: 0x3B82F6,
     size: 0.06,
     blending: THREE.AdditiveBlending,
     depthWrite: false,
@@ -275,8 +275,8 @@
     dots.rotation.z += 0.003;
 
     // Light animation
-    goldLight.intensity = 3 + Math.sin(elapsed * 0.5) * 0.8;
-    amberLight.intensity = 3 + Math.cos(elapsed * 0.6) * 0.8;
+    blueLight.intensity = 3 + Math.sin(elapsed * 0.5) * 0.8;
+    cyanLight.intensity = 3 + Math.cos(elapsed * 0.6) * 0.8;
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
