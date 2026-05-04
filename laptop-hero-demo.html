@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webdigio Hero — Laptop Mockup Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg: #0B1120;
+      --color-text: #F1F5F9;
+      --color-text-muted: #94A3B8;
+      --color-primary: #3B82F6;
+      --color-primary-light: #60A5FA;
+      --gradient-text: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #2563EB 100%);
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--color-bg);
+    }
+
+    .hero__canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .hero__container {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      gap: 2.5rem;
+    }
+
+    /* ====== LAPTOP ====== */
+    .laptop {
+      position: relative;
+      width: min(720px, 92vw);
+      perspective: 1000px;
+    }
+
+    .laptop__body {
+      transform: rotateX(2deg);
+      transform-style: preserve-3d;
+    }
+
+    /* Lid (screen panel) */
+    .laptop__lid {
+      position: relative;
+      background: linear-gradient(180deg, #1a1f2e 0%, #141824 100%);
+      border: 1px solid rgba(59,130,246,0.15);
+      border-bottom: none;
+      border-radius: 16px 16px 0 0;
+      padding: 0.6rem 0.6rem 0;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        0 -2px 20px rgba(59,130,246,0.05);
+    }
+
+    /* Screen bezel */
+    .laptop__bezel {
+      background: #0d1117;
+      border-radius: 10px 10px 0 0;
+      padding: 0.5rem 0.5rem 0.4rem;
+      border: 1px solid rgba(0,0,0,0.5);
+      border-bottom: none;
+      position: relative;
+    }
+
+    /* Screen display area */
+    .laptop__display {
+      background: #111827;
+      border-radius: 4px 4px 0 0;
+      padding: 1.25rem 1.75rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Ambient screen glow */
+    .laptop__display::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(59,130,246,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 80%, rgba(37,99,235,0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Subtle scanlines */
+    .laptop__display::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+    }
+
+    /* Camera */
+    .laptop__camera {
+      width: 5px; height: 5px;
+      background: #0d1117;
+      border: 1px solid rgba(59,130,246,0.4);
+      border-radius: 50%;
+      margin: 0 auto 0.875rem;
+      position: relative;
+      z-index: 2;
+    }
+    .laptop__camera::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: rgba(59,130,246,0.06);
+    }
+
+    /* Browser chrome */
+    .laptop__chrome {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 1.75rem;
+      position: relative;
+      z-index: 2;
+    }
+    .laptop__chrome span {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .laptop__chrome span:nth-child(1) { background: #ef4444; box-shadow: 0 0 4px rgba(239,68,68,0.3); }
+    .laptop__chrome span:nth-child(2) { background: #f59e0b; box-shadow: 0 0 4px rgba(245,158,11,0.3); }
+    .laptop__chrome span:nth-child(3) { background: #10b981; box-shadow: 0 0 4px rgba(16,185,129,0.3); }
+
+    /* URL bar */
+    .laptop__url {
+      flex: 1;
+      height: 22px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 4px;
+      margin-left: 0.75rem;
+      display: flex;
+      align-items: center;
+      padding: 0 0.75rem;
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .laptop__url::before {
+      content: '🔒';
+      font-size: 0.45rem;
+      margin-right: 0.4rem;
+      opacity: 0.5;
+    }
+
+    /* Text content on screen */
+    .laptop__text {
+      position: relative;
+      z-index: 2;
+    }
+    .laptop__overline {
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-primary-light);
+      margin-bottom: 0.625rem;
+      display: block;
+    }
+    .laptop__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 3.5vw, 2.25rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.625rem;
+    }
+    .laptop__highlight {
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .laptop__subtitle {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+      max-width: 420px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* Hinge */
+    .laptop__hinge {
+      height: 4px;
+      background: linear-gradient(180deg, rgba(59,130,246,0.2), rgba(59,130,246,0.05));
+      border-radius: 0 0 2px 2px;
+      margin: 0 20%;
+      box-shadow: 0 2px 8px rgba(59,130,246,0.08);
+    }
+
+    /* Base */
+    .laptop__base {
+      position: relative;
+      background: linear-gradient(180deg, #1a1f2e 0%, #141824 60%, #0f131c 100%);
+      border: 1px solid rgba(59,130,246,0.12);
+      border-top: none;
+      border-radius: 0 0 14px 14px;
+      padding: 0.5rem 0.6rem 0.7rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    /* Keyboard area */
+    .laptop__keyboard {
+      background: #0d1117;
+      border-radius: 0 0 8px 8px;
+      padding: 0.5rem 0.4rem 0.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .laptop__key-row {
+      display: flex;
+      gap: 3px;
+      justify-content: center;
+    }
+    .laptop__key {
+      height: 3px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 1px;
+      flex: 1;
+      max-width: 24px;
+    }
+    .laptop__key--wide { max-width: 36px; }
+    .laptop__key--space {
+      max-width: 160px;
+      height: 3px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 1px;
+    }
+    .laptop__trackpad {
+      width: 100px;
+      height: 4px;
+      background: rgba(255,255,255,0.025);
+      border-radius: 2px;
+      margin: 0.25rem auto 0;
+    }
+
+    /* Base edge indent */
+    .laptop__base-notch {
+      position: absolute;
+      bottom: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 6px;
+      background: #0f131c;
+      border-radius: 0 0 4px 4px;
+    }
+
+    /* Ambient light on screen edges */
+    .laptop__screen-glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      border-radius: inherit;
+      box-shadow: inset 0 0 60px rgba(59,130,246,0.04);
+    }
+
+    /* ====== BELOW LAPTOP ====== */
+    .hero__below {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .hero__stats {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hero__stat {
+      text-align: center;
+      padding: 0.9rem 1.5rem;
+      border-radius: 12px;
+      min-width: 120px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(59,130,246,0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .hero__stat-label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+    .hero__stat-number {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-primary-light);
+      line-height: 1;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-body);
+      font-weight: 500; font-size: 0.9rem;
+      padding: 0.8rem 1.75rem;
+      border-radius: 10px;
+      transition: all 0.35s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn--primary {
+      background: var(--color-primary);
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(59,130,246,0.3);
+    }
+    .btn--primary:hover { background: #2563EB; transform: translateY(-2px); }
+    .btn--glass {
+      background: transparent;
+      color: var(--color-text);
+      border: 1px solid rgba(59,130,246,0.15);
+    }
+    .btn--glass:hover { background: rgba(255,255,255,0.06); border-color: rgba(59,130,246,0.3); }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .laptop__display { padding: 1rem 1rem 1.25rem; min-height: 200px; }
+      .laptop__chrome { margin-bottom: 1.25rem; }
+      .laptop__key { max-width: 16px; }
+      .laptop__key--wide { max-width: 24px; }
+      .laptop__key--space { max-width: 100px; }
+      .laptop__trackpad { width: 70px; }
+      .hero__stats { gap: 0.75rem; }
+      .hero__stat { padding: 0.7rem 1.1rem; min-width: 90px; }
+      .hero__stat-number { font-size: 1.5rem; }
+      .hero__container { padding: 3rem 1.25rem; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+
+    <div class="hero__container">
+
+      <!-- LAPTOP MOCKUP -->
+      <div class="laptop">
+        <div class="laptop__body">
+          <!-- Lid -->
+          <div class="laptop__lid">
+            <div class="laptop__bezel">
+              <div class="laptop__camera"></div>
+              <div class="laptop__display">
+                <div class="laptop__chrome">
+                  <span></span><span></span><span></span>
+                  <div class="laptop__url">webdigio.pt</div>
+                </div>
+                <div class="laptop__text">
+                  <span class="laptop__overline">Agência Digital Premium</span>
+                  <h1 class="laptop__title">
+                    Design e engenharia<br>
+                    <span class="laptop__highlight">com resultados reais</span>
+                  </h1>
+                  <p class="laptop__subtitle">
+                    Somos uma agência digital focada em criar produtos web de excelência. Design sofisticado, desenvolvimento sólido e performance real para o seu negócio.
+                  </p>
+                </div>
+                <div class="laptop__screen-glow"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Hinge -->
+          <div class="laptop__hinge"></div>
+          <!-- Base -->
+          <div class="laptop__base">
+            <div class="laptop__keyboard">
+              <div class="laptop__key-row">
+                <div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div>
+              </div>
+              <div class="laptop__key-row">
+                <div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div>
+              </div>
+              <div class="laptop__key-row">
+                <div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div>
+              </div>
+              <div class="laptop__key-row">
+                <div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key"></div>
+              </div>
+              <div class="laptop__key-row">
+                <div class="laptop__key"></div><div class="laptop__key"></div><div class="laptop__key--space"></div><div class="laptop__key"></div><div class="laptop__key"></div>
+              </div>
+              <div class="laptop__trackpad"></div>
+            </div>
+            <div class="laptop__base-notch"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BELOW LAPTOP -->
+      <div class="hero__below">
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat-label">Anos de experiência</span>
+            <span class="hero__stat-number">5+</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-label">Projetos entregues</span>
+            <span class="hero__stat-number">150+</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-label">Clientes satisfeitos</span>
+            <span class="hero__stat-number">98%</span>
+          </div>
+        </div>
+        <div class="hero__actions">
+          <a href="#" class="btn btn--primary">Falar connosco</a>
+          <a href="#" class="btn btn--glass">Ver expertise</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+  /* ============================================================
+     Three.js 3D Hero — abstract tech geometry, mouse-driven
+     Matching existing Webdigio blue/cyan color palette
+     ============================================================ */
+  (function () {
+    'use strict';
+
+    var canvas = document.getElementById('heroCanvas');
+    var hero = document.querySelector('.hero');
+    if (!canvas || !hero) return;
+
+    var isMobile = window.matchMedia('(max-width: 767px)').matches;
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isMobile || prefersReduced) { canvas.style.display = 'none'; return; }
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(55, hero.clientWidth / Math.max(hero.clientHeight, 1), 0.1, 50);
+    camera.position.z = 10;
+
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setSize(hero.clientWidth, hero.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+
+    // Lights
+    scene.add(new THREE.AmbientLight(0x1a2a44, 1.2));
+    var blueLight = new THREE.PointLight(0x3B82F6, 3, 20);
+    blueLight.position.set(4, 2, 5); scene.add(blueLight);
+    var cyanLight = new THREE.PointLight(0x60A5FA, 3, 20);
+    cyanLight.position.set(-4, -1, 4); scene.add(cyanLight);
+    var whiteLight = new THREE.PointLight(0xeef2ff, 1.5, 15);
+    whiteLight.position.set(0, 4, 6); scene.add(whiteLight);
+
+    // Core
+    var coreGeo = new THREE.IcosahedronGeometry(1.1, 2);
+    var coreMat = new THREE.MeshPhysicalMaterial({ color: 0x3B82F6, metalness: 0.1, roughness: 0.1, clearcoat: 0.5, clearcoatRoughness: 0.08, emissive: 0x001133, emissiveIntensity: 0.4 });
+    var core = new THREE.Mesh(coreGeo, coreMat); scene.add(core);
+
+    // Wireframe shell
+    var shellGeo = new THREE.IcosahedronGeometry(1.4, 1);
+    var shellMat = new THREE.MeshBasicMaterial({ color: 0x60A5FA, wireframe: true, transparent: true, opacity: 0.25 });
+    var shell = new THREE.Mesh(shellGeo, shellMat); scene.add(shell);
+
+    // Rings
+    function addRing(radius, thick, color, emissive, rotX, rotY) {
+      var geo = new THREE.TorusGeometry(radius, thick, 16, 100);
+      var mat = new THREE.MeshStandardMaterial({ color: color, metalness: 0.4, roughness: 0.25, emissive: emissive, emissiveIntensity: 0.45 });
+      var ring = new THREE.Mesh(geo, mat);
+      ring.rotation.x = rotX; ring.rotation.y = rotY;
+      scene.add(ring);
+      return ring;
+    }
+    var ring1 = addRing(2.2, 0.03, 0x60A5FA, 0x001122, Math.PI / 2.5, 0);
+    var ring2 = addRing(2.6, 0.025, 0x3B82F6, 0x001133, -Math.PI / 3, Math.PI / 4);
+    var ring3Geo = new THREE.TorusGeometry(3.0, 0.02, 16, 80);
+    var ring3Mat = new THREE.MeshStandardMaterial({ color: 0x93C5FD, metalness: 0.4, roughness: 0.2, transparent: true, opacity: 0.5 });
+    var ring3 = new THREE.Mesh(ring3Geo, ring3Mat);
+    ring3.rotation.x = Math.PI / 1.8; ring3.rotation.y = -Math.PI / 5; scene.add(ring3);
+
+    // Cubes
+    var cubes = [];
+    var cubeColors = [0x3B82F6, 0x60A5FA, 0x2563EB, 0x1D4ED8, 0x93C5FD, 0x4F8AF7];
+    for (var c = 0; c < 6; c++) {
+      var cubeGeo = new THREE.BoxGeometry(0.15, 0.15, 0.15);
+      var cubeMat = new THREE.MeshPhysicalMaterial({ color: cubeColors[c], metalness: 0.15, roughness: 0.12, clearcoat: 0.5 });
+      var cube = new THREE.Mesh(cubeGeo, cubeMat);
+      cube.userData = { orbitRadius: 2.8 + Math.random() * 0.8, speed: 0.3 + Math.random() * 0.5, offset: (c/6)*Math.PI*2, axisY: Math.random() * 0.5 };
+      scene.add(cube); cubes.push(cube);
+    }
+
+    // Particles
+    var pCount = 500;
+    var pGeo = new THREE.BufferGeometry();
+    var positions = new Float32Array(pCount * 3);
+    for (var p = 0; p < pCount; p++) {
+      var theta = Math.random() * Math.PI * 2, phi = Math.acos(2*Math.random()-1), radius = 3 + Math.random() * 7;
+      positions[p*3] = radius * Math.sin(phi) * Math.cos(theta);
+      positions[p*3+1] = radius * Math.sin(phi) * Math.sin(theta);
+      positions[p*3+2] = radius * Math.cos(phi);
+    }
+    pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    var particles = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x60A5FA, size: 0.04, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0.5 }));
+    scene.add(particles);
+
+    // Dots
+    var dCount = 80;
+    var dGeo = new THREE.BufferGeometry();
+    var dPositions = new Float32Array(dCount * 3);
+    for (var d = 0; d < dCount; d++) {
+      var angle = (d/dCount)*Math.PI*2;
+      dPositions[d*3] = Math.cos(angle)*3.4; dPositions[d*3+1] = 0; dPositions[d*3+2] = Math.sin(angle)*3.4;
+    }
+    dGeo.setAttribute('position', new THREE.BufferAttribute(dPositions, 3));
+    var dots = new THREE.Points(dGeo, new THREE.PointsMaterial({ color: 0x3B82F6, size: 0.06, blending: THREE.AdditiveBlending, depthWrite: false }));
+    scene.add(dots);
+
+    // Mouse
+    var mouseX = 0, mouseY = 0, targetMouseX = 0, targetMouseY = 0;
+    document.addEventListener('mousemove', function (e) { targetMouseX = (e.clientX/window.innerWidth)*2-1; targetMouseY = -(e.clientY/window.innerHeight)*2+1; });
+    document.addEventListener('touchmove', function (e) { if (e.touches.length) { targetMouseX = (e.touches[0].clientX/window.innerWidth)*2-1; targetMouseY = -(e.touches[0].clientY/window.innerHeight)*2+1; } }, { passive: true });
+
+    // Visibility
+    var visible = true;
+    new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }, { threshold: 0 }).observe(hero);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) visible = false; });
+
+    var clock = new THREE.Clock();
+    function animate() {
+      if (!visible) { requestAnimationFrame(animate); return; }
+      var elapsed = clock.getElapsedTime();
+      mouseX += (targetMouseX - mouseX) * 0.04; mouseY += (targetMouseY - mouseY) * 0.04;
+      core.rotation.x += 0.004; core.rotation.y += 0.006;
+      shell.rotation.x -= 0.003; shell.rotation.y -= 0.005; shell.rotation.z += 0.002;
+      camera.position.x += (mouseX*2 - camera.position.x) * 0.03;
+      camera.position.y += (-mouseY*1.5 - camera.position.y) * 0.03;
+      camera.lookAt(0,0,0);
+      ring1.rotation.z += 0.004; ring1.rotation.x += mouseX * 0.002;
+      ring2.rotation.z -= 0.005; ring2.rotation.y += mouseY * 0.003;
+      ring3.rotation.z += 0.003; ring3.rotation.x -= mouseX * 0.001;
+      for (var i = 0; i < cubes.length; i++) {
+        var cu = cubes[i], ud = cu.userData, a = elapsed * ud.speed + ud.offset;
+        cu.position.x = Math.cos(a) * ud.orbitRadius;
+        cu.position.z = Math.sin(a) * ud.orbitRadius;
+        cu.position.y = Math.sin(elapsed*0.4+ud.offset) * ud.axisY;
+        cu.rotation.x += 0.02; cu.rotation.y += 0.03;
+      }
+      particles.rotation.y += 0.0004; particles.rotation.x += 0.0002;
+      dots.rotation.y -= 0.008; dots.rotation.z += 0.003;
+      blueLight.intensity = 3 + Math.sin(elapsed*0.5)*0.8;
+      cyanLight.intensity = 3 + Math.cos(elapsed*0.6)*0.8;
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    window.addEventListener('resize', function () {
+      var w = hero.clientWidth, h = hero.clientHeight || 1;
+      camera.aspect = w / h; camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+    window.addEventListener('orientationchange', function () { setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 100); });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webdigio Hero — PocketChange Style</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg: #0B1120;
+      --color-text: #F1F5F9;
+      --color-text-muted: #94A3B8;
+      --color-primary: #3B82F6;
+      --color-primary-light: #60A5FA;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--color-bg);
+    }
+    .hero__canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .hero__container {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      padding: 6rem 3rem 4rem;
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* ====== LEFT: TEXT ====== */
+    .hero__text {
+      flex: 0 0 auto;
+      max-width: 460px;
+      z-index: 5;
+    }
+    .hero__overline {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-primary-light);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .hero__headline {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--color-text);
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+    }
+    .hero__highlight {
+      background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #2563EB 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero__subhead {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      max-width: 400px;
+    }
+    .hero__actions {
+      display: flex;
+      gap: 0.875rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-body);
+      font-weight: 500; font-size: 0.875rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 10px;
+      transition: all 0.35s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn--primary {
+      background: var(--color-primary);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(59,130,246,0.3);
+    }
+    .btn--primary:hover { background: #2563EB; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59,130,246,0.4); }
+    .btn--glass {
+      background: transparent;
+      color: var(--color-text);
+      border: 1px solid rgba(59,130,246,0.15);
+    }
+    .btn--glass:hover { background: rgba(255,255,255,0.06); border-color: rgba(59,130,246,0.3); }
+
+    /* Stat badges */
+    .hero__badges {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero__badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(59,130,246,0.1);
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+    }
+    .hero__badge strong {
+      font-family: var(--font-heading);
+      color: var(--color-primary-light);
+      font-size: 0.95rem;
+    }
+
+    /* ====== RIGHT: FLOATING IPHONES ====== */
+    .hero__phones {
+      position: relative;
+      flex: 1;
+      min-width: 320px;
+      max-width: 580px;
+      height: 560px;
+      z-index: 3;
+    }
+
+    /* ---- IPHONE BASE ---- */
+    .iphone {
+      position: absolute;
+      width: 175px;
+      background: #0f1319;
+      border-radius: 32px;
+      border: 2.5px solid rgba(59,130,246,0.18);
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.03);
+      overflow: hidden;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Dynamic Island */
+    .iphone__island {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 22px;
+      background: #000;
+      border-radius: 14px;
+      z-index: 10;
+    }
+
+    /* Screen */
+    .iphone__screen {
+      position: relative;
+      margin: 16px 8px 8px;
+      background: #111827;
+      border-radius: 22px;
+      overflow: hidden;
+      height: 340px;
+      display: flex;
+      flex-direction: column;
+    }
+    .iphone__screen::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 30%, rgba(59,130,246,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Status bar */
+    .iphone__status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px 6px;
+      font-size: 0.55rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Screen content */
+    .iphone__content {
+      flex: 1;
+      padding: 0.25rem 12px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      z-index: 3;
+    }
+    .iphone__content-hero {
+      height: 55px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(37,99,235,0.1));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 0 6px;
+    }
+    .iphone__content-row {
+      display: flex;
+      gap: 5px;
+    }
+    .iphone__content-card {
+      flex: 1;
+      height: 38px;
+      background: rgba(255,255,255,0.025);
+      border-radius: 6px;
+    }
+    .iphone__content-line {
+      height: 8px;
+      background: rgba(255,255,255,0.025);
+      border-radius: 4px;
+    }
+    .iphone__content-line--short { width: 65%; }
+
+    /* iPhone 1 — Front, center-left (blue website screen) */
+    .iphone--front {
+      top: 60px;
+      left: 50px;
+      transform: rotateY(-12deg) rotateZ(-2deg);
+      z-index: 4;
+    }
+    .iphone--front .iphone__screen {
+      border: 1px solid rgba(59,130,246,0.12);
+    }
+
+    /* iPhone 2 — Rear/back, center-right (hardware beauty) */
+    .iphone--rear {
+      top: 20px;
+      right: 30px;
+      transform: rotateY(10deg) rotateZ(3deg);
+      z-index: 2;
+    }
+    .iphone--rear .iphone__screen {
+      background: #080c12;
+    }
+    .iphone__camera-bump {
+      position: absolute;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 70px;
+      background: #0f1319;
+      border-radius: 18px;
+      z-index: 4;
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.02);
+    }
+    .iphone__camera-bump::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 8px; right: 8px;
+      height: 28px;
+      background: #1a1f2e;
+      border-radius: 14px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+    }
+    .iphone__lens {
+      position: absolute;
+      width: 16px; height: 16px;
+      background: radial-gradient(circle at 30% 30%, #1e2a3a, #0a0e14);
+      border-radius: 50%;
+      border: 1.5px solid #1a1f2e;
+    }
+    .iphone__lens--1 { top: 10px; left: 12px; }
+    .iphone__lens--2 { top: 10px; right: 12px; width: 12px; height: 12px; }
+    .iphone__lens--3 { top: 26px; right: 22px; width: 8px; height: 8px; }
+    .iphone__logo {
+      position: absolute;
+      top: 155px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #60A5FA, #2563EB);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* iPhone 3 — Front, bottom-right (services screen) */
+    .iphone--gold {
+      bottom: 40px;
+      right: 90px;
+      transform: rotateY(-6deg) rotateZ(-4deg);
+      z-index: 3;
+    }
+    .iphone--gold .iphone__screen {
+      border: 1px solid rgba(59,130,246,0.12);
+    }
+
+    /* Hover lift */
+    .iphone:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 100px rgba(59,130,246,0.12), 0 0 0 1px rgba(59,130,246,0.25);
+    }
+    .iphone--front:hover  { transform: rotateY(-12deg) rotateZ(-2deg) translateY(-8px); }
+    .iphone--rear:hover   { transform: rotateY(10deg) rotateZ(3deg) translateY(-8px); }
+    .iphone--gold:hover   { transform: rotateY(-6deg) rotateZ(-4deg) translateY(-8px); }
+
+    /* Scroll hint */
+    .hero__scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hero__scroll-text {
+      font-family: var(--font-body);
+      font-size: 0.55rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    .hero__scroll-line {
+      width: 1px; height: 30px;
+      background: linear-gradient(to bottom, rgba(59,130,246,0.3), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+    @keyframes scrollLine {
+      0% { height: 10px; opacity: 0; }
+      40% { height: 30px; opacity: 1; }
+      80% { height: 10px; opacity: 0.2; }
+      100% { height: 10px; opacity: 0; }
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 1024px) {
+      .hero__container {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 7rem 2rem 3rem;
+        text-align: center;
+      }
+      .hero__text { max-width: 100%; }
+      .hero__subhead { max-width: 100%; }
+      .hero__actions { justify-content: center; }
+      .hero__badges { justify-content: center; }
+      .hero__phones {
+        height: 420px;
+        max-width: 100%;
+      }
+      .iphone { width: 145px; border-radius: 26px; }
+      .iphone__screen { height: 280px; border-radius: 18px; margin: 14px 7px 7px; }
+      .iphone__island { width: 58px; height: 18px; top: 8px; border-radius: 12px; }
+      .iphone--front { top: 40px; left: 30px; }
+      .iphone--rear { top: 10px; right: 20px; }
+      .iphone--gold { bottom: 20px; right: 70px; }
+      .iphone__camera-bump { width: 56px; height: 56px; top: 55px; }
+      .iphone__logo { top: 125px; font-size: 1.2rem; }
+    }
+
+    @media (max-width: 600px) {
+      .hero__container { padding: 6rem 1rem 2rem; }
+      .hero__phones { height: 320px; }
+      .iphone { width: 120px; border-radius: 22px; }
+      .iphone__screen { height: 220px; border-radius: 14px; margin: 12px 6px 6px; }
+      .iphone__island { width: 46px; height: 14px; top: 7px; border-radius: 10px; }
+      .iphone__content-hero { height: 40px; font-size: 0.5rem; }
+      .iphone__content-row { gap: 3px; }
+      .iphone__content-card { height: 26px; }
+      .iphone--front { top: 30px; left: 10px; }
+      .iphone--rear { top: 5px; right: 5px; }
+      .iphone--gold { bottom: 15px; right: 40px; }
+      .iphone__camera-bump { width: 44px; height: 44px; top: 40px; border-radius: 14px; }
+      .iphone__lens--1 { width: 12px; height: 12px; top: 7px; left: 8px; }
+      .iphone__lens--2 { width: 9px; height: 9px; top: 7px; right: 8px; }
+      .iphone__lens--3 { width: 6px; height: 6px; top: 20px; right: 16px; }
+      .iphone__logo { top: 95px; font-size: 1rem; }
+      .hero__headline { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+
+    <div class="hero__container">
+      <!-- LEFT: Text -->
+      <div class="hero__text">
+        <span class="hero__overline">Agência Digital Premium</span>
+        <h1 class="hero__headline">
+          Design e engenharia<br>
+          <span class="hero__highlight">com resultados reais</span>
+        </h1>
+        <p class="hero__subhead">
+          Somos uma agência digital focada em criar produtos web de excelência. Design sofisticado, desenvolvimento sólido e performance real para o seu negócio.
+        </p>
+        <div class="hero__actions">
+          <a href="#" class="btn btn--primary">Falar connosco</a>
+          <a href="#" class="btn btn--glass">Ver expertise</a>
+        </div>
+        <div class="hero__badges">
+          <div class="hero__badge"><strong>5+</strong> anos</div>
+          <div class="hero__badge"><strong>150+</strong> projetos</div>
+          <div class="hero__badge"><strong>98%</strong> satisfação</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: 3 iPhones -->
+      <div class="hero__phones">
+
+        <!-- iPhone 1 — Front, showing Webdigio site -->
+        <div class="iphone iphone--front">
+          <div class="iphone__island"></div>
+          <div class="iphone__screen">
+            <div class="iphone__status">
+              <span>9:41</span>
+              <span>5G</span>
+            </div>
+            <div class="iphone__content">
+              <div class="iphone__content-hero">Design e engenharia com resultados reais</div>
+              <div class="iphone__content-row">
+                <div class="iphone__content-card"></div>
+                <div class="iphone__content-card"></div>
+                <div class="iphone__content-card"></div>
+              </div>
+              <div class="iphone__content-line"></div>
+              <div class="iphone__content-line iphone__content-line--short"></div>
+              <div class="iphone__content-row">
+                <div class="iphone__content-card"></div>
+                <div class="iphone__content-card"></div>
+              </div>
+              <div class="iphone__content-line"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone 2 — Rear, hardware beauty shot -->
+        <div class="iphone iphone--rear">
+          <div class="iphone__island"></div>
+          <div class="iphone__screen">
+            <div class="iphone__camera-bump">
+              <div class="iphone__lens iphone__lens--1"></div>
+              <div class="iphone__lens iphone__lens--2"></div>
+              <div class="iphone__lens iphone__lens--3"></div>
+            </div>
+            <div class="iphone__logo">W</div>
+          </div>
+        </div>
+
+        <!-- iPhone 3 — Front, showing services page -->
+        <div class="iphone iphone--gold">
+          <div class="iphone__island"></div>
+          <div class="iphone__screen">
+            <div class="iphone__status">
+              <span>9:41</span>
+              <span>5G</span>
+            </div>
+            <div class="iphone__content">
+              <div class="iphone__content-hero">UI/UX · Dev · SEO · Performance</div>
+              <div class="iphone__content-row">
+                <div class="iphone__content-card"></div>
+                <div class="iphone__content-card"></div>
+              </div>
+              <div class="iphone__content-line iphone__content-line--short"></div>
+              <div class="iphone__content-row">
+                <div class="iphone__content-card"></div>
+                <div class="iphone__content-card"></div>
+                <div class="iphone__content-card"></div>
+              </div>
+              <div class="iphone__content-line"></div>
+              <div class="iphone__content-line iphone__content-line--short"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero__scroll">
+      <span class="hero__scroll-text">S c r o l l</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var canvas = document.getElementById('heroCanvas');
+    var hero = document.querySelector('.hero');
+    if (!canvas || !hero) return;
+    var isMobile = window.matchMedia('(max-width: 767px)').matches;
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isMobile || prefersReduced) { canvas.style.display = 'none'; return; }
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(55, hero.clientWidth / Math.max(hero.clientHeight, 1), 0.1, 50);
+    camera.position.z = 10;
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setSize(hero.clientWidth, hero.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+
+    scene.add(new THREE.AmbientLight(0x1a2a44, 1.2));
+    var blueLight = new THREE.PointLight(0x3B82F6, 3, 20); blueLight.position.set(4,2,5); scene.add(blueLight);
+    var cyanLight = new THREE.PointLight(0x60A5FA, 3, 20); cyanLight.position.set(-4,-1,4); scene.add(cyanLight);
+    var whiteLight = new THREE.PointLight(0xeef2ff, 1.5, 15); whiteLight.position.set(0,4,6); scene.add(whiteLight);
+
+    var coreGeo = new THREE.IcosahedronGeometry(1.1, 2);
+    var coreMat = new THREE.MeshPhysicalMaterial({ color: 0x3B82F6, metalness: 0.1, roughness: 0.1, clearcoat: 0.5, clearcoatRoughness: 0.08, emissive: 0x001133, emissiveIntensity: 0.4 });
+    var core = new THREE.Mesh(coreGeo, coreMat); scene.add(core);
+    var shellGeo = new THREE.IcosahedronGeometry(1.4, 1);
+    var shellMat = new THREE.MeshBasicMaterial({ color: 0x60A5FA, wireframe: true, transparent: true, opacity: 0.25 });
+    var shell = new THREE.Mesh(shellGeo, shellMat); scene.add(shell);
+
+    function addRing(r, t, col, em, rx, ry) {
+      var g = new THREE.TorusGeometry(r, t, 16, 100);
+      var m = new THREE.MeshStandardMaterial({ color: col, metalness: 0.4, roughness: 0.25, emissive: em, emissiveIntensity: 0.45 });
+      var ring = new THREE.Mesh(g, m); ring.rotation.x = rx; ring.rotation.y = ry; scene.add(ring); return ring;
+    }
+    var ring1 = addRing(2.2, 0.03, 0x60A5FA, 0x001122, Math.PI/2.5, 0);
+    var ring2 = addRing(2.6, 0.025, 0x3B82F6, 0x001133, -Math.PI/3, Math.PI/4);
+    var ring3Geo = new THREE.TorusGeometry(3.0, 0.02, 16, 80);
+    var ring3Mat = new THREE.MeshStandardMaterial({ color: 0x93C5FD, metalness: 0.4, roughness: 0.2, transparent: true, opacity: 0.5 });
+    var ring3 = new THREE.Mesh(ring3Geo, ring3Mat); ring3.rotation.x = Math.PI/1.8; ring3.rotation.y = -Math.PI/5; scene.add(ring3);
+
+    var cubes = [];
+    var cCols = [0x3B82F6,0x60A5FA,0x2563EB,0x1D4ED8,0x93C5FD,0x4F8AF7];
+    for (var c=0;c<6;c++) {
+      var cGeo = new THREE.BoxGeometry(0.15,0.15,0.15);
+      var cMat = new THREE.MeshPhysicalMaterial({ color: cCols[c], metalness: 0.15, roughness: 0.12, clearcoat: 0.5 });
+      var cu = new THREE.Mesh(cGeo, cMat);
+      cu.userData = { orbitRadius: 2.8+Math.random()*0.8, speed: 0.3+Math.random()*0.5, offset: (c/6)*Math.PI*2, axisY: Math.random()*0.5 };
+      scene.add(cu); cubes.push(cu);
+    }
+
+    var pCount=500, pGeo=new THREE.BufferGeometry(), pos=new Float32Array(pCount*3);
+    for (var p=0;p<pCount;p++) {
+      var th=Math.random()*Math.PI*2, ph=Math.acos(2*Math.random()-1), rad=3+Math.random()*7;
+      pos[p*3]=rad*Math.sin(ph)*Math.cos(th); pos[p*3+1]=rad*Math.sin(ph)*Math.sin(th); pos[p*3+2]=rad*Math.cos(ph);
+    }
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+    var particles = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x60A5FA, size: 0.04, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0.5 }));
+    scene.add(particles);
+
+    var dCount=80, dGeo=new THREE.BufferGeometry(), dPos=new Float32Array(dCount*3);
+    for (var d=0;d<dCount;d++) { var a=(d/dCount)*Math.PI*2; dPos[d*3]=Math.cos(a)*3.4; dPos[d*3+1]=0; dPos[d*3+2]=Math.sin(a)*3.4; }
+    dGeo.setAttribute('position', new THREE.BufferAttribute(dPos,3));
+    var dots = new THREE.Points(dGeo, new THREE.PointsMaterial({ color: 0x3B82F6, size: 0.06, blending: THREE.AdditiveBlending, depthWrite: false }));
+    scene.add(dots);
+
+    var mx=0,my=0,tmx=0,tmy=0;
+    var burstScale=1;
+    document.addEventListener('mousemove',function(e){tmx=(e.clientX/window.innerWidth)*2-1;tmy=-(e.clientY/window.innerHeight)*2+1;});
+    document.addEventListener('click',function(){burstScale=1.3;});
+    var visible=true;
+    new IntersectionObserver(function(e){visible=e[0].isIntersecting;},{threshold:0}).observe(hero);
+    document.addEventListener('visibilitychange',function(){if(document.hidden)visible=false;});
+    var clock=new THREE.Clock();
+    function animate(){
+      if(!visible){requestAnimationFrame(animate);return;}
+      var el=clock.getElapsedTime();
+      mx+=(tmx-mx)*0.04; my+=(tmy-my)*0.04;
+      burstScale+=(1-burstScale)*0.08;
+      core.rotation.x+=0.004; core.rotation.y+=0.006; core.scale.setScalar(burstScale);
+      shell.rotation.x-=0.003; shell.rotation.y-=0.005; shell.rotation.z+=0.002; shell.scale.setScalar(burstScale);
+      camera.position.x+=(mx*2-camera.position.x)*0.03; camera.position.y+=(-my*1.5-camera.position.y)*0.03; camera.lookAt(0,0,0);
+      ring1.rotation.z+=0.004; ring1.rotation.x+=mx*0.002;
+      ring2.rotation.z-=0.005; ring2.rotation.y+=my*0.003;
+      ring3.rotation.z+=0.003; ring3.rotation.x-=mx*0.001;
+      for(var i=0;i<cubes.length;i++){var cu=cubes[i],ud=cu.userData,a=el*ud.speed+ud.offset;cu.position.x=Math.cos(a)*ud.orbitRadius;cu.position.z=Math.sin(a)*ud.orbitRadius;cu.position.y=Math.sin(el*0.4+ud.offset)*ud.axisY;cu.rotation.x+=0.02;cu.rotation.y+=0.03;}
+      particles.rotation.y+=0.0004; particles.rotation.x+=0.0002;
+      dots.rotation.y-=0.008; dots.rotation.z+=0.003;
+      blueLight.intensity=3+Math.sin(el*0.5)*0.8; cyanLight.intensity=3+Math.cos(el*0.6)*0.8;
+      renderer.render(scene,camera); requestAnimationFrame(animate);
+    }
+    animate();
+    window.addEventListener('resize',function(){var w=hero.clientWidth,h=hero.clientHeight||1;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h);});
+  })();
+  </script>
+</body>
+</html>
