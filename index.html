@@ -3,34 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Webnify — Websites profissionais para PMEs em 2-5 dias. Sem mensalidades, foco em resultados e geração de clientes. Integração WhatsApp, SEO base incluído.">
-  <meta name="keywords" content="criação websites, sites PME, web design Portugal, sites rápidos, sites sem mensalidade, Webnify, site express, desenvolvimento web">
-  <meta name="author" content="Webnify">
+  <meta name="description" content="Webdigio — Agência digital premium. Design, desenvolvimento e performance para negócios que querem crescer online.">
+  <meta name="keywords" content="agência digital, web design Portugal, desenvolvimento web, UX/UI design, performance web, Webdigio">
+  <meta name="author" content="Webdigio">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Webnify — Websites Profissionais em 2-5 Dias | Sem Mensalidades">
-  <meta property="og:description" content="Transforme a sua presença online. Sites rápidos, modernos e focados em gerar clientes para o seu negócio.">
+  <meta property="og:title" content="Webdigio — Agência Digital Premium | Design & Desenvolvimento">
+  <meta property="og:description" content="Criamos produtos digitais que transformam negócios. Design, desenvolvimento, performance e product thinking — tudo integrado.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://webnify.pt">
+  <meta property="og:url" content="https://webdigio.pt">
   <meta property="og:locale" content="pt_PT">
-  <link rel="canonical" href="https://webnify.pt">
-  <title>Webnify — Websites Profissionais em 2-5 Dias | Sem Mensalidades</title>
+  <link rel="canonical" href="https://webdigio.pt">
+  <title>Webdigio — Agência Digital Premium | Design & Desenvolvimento</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
-  <!-- Navigation -->
+
+  <!-- Header -->
   <header class="header" id="header">
     <nav class="nav container">
       <a href="#" class="nav__logo">
-        <img src="assets/logo-transparent.png" alt="Webnify" class="nav__logo-img">
+        <span class="nav__logo-mark">W</span>
+        <span class="nav__logo-text">ebdigio</span>
       </a>
       <ul class="nav__list" id="navList">
-        <li class="nav__item"><a href="#como-funciona" class="nav__link">Como Funciona</a></li>
-        <li class="nav__item"><a href="#servico" class="nav__link">Serviço</a></li>
-        <li class="nav__item"><a href="#diferencial" class="nav__link">Diferencial</a></li>
+        <li class="nav__item"><a href="#expertise" class="nav__link">Expertise</a></li>
+        <li class="nav__item"><a href="#servicos" class="nav__link">Serviços</a></li>
+        <li class="nav__item"><a href="#processo" class="nav__link">Processo</a></li>
         <li class="nav__item"><a href="#preco" class="nav__link">Preço</a></li>
         <li class="nav__item"><a href="#contacto" class="nav__link nav__link--cta">Contactar</a></li>
       </ul>
@@ -43,116 +45,125 @@
   <main>
     <!-- Hero -->
     <section class="hero" id="inicio">
-      <div class="hero__bg"></div>
+      <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="aurora-bg" aria-hidden="true"></div>
+      <div class="hero__backdrop" aria-hidden="true"></div>
       <div class="container hero__container">
-        <span class="hero__badge">🚀 Pacote Webnify Site Express</span>
+        <div class="hero__text-blur" aria-hidden="true"></div>
+        <span class="hero__overline">Agência Digital Premium</span>
         <h1 class="hero__title">
-          Um site profissional<br>
-          <span class="hero__title--highlight">em 2 a 5 dias</span><br>
-          sem mensalidades.
+          Design e engenharia<br>
+          <span class="hero__title--highlight">com resultados reais</span>
         </h1>
         <p class="hero__subtitle">
-          Deixe de perder clientes por não ter presença online. Criamos o site que o seu negócio precisa — rápido, moderno e focado em resultados.
+          Somos uma agência digital focada em criar produtos web de excelência. Design sofisticado, desenvolvimento sólido e performance real para o seu negócio.
         </p>
         <div class="hero__actions">
-          <a href="#contacto" class="btn btn--primary">Quero o meu site</a>
-          <a href="#servico" class="btn btn--outline">Ver o que inclui</a>
+          <a href="#contacto" class="btn btn--primary">Falar connosco</a>
+          <a href="#expertise" class="btn btn--glass">Ver expertise</a>
         </div>
         <div class="hero__stats">
           <div class="hero__stat">
-            <span class="hero__stat-number">2-5</span>
-            <span class="hero__stat-label">dias de entrega</span>
+            <span class="hero__stat-label">Anos de experiência</span>
+            <span class="hero__stat-number">5+</span>
           </div>
           <div class="hero__stat">
-            <span class="hero__stat-number">690€</span>
-            <span class="hero__stat-label">pagamento único</span>
+            <span class="hero__stat-label">Projetos entregues</span>
+            <span class="hero__stat-number" data-counter>150+</span>
           </div>
           <div class="hero__stat">
-            <span class="hero__stat-number">0€</span>
-            <span class="hero__stat-label">mensalidades</span>
+            <span class="hero__stat-label">Clientes satisfeitos</span>
+            <span class="hero__stat-number">98%</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Problem -->
-    <section class="problem section" id="problema">
+    <!-- Expertise -->
+    <section class="expertise section" id="expertise">
       <div class="container">
         <div class="section__header">
-          <span class="section__tag section__tag--red">Problema</span>
-          <h2 class="section__title">O seu negócio está invisível para quem procura?</h2>
+          <span class="section__tag">O que fazemos</span>
+          <h2 class="section__title">Excelência em cada detalhe do produto digital</h2>
           <p class="section__text">
-            A maioria das PMEs em Portugal ainda não tem um site profissional ou mantém sites desatualizados que afastam potenciais clientes. Todos os dias em que não aparece no Google, alguém escolhe a concorrência.
+            Não fazemos apenas websites. Pensamos, desenhamos e desenvolvemos experiências digitais completas que colocam o seu negócio à frente.
           </p>
         </div>
-        <div class="problem__grid">
-          <div class="problem__card">
-            <div class="problem__icon">📉</div>
-            <h3 class="problem__card-title">Falta de Presença</h3>
-            <p>Sem um site moderno, o seu negócio não inspira confiança. Muitos clientes só contactam depois de ver um site profissional.</p>
+        <div class="expertise__grid bento-grid">
+          <div class="expertise__card" data-reveal>
+            <svg class="expertise__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/><circle cx="7" cy="7" r="1"/><circle cx="12" cy="7" r="1"/><circle cx="17" cy="7" r="1"/>
+            </svg>
+            <h3 class="expertise__card-title">Web Design</h3>
+            <p>Interfaces modernas que comunicam profissionalismo. Cada pixel é pensado para guiar o utilizador e converter visitas em contactos.</p>
           </div>
-          <div class="problem__card">
-            <div class="problem__icon">⏳</div>
-            <h3 class="problem__card-title">Sites Desatualizados</h3>
-            <p>Um site antigo transmite má imagem. Design ultrapassado, lento e mal otimizado afasta mais do que atrai.</p>
+          <div class="expertise__card" data-reveal>
+            <svg class="expertise__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="12" y1="2" x2="12" y2="22"/>
+            </svg>
+            <h3 class="expertise__card-title">Desenvolvimento</h3>
+            <p>Código limpo, rápido e otimizado. Utilizamos as melhores tecnologias para garantir performance, segurança e escalabilidade.</p>
           </div>
-          <div class="problem__card">
-            <div class="problem__icon">💸</div>
-            <h3 class="problem__card-title">Perda de Receita</h3>
-            <p>Cada dia sem presença online é um dia a perder clientes para concorrentes que já marcam presença no digital.</p>
+          <div class="expertise__card" data-reveal>
+            <svg class="expertise__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            <h3 class="expertise__card-title">Performance</h3>
+            <p>Sites que carregam em milissegundos. Performance não é opcional — é a base de uma boa experiência e de um melhor posicionamento no Google.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Solution -->
-    <section class="solution section" id="solucao">
+    <!-- Showcase -->
+    <section class="showcase section" id="showcase">
+      <div class="aurora-bg" aria-hidden="true"></div>
       <div class="container">
-        <div class="solution__grid">
-          <div class="solution__content">
-            <span class="section__tag section__tag--green">Solução</span>
-            <h2 class="section__title">Nós tratamos de tudo. Você recebe clientes.</h2>
+        <div class="showcase__grid">
+          <div class="showcase__content" data-reveal>
+            <span class="section__tag">A nossa abordagem</span>
+            <h2 class="section__title">Nós tratamos da tecnologia. Você foca-se no seu negócio.</h2>
             <p class="section__text">
-              A Webnify cria o site completo do seu negócio em 2 a 5 dias úteis. Design moderno, textos otimizados, SEO base, integração com WhatsApp e muito mais — tudo num pagamento único, sem surpresas.
+              Cada projeto é único. Analisamos, desenhamos e implementamos uma solução à medida — com acompanhamento próximo e transparência total.
             </p>
-            <ul class="solution__list">
-              <li class="solution__item">
-                <span class="solution__check">✓</span>
-                <span>Entrega rápida: site pronto em 2 a 5 dias</span>
+            <ul class="showcase__list">
+              <li class="showcase__item">
+                <svg class="showcase__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Design responsivo que funciona em todos os dispositivos</span>
               </li>
-              <li class="solution__item">
-                <span class="solution__check">✓</span>
-                <span>Pagamento único de 690€, sem mensalidades</span>
+              <li class="showcase__item">
+                <svg class="showcase__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Otimização SEO para aparecer nas pesquisas do Google</span>
               </li>
-              <li class="solution__item">
-                <span class="solution__check">✓</span>
-                <span>Textos profissionais escritos com apoio de IA</span>
+              <li class="showcase__item">
+                <svg class="showcase__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Copywriting profissional adaptado ao seu setor</span>
               </li>
-              <li class="solution__item">
-                <span class="solution__check">✓</span>
-                <span>SEO base para aparecer no Google</span>
+              <li class="showcase__item">
+                <svg class="showcase__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Integração direta com WhatsApp para contactos imediatos</span>
               </li>
-              <li class="solution__item">
-                <span class="solution__check">✓</span>
-                <span>WhatsApp integrado para receber contactos diretos</span>
+              <li class="showcase__item">
+                <svg class="showcase__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Acompanhamento personalizado em cada etapa</span>
               </li>
             </ul>
           </div>
-          <div class="solution__visual">
-            <div class="solution__mockup">
-              <div class="solution__mockup-bar">
+          <div class="showcase__visual" data-reveal>
+            <div class="showcase__mockup">
+              <div class="showcase__mockup-bar">
                 <span></span><span></span><span></span>
               </div>
-              <div class="solution__mockup-body">
-                <div class="solution__mockup-hero"></div>
-                <div class="solution__mockup-cards">
-                  <div class="solution__mockup-card"></div>
-                  <div class="solution__mockup-card"></div>
-                  <div class="solution__mockup-card"></div>
+              <div class="showcase__mockup-body">
+                <div class="showcase__mockup-hero"></div>
+                <div class="showcase__mockup-cards">
+                  <div class="showcase__mockup-card"></div>
+                  <div class="showcase__mockup-card"></div>
+                  <div class="showcase__mockup-card"></div>
                 </div>
-                <div class="solution__mockup-text">
-                  <div class="solution__mockup-line"></div>
-                  <div class="solution__mockup-line solution__mockup-line--short"></div>
+                <div class="showcase__mockup-text">
+                  <div class="showcase__mockup-line"></div>
+                  <div class="showcase__mockup-line showcase__mockup-line--short"></div>
                 </div>
               </div>
             </div>
@@ -161,157 +172,181 @@
       </div>
     </section>
 
-    <!-- Service -->
-    <section class="service section" id="servico">
+    <!-- Services -->
+    <section class="services section" id="servicos">
       <div class="container">
         <div class="section__header">
-          <span class="section__tag">Produto</span>
-          <h2 class="section__title">Pacote Webnify Site Express</h2>
-          <p class="section__text">Tudo o que a sua empresa precisa para começar a receber contactos online. Simples, direto e eficaz.</p>
+          <span class="section__tag">Serviços</span>
+          <h2 class="section__title">Tudo o que precisa para existir online com impacto</h2>
+          <p class="section__text">Da estratégia à implementação, oferecemos um serviço completo — sem dores de cabeça, sem surpresas.</p>
         </div>
-        <div class="service__grid">
-          <div class="service__card">
-            <div class="service__card-icon">📄</div>
-            <h3>Até 5 Páginas</h3>
-            <p>Início, Sobre, Serviços, Contactos e mais — tudo o que precisa para mostrar o seu negócio ao mundo.</p>
+        <div class="services__grid bento-grid">
+          <div class="services__card" data-reveal>
+            <svg class="services__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+            <h3>UI/UX Design</h3>
+            <p>Interfaces pensadas para o utilizador. Wireframes, protótipos e design visual com foco em conversão e usabilidade.</p>
           </div>
-          <div class="service__card">
-            <div class="service__card-icon">🎨</div>
-            <h3>Design Moderno</h3>
-            <p>Layout profissional, responsivo (funciona em telemóvel e computador) e alinhado com a identidade da sua marca.</p>
+          <div class="services__card" data-reveal>
+            <svg class="services__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+            <h3>Desenvolvimento Frontend</h3>
+            <p>Código moderno, semântico e otimizado. HTML, CSS, JavaScript e frameworks atuais para sites rápidos e robustos.</p>
           </div>
-          <div class="service__card">
-            <div class="service__card-icon">🤖</div>
-            <h3>Textos com IA</h3>
-            <p>Copywriting otimizado para conversão, escrito com apoio de inteligência artificial e adaptado ao seu negócio.</p>
+          <div class="services__card services__card--featured" data-reveal>
+            <svg class="services__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+            <h3>Product Thinking</h3>
+            <p>Pensamos no seu site como um produto digital. Estratégia, análise de mercado e decisões baseadas em dados para maximizar resultados.</p>
           </div>
-          <div class="service__card">
-            <div class="service__card-icon">🔍</div>
-            <h3>SEO Base</h3>
-            <p>Estrutura otimizada para motores de busca. O seu site pronto para aparecer no Google desde o primeiro dia.</p>
+          <div class="services__card" data-reveal>
+            <svg class="services__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            <h3>SEO & Performance</h3>
+            <p>Estrutura otimizada para motores de busca. Sites que carregam rápido e aparecem nas pesquisas certas desde o primeiro dia.</p>
           </div>
-          <div class="service__card">
-            <div class="service__card-icon">💬</div>
-            <h3>WhatsApp Integrado</h3>
-            <p>Botão direto para conversa no WhatsApp. Os seus clientes contactam-no com um só clique.</p>
+          <div class="services__card" data-reveal>
+            <svg class="services__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <h3>Copywriting & Conteúdo</h3>
+            <p>Textos profissionais que comunicam o valor do seu negócio. Copywriting estratégico apoiado por IA, adaptado ao seu setor.</p>
           </div>
-          <div class="service__card">
-            <div class="service__card-icon">⚡</div>
-            <h3>Entrega Rápida</h3>
-            <p>Site pronto em 2 a 5 dias úteis. Menos tempo de espera, mais rápido a gerar resultados.</p>
+          <div class="services__card" data-reveal>
+            <svg class="services__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            <h3>Manutenção & Suporte</h3>
+            <p>O site não termina na entrega. Oferecemos suporte contínuo para garantir que tudo se mantém rápido, seguro e atualizado.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Process -->
-    <section class="process section" id="como-funciona">
+    <section class="process section" id="processo">
       <div class="container">
         <div class="section__header">
           <span class="section__tag">Processo</span>
-          <h2 class="section__title">Como funciona?</h2>
-          <p class="section__text">Um processo simples e transparente, desenhado para não lhe tomar tempo.</p>
+          <h2 class="section__title">Simples, transparente e eficaz</h2>
+          <p class="section__text">Um processo desenhado para entregar qualidade sem complicar a sua vida.</p>
         </div>
         <div class="process__timeline">
-          <div class="process__step">
+          <div class="process__step" data-reveal>
             <div class="process__number">01</div>
             <div class="process__step-content">
-              <h3>Contacto Inicial</h3>
-              <p>Fale connosco por WhatsApp ou formulário. Percebemos o seu negócio e o que precisa em 15 minutos.</p>
+              <h3>Conversa inicial</h3>
+              <p>Falamos 15 minutos por WhatsApp. Percebemos o seu negócio, objetivos e necessidades específicas. Sem compromisso.</p>
             </div>
           </div>
-          <div class="process__step">
+          <div class="process__step" data-reveal>
             <div class="process__number">02</div>
             <div class="process__step-content">
-              <h3>Demonstração</h3>
-              <p>Mostramos exemplos de sites que criámos. Alinhamos o estilo e as páginas que o seu negócio precisa.</p>
+              <h3>Proposta e alinhamento</h3>
+              <p>Mostramos exemplos relevantes para o seu setor. Definimos estilo, estrutura e páginas. Tudo alinhado antes de começar.</p>
             </div>
           </div>
-          <div class="process__step">
+          <div class="process__step" data-reveal>
             <div class="process__number">03</div>
             <div class="process__step-content">
-              <h3>Criação do Site</h3>
-              <p>Desenvolvemos o site completo em 2-5 dias. Design, textos, SEO e integrações — tudo incluído.</p>
+              <h3>Design e desenvolvimento</h3>
+              <p>Criamos o seu site completo: design, textos, SEO e integrações. Entregue em 2 a 5 dias úteis, pronto a publicar.</p>
             </div>
           </div>
-          <div class="process__step">
+          <div class="process__step" data-reveal>
             <div class="process__number">04</div>
             <div class="process__step-content">
-              <h3>Revisão e Entrega</h3>
-              <p>Revê o site, pede ajustes se necessário. Publicamos e o seu negócio fica online.</p>
+              <h3>Revisão e lançamento</h3>
+              <p>Revê o site e pede os ajustes que entender. Publicamos e o seu negócio fica online para o mundo.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Differentiation -->
-    <section class="diff section" id="diferencial">
+    <!-- Why Us -->
+    <section class="why section" id="porque-nos">
       <div class="container">
         <div class="section__header">
-          <span class="section__tag section__tag--accent">Diferenciação</span>
-          <h2 class="section__title">Porquê escolher a Webnify?</h2>
+          <span class="section__tag">Porquê a Webdigio</span>
+          <h2 class="section__title">Diferente por natureza</h2>
         </div>
-        <div class="diff__grid">
-          <div class="diff__card diff__card--featured">
-            <div class="diff__card-badge">O mais importante</div>
-            <h3>🚫 Sem Mensalidades</h3>
-            <p>Ao contrário das agências tradicionais, na Webnify paga uma vez e o site é seu. Sem surpresas, sem fidelizações, sem custos escondidos.</p>
+        <div class="why__grid">
+          <div class="why__card why__card--featured" data-reveal>
+            <div class="why__card-badge">O mais importante</div>
+            <h3>Sem mensalidades</h3>
+            <p>Ao contrário das agências tradicionais, paga uma vez e o site é seu. Sem fidelizações, sem custos escondidos, sem surpresas.</p>
           </div>
-          <div class="diff__card">
-            <h3>⚡ Entrega em 2-5 Dias</h3>
-            <p>Enquanto agências demoram semanas ou meses, nós entregamos o seu site pronto em menos de uma semana.</p>
+          <div class="why__card" data-reveal>
+            <h3>Entrega em 2 a 5 dias</h3>
+            <p>Enquanto outras agências demoram semanas ou meses, nós entregamos o seu site pronto em menos de uma semana. No tempo certo, com a qualidade certa.</p>
           </div>
-          <div class="diff__card">
-            <h3>🎯 Foco em Resultados</h3>
-            <p>Cada elemento do site é pensado para converter visitantes em contactos. Não fazemos sites bonitos por fazer — fazemos sites que geram clientes.</p>
+          <div class="why__card" data-reveal>
+            <h3>Foco em resultados</h3>
+            <p>Cada elemento do site é pensado para converter visitantes em clientes. Design bonito é o mínimo; design que gera receita é o objetivo.</p>
           </div>
-          <div class="diff__card">
-            <h3>🗣️ Linguagem Simples</h3>
-            <p>Nada de termos técnicos complicados. Explicamos tudo em linguagem clara e direta, para que saiba exatamente o que está a receber.</p>
+          <div class="why__card" data-reveal>
+            <h3>Transparência total</h3>
+            <p>Linguagem clara, processos simples e comunicação direta. Explicamos tudo sem termos técnicos para que saiba exatamente o que está a receber.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Target Market -->
-    <section class="target section" id="mercado">
+    <!-- Industries -->
+    <section class="industries section" id="setores">
       <div class="container">
         <div class="section__header">
-          <span class="section__tag">Quem servimos</span>
-          <h2 class="section__title">O site ideal para o seu setor</h2>
-          <p class="section__text">Trabalhamos com pequenas e médias empresas locais que querem mais clientes.</p>
+          <span class="section__tag">Setores</span>
+          <h2 class="section__title">Experiência no que o seu setor precisa</h2>
+          <p class="section__text">Conhecemos as necessidades específicas de cada área de negócio.</p>
         </div>
-        <div class="target__grid">
-          <a href="#contacto" class="target__card">
-            <span class="target__icon">🏥</span>
-            <h3>Clínicas & Saúde</h3>
-            <p>Médicos, dentistas, fisioterapeutas e clínicas</p>
+        <div class="industries__grid">
+          <a href="#contacto" class="industries__card" data-reveal>
+            <svg class="industries__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+            <h3>Saúde & Clínicas</h3>
+            <p>Médicos, dentistas, fisioterapeutas</p>
           </a>
-          <a href="#contacto" class="target__card">
-            <span class="target__icon">💇</span>
+          <a href="#contacto" class="industries__card" data-reveal>
+            <svg class="industries__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M13 13h.01"/><circle cx="18" cy="18" r="6"/><path d="M18 15v3"/><path d="M18 15h.01"/>
+            </svg>
             <h3>Estética & Bem-Estar</h3>
-            <p>Cabeleireiros, barbeiros, esteticistas e spas</p>
+            <p>Cabeleireiros, barbeiros, spas</p>
           </a>
-          <a href="#contacto" class="target__card">
-            <span class="target__icon">🍕</span>
+          <a href="#contacto" class="industries__card" data-reveal>
+            <svg class="industries__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
             <h3>Restauração</h3>
-            <p>Restaurantes, cafés, pastelarias e take-away</p>
+            <p>Restaurantes, cafés, pastelarias</p>
           </a>
-          <a href="#contacto" class="target__card">
-            <span class="target__icon">🔧</span>
+          <a href="#contacto" class="industries__card" data-reveal>
+            <svg class="industries__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
             <h3>Serviços Técnicos</h3>
-            <p>Eletricistas, canalizadores, serralheiros e reparações</p>
+            <p>Eletricistas, canalizadores, reparações</p>
           </a>
-          <a href="#contacto" class="target__card">
-            <span class="target__icon">💼</span>
+          <a href="#contacto" class="industries__card" data-reveal>
+            <svg class="industries__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><circle cx="12" cy="14" r="2"/>
+            </svg>
             <h3>Profissionais Independentes</h3>
-            <p>Advogados, contabilistas, consultores e formadores</p>
+            <p>Advogados, consultores, contabilistas</p>
           </a>
-          <a href="#contacto" class="target__card">
-            <span class="target__icon">🏪</span>
+          <a href="#contacto" class="industries__card" data-reveal>
+            <svg class="industries__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
             <h3>Comércio Local</h3>
-            <p>Lojas de bairro, mercearias e negócios de proximidade</p>
+            <p>Lojas, mercearias, negócios de bairro</p>
           </a>
         </div>
       </div>
@@ -322,11 +357,11 @@
       <div class="container">
         <div class="section__header">
           <span class="section__tag">Preço</span>
-          <h2 class="section__title">Transparente. Simples. Definitivo.</h2>
+          <h2 class="section__title">Claro. Direto. Definitivo.</h2>
         </div>
-        <div class="pricing__box">
+        <div class="pricing__box" data-reveal>
           <div class="pricing__main">
-            <span class="pricing__label">Pacote Webnify Site Express</span>
+            <span class="pricing__label">Pacote Site Express</span>
             <div class="pricing__price">
               <span class="pricing__currency">€</span>
               <span class="pricing__amount">690</span>
@@ -363,44 +398,54 @@
       </div>
     </section>
 
-    <!-- Strategy -->
-    <section class="strategy section" id="estrategia">
+    <!-- Approach -->
+    <section class="approach section" id="abordagem">
       <div class="container">
-        <div class="strategy__grid">
-          <div class="strategy__card">
-            <div class="strategy__card-front">
-              <span class="strategy__icon">🔍</span>
-              <h3>Como Chegamos a Si</h3>
-              <p>Estratégia de prospeção via Google Maps e contacto direto personalizado.</p>
-              <span class="strategy__hint">Passe o rato para saber mais</span>
-            </div>
-            <div class="strategy__card-back">
+        <div class="section__header">
+          <span class="section__tag">Estratégia</span>
+          <h2 class="section__title">Como pensamos o crescimento</h2>
+        </div>
+        <div class="approach__grid">
+          <div class="approach__card" data-reveal>
+            <div class="approach__card-front">
+              <svg class="approach__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
               <h3>Prospeção Inteligente</h3>
-              <p>Identificamos negócios sem site ou com sites desatualizados através do Google Maps. Enviamos uma mensagem direta e pessoal, mostrando como podemos ajudar. Se fizer sentido, apresentamos exemplos de sites que criámos e fechamos com uma proposta simples e transparente.</p>
+              <p>Identificamos negócios com potencial de crescimento digital e contactamos de forma direta e personalizada.</p>
+              <span class="approach__hint">Passe o cursor para saber mais</span>
+            </div>
+            <div class="approach__card-back">
+              <h3>Prospeção Inteligente</h3>
+              <p>Analisamos o mercado local através do Google Maps. Identificamos negócios sem presença online ou com sites desatualizados. Enviamos uma mensagem direta e pessoal, mostrando exatamente como podemos ajudar — com exemplos reais e uma proposta clara.</p>
             </div>
           </div>
-          <div class="strategy__card">
-            <div class="strategy__card-front">
-              <span class="strategy__icon">📱</span>
+          <div class="approach__card" data-reveal>
+            <div class="approach__card-front">
+              <svg class="approach__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
               <h3>Prova Social</h3>
-              <p>Presença ativa no Instagram e LinkedIn para mostrar trabalho e gerar confiança.</p>
-              <span class="strategy__hint">Passe o rato para saber mais</span>
+              <p>Presença ativa no Instagram e LinkedIn para mostrar trabalho real e gerar confiança antes do primeiro contacto.</p>
+              <span class="approach__hint">Passe o cursor para saber mais</span>
             </div>
-            <div class="strategy__card-back">
-              <h3>Redes Sociais</h3>
-              <p>Partilhamos o antes e depois dos sites que criamos. Mostramos resultados reais e testemunhos de clientes satisfeitos. O Instagram e o LinkedIn são a nossa montra digital — siga-nos para ver o que podemos fazer por si.</p>
+            <div class="approach__card-back">
+              <h3>Prova Social</h3>
+              <p>Partilhamos o antes e depois dos sites que criamos. Mostramos resultados reais, testemunhos de clientes e métricas de performance. O Instagram e o LinkedIn são a nossa montra digital.</p>
             </div>
           </div>
-          <div class="strategy__card">
-            <div class="strategy__card-front">
-              <span class="strategy__icon">📈</span>
-              <h3>Crescimento</h3>
-              <p>Expansão planeada para automações, SEO avançado e soluções SaaS.</p>
-              <span class="strategy__hint">Passe o rato para saber mais</span>
+          <div class="approach__card" data-reveal>
+            <div class="approach__card-front">
+              <svg class="approach__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+              </svg>
+              <h3>Crescimento Contínuo</h3>
+              <p>Evolução planeada para automações, SEO avançado e soluções digitais que crescem com o seu negócio.</p>
+              <span class="approach__hint">Passe o cursor para saber mais</span>
             </div>
-            <div class="strategy__card-back">
-              <h3>Roadmap Futuro</h3>
-              <p>Começamos com sites express. Evoluímos para oferecer chatbots, respostas automáticas no WhatsApp, SEO avançado e, mais tarde, soluções SaaS para que os nossos clientes possam gerir os seus próprios conteúdos de forma simples.</p>
+            <div class="approach__card-back">
+              <h3>Roadmap de Crescimento</h3>
+              <p>Começamos com sites express de alta qualidade. Evoluímos para chatbots inteligentes, automações de WhatsApp, SEO avançado e soluções SaaS para que os nossos clientes possam gerir os seus conteúdos de forma simples e autónoma.</p>
             </div>
           </div>
         </div>
@@ -409,11 +454,12 @@
 
     <!-- CTA -->
     <section class="cta section" id="contacto">
+      <div class="aurora-bg" aria-hidden="true"></div>
       <div class="container">
         <div class="cta__grid">
-          <div class="cta__content">
-            <span class="section__tag section__tag--light">Contacto</span>
-            <h2 class="section__title section__title--light">Pronto para ter um site que realmente lhe traz clientes?</h2>
+          <div class="cta__content" data-reveal>
+            <span class="section__tag">Vamos conversar</span>
+            <h2 class="section__title">Pronto para levar o seu negócio ao próximo nível?</h2>
             <p class="cta__text">
               Fale connosco hoje. Em 15 minutos percebemos o que precisa e mostramos como podemos ajudar. Sem compromisso, sem letras pequenas.
             </p>
@@ -422,13 +468,13 @@
                 <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
                 Falar no WhatsApp
               </a>
-              <a href="#" class="btn btn--email" id="emailBtn">
+              <a href="#" class="btn btn--glass" id="emailBtn">
                 <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                 Enviar Email
               </a>
             </div>
           </div>
-          <div class="cta__form-wrapper">
+          <div class="cta__form-wrapper" data-reveal>
             <form class="cta__form" id="contactForm">
               <div class="cta__form-group">
                 <label for="name">Nome</label>
@@ -450,8 +496,10 @@
               <p class="cta__form-note">Respondemos em menos de 24h. Sem spam, sem compromisso.</p>
             </form>
             <div class="cta__form-success" id="formSuccess" style="display:none;">
-              <span class="cta__form-success-icon">✅</span>
-              <h3>Mensagem Enviada!</h3>
+              <svg class="cta__form-success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <h3>Mensagem enviada</h3>
               <p>Obrigado pelo contacto. Respondemos em menos de 24 horas.</p>
             </div>
           </div>
@@ -466,20 +514,22 @@
       <div class="footer__grid">
         <div class="footer__brand">
           <a href="#" class="nav__logo">
-            <img src="assets/logo-transparent.png" alt="Webnify" class="nav__logo-img">
+            <span class="nav__logo-mark">W</span>
+            <span class="nav__logo-text">ebdigio</span>
           </a>
-          <p>Websites profissionais para PMEs. Rápidos, acessíveis e focados em resultados.</p>
+          <p>Agência digital premium. Criamos produtos web que transformam negócios — com design, engenharia e foco em resultados.</p>
         </div>
         <div class="footer__links">
           <h4>Navegação</h4>
-          <a href="#como-funciona">Como Funciona</a>
-          <a href="#servico">Serviço</a>
+          <a href="#expertise">Expertise</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#processo">Processo</a>
           <a href="#preco">Preço</a>
           <a href="#contacto">Contacto</a>
         </div>
         <div class="footer__links">
           <h4>Setores</h4>
-          <a href="#contacto">Clínicas & Saúde</a>
+          <a href="#contacto">Saúde & Clínicas</a>
           <a href="#contacto">Estética & Bem-Estar</a>
           <a href="#contacto">Restauração</a>
           <a href="#contacto">Serviços Técnicos</a>
@@ -497,7 +547,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2026 Webnify. Todos os direitos reservados.</p>
+        <p>&copy; 2026 Webdigio. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
@@ -507,6 +557,11 @@
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
   </a>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/three-hero.js"></script>
+  <script src="js/animations.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

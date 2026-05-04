@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 70">
+  <defs>
+    <linearGradient id="wg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EC4899"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <text x="0" y="55" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="700" fill="url(#wg)">W</text>
+  <text x="40" y="55" font-family="'Space Grotesk', sans-serif" font-size="36" font-weight="500" fill="#FFFFFF">ebdigio</text>
+</svg>
