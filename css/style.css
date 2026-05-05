@@ -295,15 +295,13 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .header {
   position: fixed; top: 1rem; left: 1rem; right: 1rem;
   z-index: 1000;
-  background: rgba(11, 17, 32, 0.8);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: #0B1120;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   transition: all var(--transition-base);
 }
 .header--scrolled {
-  background: rgba(11, 17, 32, 0.95);
+  background: #0B1120;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 }
 .nav {
@@ -362,7 +360,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
 /* --- Hero --- */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -489,9 +487,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .hero__phones {
   position: relative;
   flex: 1;
-  min-width: 340px;
-  max-width: 620px;
-  height: 600px;
+  min-width: 380px;
+  max-width: 680px;
+  height: 620px;
   perspective: 1000px;
   perspective-origin: 50% 45%;
   z-index: 3;
@@ -500,9 +498,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
 /* ---- IPHONE BASE ---- */
 .iphone {
   position: absolute;
-  width: 170px;
+  width: 190px;
   background: #0c1018;
-  border-radius: 30px;
+  border-radius: 32px;
   border: 2px solid rgba(59,130,246,0.15);
   box-shadow:
     0 40px 100px rgba(0,0,0,0.55),
@@ -545,11 +543,11 @@ input, textarea { font-family: inherit; font-size: inherit; }
 /* Screen */
 .iphone__screen {
   position: relative;
-  margin: 14px 7px 7px;
+  margin: 14px 8px 8px;
   background: #0d1117;
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
-  height: 350px;
+  height: 380px;
   display: flex;
   flex-direction: column;
 }
@@ -1236,7 +1234,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .section { padding: 5rem 0; }
   .nav__list {
     position: fixed; top: 3.75rem; left: 0; right: 0; bottom: 0;
-    background: #0B1120;
+    background: rgba(11, 17, 32, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     flex-direction: column; align-items: center; justify-content: center;
     gap: 0.75rem;
     opacity: 0; pointer-events: none;
@@ -1248,7 +1248,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .nav__link--cta { margin-left: 0; }
   .nav__toggle { display: flex; z-index: 1001; }
 
-  .hero { min-height: 100svh; }
+  .hero { min-height: 100dvh; }
   .hero__container {
     flex-direction: column;
     justify-content: flex-start;
@@ -1265,13 +1265,13 @@ input, textarea { font-family: inherit; font-size: inherit; }
     flex: none;
     width: 100%;
     min-width: 0;
-    height: 350px;
+    height: 380px;
     max-width: 100%;
     perspective: none;
     margin-top: -5rem;
   }
-  .iphone { width: 140px; border-radius: 26px; }
-  .iphone__screen { height: 250px; border-radius: 18px; margin: 12px 6px 6px; }
+  .iphone { width: 160px; border-radius: 28px; }
+  .iphone__screen { height: 280px; border-radius: 20px; margin: 12px 6px 6px; }
   .iphone__island { width: 52px; height: 16px; top: 8px; border-radius: 10px; }
   .iphone__banner { height: 38px; }
   .iphone__banner-title { font-size: 0.48rem; }
@@ -1306,9 +1306,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .hero__container { justify-content: flex-start; gap: 0; padding: 4rem 0.75rem 1rem; }
   .hero__overline { font-size: 0.6rem; margin-bottom: 0.5rem; }
   .hero__subhead { margin-bottom: 0.5rem; }
-  .hero__phones { height: 230px; margin-top: -5rem; }
-  .iphone { width: 100px; border-radius: 20px; }
-  .iphone__screen { height: 185px; border-radius: 13px; margin: 9px 5px 5px; }
+  .hero__phones { height: 260px; margin-top: -5rem; }
+  .iphone { width: 115px; border-radius: 22px; }
+  .iphone__screen { height: 210px; border-radius: 14px; margin: 9px 5px 5px; }
   .iphone__island { width: 40px; height: 12px; top: 6px; border-radius: 8px; }
   .iphone__banner { height: 30px; }
   .iphone__banner-title { font-size: 0.38rem; }
@@ -1362,7 +1362,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .nav__logo-text { display: none; }
   .nav__list {
     position: fixed; top: 3.75rem; left: 0; right: 0; bottom: 0;
-    background: #0B1120;
+    background: rgba(11, 17, 32, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     flex-direction: column; align-items: center; justify-content: center;
     gap: 0.75rem;
     opacity: 0; pointer-events: none;
