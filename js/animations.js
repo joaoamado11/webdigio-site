@@ -19,7 +19,7 @@
     reveals[r].style.transform = 'translateY(30px)';
   }
 
-  // Failsafe: show everything after 4s
+  // Failsafe: show everything after 8s (after loader should be done)
   setTimeout(function () {
     var all = document.querySelectorAll('[data-reveal]');
     for (var i = 0; i < all.length; i++) {
@@ -28,16 +28,23 @@
         all[i].style.transform = 'translateY(0)';
       }
     }
-  }, 4000);
+  }, 8000);
 
-  // --- Hero Entrance ---
-  var heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  // --- Hero Entrance (paused until loader finishes) ---
+  var heroTL = gsap.timeline({ defaults: { ease: 'power3.out' }, paused: true });
   heroTL
     .from('.hero__overline', { opacity: 0, y: 30, duration: 0.5 })
-    .from('.hero__title', { opacity: 0, y: 50, duration: 0.7 }, '-=0.2')
-    .from('.hero__subtitle', { opacity: 0, y: 25, duration: 0.5 }, '-=0.3')
+    .from('.hero__headline', { opacity: 0, y: 50, duration: 0.7 }, '-=0.2')
+    .from('.hero__subhead', { opacity: 0, y: 25, duration: 0.5 }, '-=0.3')
     .from('.hero__actions .btn', { opacity: 0, y: 15, duration: 0.4, stagger: 0.08 }, '-=0.2')
-    .from('.hero__stat', { opacity: 0, y: 25, duration: 0.4, stagger: 0.08 }, '-=0.1');
+    .from('.hero__badge', { opacity: 0, y: 25, duration: 0.4, stagger: 0.08 }, '-=0.1')
+    .from('.iphone', { opacity: 0, y: 60, scale: 0.85, duration: 0.7, stagger: 0.12, ease: 'back.out(1.2)' }, '-=0.5')
+    .from('.hero__scroll', { opacity: 0, y: 10, duration: 0.5 }, '-=0.3');
+
+  // Expose for loader
+  window.startHeroAnimations = function () {
+    heroTL.play();
+  };
 
   // --- Card section reveals ---
   function revealOnScroll(selector, staggerVal) {
