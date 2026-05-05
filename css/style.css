@@ -513,12 +513,12 @@ input, textarea { font-family: inherit; font-size: inherit; }
 }
 
 @keyframes phoneFloatLeft {
-  0%, 100% { top: 90px; }
-  50% { top: 78px; }
+  0%, 100% { top: 88px; }
+  50% { top: 76px; }
 }
 @keyframes phoneFloatCenter {
-  0%, 100% { top: 55px; }
-  50% { top: 42px; }
+  0%, 100% { top: 95px; }
+  50% { top: 82px; }
 }
 @keyframes phoneFloatRight {
   0%, 100% { top: 100px; }
@@ -721,7 +721,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
 
 /* ── Positioning: fan-spread composition ── */
 .iphone--center {
-  top: 55px;
+  top: 95px;
   left: 50%;
   transform: translateX(-50%) rotateY(0deg);
   z-index: 5;
@@ -734,7 +734,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .iphone--center .iphone__screen { border: 1px solid rgba(59,130,246,0.15); }
 
 .iphone--left {
-  top: 90px;
+  top: 88px;
   left: 8px;
   transform: rotateY(14deg) rotateZ(-2deg);
   z-index: 3;
@@ -1280,7 +1280,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .iphone__card-label { font-size: 0.33rem; }
   .iphone__cta { height: 16px; font-size: 0.38rem; }
   .iphone { animation: none; }
-  .iphone--center { top: 0; left: 50%; }
+  .iphone--center { top: 20px; left: 50%; }
   .iphone--left { top: 18px; left: 10px; }
   .iphone--right { top: 22px; right: 10px; }
 
@@ -1323,7 +1323,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .iphone__nav-brand { font-size: 0.4rem; }
   .iphone__text-line { height: 2.5px; }
   .iphone { animation: none; }
-  .iphone--center { top: 0; left: 50%; animation: none; }
+  .iphone--center { top: 10px; left: 50%; animation: none; }
   .iphone--left { top: 8px; left: -2px; transform: rotateY(8deg); }
   .iphone--right { top: 12px; right: -2px; transform: rotateY(-8deg); }
   .hero__headline { font-size: 1.7rem; }
