@@ -1066,10 +1066,10 @@
   <script src="js/animations.js?v=3"></script>
   <script>
   (function () {
-    if (typeof gsap === 'undefined') return;
     var done = false;
     function go() {
       if (done) return;
+      if (typeof gsap === 'undefined') return;
       if (!document.querySelector('.hero--reveal')) return;
       done = true;
       var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
