@@ -507,20 +507,21 @@ input, textarea { font-family: inherit; font-size: inherit; }
     0 0 0 1px rgba(59,130,246,0.06),
     inset 0 1px 0 rgba(255,255,255,0.03);
   overflow: hidden;
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.45s ease, top 0.45s ease;
+  transform-origin: bottom center;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.45s ease;
 }
 
 @keyframes phoneFloatLeft {
-  0%, 100% { top: 80px; }
-  50% { top: 68px; }
+  0%, 100% { transform: rotate(-30deg) translateY(0); }
+  50% { transform: rotate(-30deg) translateY(-4px); }
 }
 @keyframes phoneFloatCenter {
-  0%, 100% { top: 20px; }
-  50% { top: 8px; }
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(0deg) translateY(-4px); }
 }
 @keyframes phoneFloatRight {
-  0%, 100% { top: 80px; }
-  50% { top: 68px; }
+  0%, 100% { transform: rotate(30deg) translateY(0); }
+  50% { transform: rotate(30deg) translateY(-4px); }
 }
 
 .iphone--left   { animation: phoneFloatLeft 6s ease-in-out infinite; animation-delay: 0s; }
@@ -717,11 +718,11 @@ input, textarea { font-family: inherit; font-size: inherit; }
   color: rgba(255,255,255,0.35);
 }
 
-/* ── Positioning: fan-spread composition ── */
+/* ── Positioning: fan from common bottom center ── */
 .iphone--center {
-  top: 20px;
+  top: 30px;
   left: 50%;
-  transform: translateX(-50%) rotateY(0deg);
+  transform: translateX(-50%) rotate(0deg);
   z-index: 5;
   box-shadow:
     0 40px 120px rgba(0,0,0,0.6),
@@ -732,19 +733,17 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .iphone--center .iphone__screen { border: 1px solid rgba(59,130,246,0.15); }
 
 .iphone--left {
-  top: 80px;
+  top: 30px;
   left: 50%;
-  margin-left: -165px;
-  transform: rotateY(24deg);
+  transform: translateX(-50%) rotate(-30deg);
   z-index: 3;
 }
 .iphone--left .iphone__screen { border: 1px solid rgba(59,130,246,0.08); }
 
 .iphone--right {
-  top: 80px;
-  right: 50%;
-  margin-right: -165px;
-  transform: rotateY(-24deg);
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%) rotate(30deg);
   z-index: 3;
 }
 .iphone--right .iphone__screen { border: 1px solid rgba(59,130,246,0.08); }
@@ -757,8 +756,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
     0 0 80px rgba(59,130,246,0.15),
     0 0 0 1px rgba(59,130,246,0.25);
 }
-.iphone--left:hover   { transform: rotateY(24deg) translateY(-10px); }
-.iphone--right:hover  { transform: rotateY(-24deg) translateY(-10px); }
+.iphone--left:hover   { transform: translateX(-50%) rotate(-30deg) translateY(-8px); }
+.iphone--right:hover  { transform: translateX(-50%) rotate(30deg) translateY(-8px); }
+.iphone--center:hover { transform: translateX(-50%) rotate(0deg) translateY(-8px); }
 .iphone--center:hover { transform: translateX(-50%) translateY(-10px); }
 
 /* Scroll hint */
@@ -1280,9 +1280,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .iphone__card-label { font-size: 0.33rem; }
   .iphone__cta { height: 16px; font-size: 0.38rem; }
   .iphone { animation: none; }
-  .iphone--center { top: 0; left: 50%; }
-  .iphone--left { top: 40px; left: 50%; margin-left: -130px; transform: rotateY(18deg); }
-  .iphone--right { top: 40px; right: 50%; margin-right: -130px; transform: rotateY(-18deg); }
+  .iphone--center { top: 10px; left: 50%; }
+  .iphone--left { top: 10px; left: 50%; transform: translateX(-50%) rotate(-28deg); }
+  .iphone--right { top: 10px; left: 50%; transform: translateX(-50%) rotate(28deg); }
 
   .expertise__grid,
   .services__grid,
@@ -1323,10 +1323,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .iphone__nav-brand { font-size: 0.4rem; }
   .iphone__text-line { height: 2.5px; }
   .iphone { animation: none; }
-  .iphone--center { top: -5px; left: 50%; transform: translateX(-50%); animation: none; z-index: 5; }
-  .iphone--left { top: 25px; left: 50%; margin-left: -95px; transform: rotateY(16deg); z-index: 3; }
-  .iphone--right { top: 25px; right: 50%; margin-right: -95px; transform: rotateY(-16deg); z-index: 3; }
-  .hero__scroll { display: none; }
+  .iphone--center { top: 5px; left: 50%; transform: translateX(-50%) rotate(0deg); animation: none; z-index: 5; }
+  .iphone--left { top: 5px; left: 50%; transform: translateX(-50%) rotate(-26deg); z-index: 3; }
+  .iphone--right { top: 5px; left: 50%; transform: translateX(-50%) rotate(26deg); z-index: 3; }
   .hero__headline { font-size: 1.7rem; }
   .hero__actions { flex-direction: column; }
   .hero__actions .btn { justify-content: center; }

@@ -1075,16 +1075,16 @@
       animation: phoneSlideRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
     }
     @keyframes phoneDrop {
-      from { opacity: 0; translate: 0px -400px; }
-      to   { opacity: 1; translate: 0px 0px; }
+      from { opacity: 0; transform: translateX(-50%) translateY(-400px) rotate(0deg); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0) rotate(0deg); }
     }
     @keyframes phoneSlideLeft {
-      from { opacity: 0; translate: -200px 0px; }
-      to   { opacity: 1; translate: 0px 0px; }
+      from { opacity: 0; transform: translateX(-50%) translateX(-200px) rotate(-26deg); }
+      to   { opacity: 1; transform: translateX(-50%) translateX(0) rotate(-26deg); }
     }
     @keyframes phoneSlideRight {
-      from { opacity: 0; translate: 200px 0px; }
-      to   { opacity: 1; translate: 0px 0px; }
+      from { opacity: 0; transform: translateX(-50%) translateX(200px) rotate(26deg); }
+      to   { opacity: 1; transform: translateX(-50%) translateX(0) rotate(26deg); }
     }
   </style>
   <script>
