@@ -511,16 +511,16 @@ input, textarea { font-family: inherit; font-size: inherit; }
 }
 
 @keyframes phoneFloatLeft {
-  0%, 100% { top: 110px; }
-  50% { top: 98px; }
+  0%, 100% { top: 80px; }
+  50% { top: 68px; }
 }
 @keyframes phoneFloatCenter {
-  0%, 100% { top: 70px; }
-  50% { top: 57px; }
+  0%, 100% { top: 20px; }
+  50% { top: 8px; }
 }
 @keyframes phoneFloatRight {
-  0%, 100% { top: 100px; }
-  50% { top: 87px; }
+  0%, 100% { top: 80px; }
+  50% { top: 68px; }
 }
 
 .iphone--left   { animation: phoneFloatLeft 6s ease-in-out infinite; animation-delay: 0s; }
@@ -719,7 +719,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
 
 /* ── Positioning: fan-spread composition ── */
 .iphone--center {
-  top: 45px;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%) rotateY(0deg);
   z-index: 5;
@@ -732,19 +732,19 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .iphone--center .iphone__screen { border: 1px solid rgba(59,130,246,0.15); }
 
 .iphone--left {
-  top: 95px;
+  top: 80px;
   left: 50%;
-  margin-left: -155px;
-  transform: rotateY(22deg) rotateZ(-1deg);
+  margin-left: -165px;
+  transform: rotateY(24deg);
   z-index: 3;
 }
 .iphone--left .iphone__screen { border: 1px solid rgba(59,130,246,0.08); }
 
 .iphone--right {
-  top: 95px;
+  top: 80px;
   right: 50%;
-  margin-right: -155px;
-  transform: rotateY(-22deg) rotateZ(1deg);
+  margin-right: -165px;
+  transform: rotateY(-24deg);
   z-index: 3;
 }
 .iphone--right .iphone__screen { border: 1px solid rgba(59,130,246,0.08); }
@@ -757,8 +757,8 @@ input, textarea { font-family: inherit; font-size: inherit; }
     0 0 80px rgba(59,130,246,0.15),
     0 0 0 1px rgba(59,130,246,0.25);
 }
-.iphone--left:hover   { transform: rotateY(22deg) rotateZ(-1deg) translateY(-10px); }
-.iphone--right:hover  { transform: rotateY(-22deg) rotateZ(1deg) translateY(-10px); }
+.iphone--left:hover   { transform: rotateY(24deg) translateY(-10px); }
+.iphone--right:hover  { transform: rotateY(-24deg) translateY(-10px); }
 .iphone--center:hover { transform: translateX(-50%) translateY(-10px); }
 
 /* Scroll hint */
@@ -1362,7 +1362,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .section__title { font-size: clamp(1.5rem, 5vw, 2rem); }
   .section__text { font-size: 0.9375rem; }
   .header { border-radius: 0; border-left: 0; border-right: 0; border-top: 0; }
-  .nav__logo-text { display: none; }
   .nav__list {
     position: fixed; top: 3.75rem; left: 0; right: 0; bottom: 0;
     background: rgba(11, 17, 32, 0.98);
