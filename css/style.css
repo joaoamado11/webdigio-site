@@ -816,10 +816,10 @@ input, textarea { font-family: inherit; font-size: inherit; }
     0 0 0 1px rgba(59,130,246,0.3);
 }
 
-/* Subtle float animation on all phones */
-.iphone {
-  animation: phoneFloat 5s ease-in-out infinite;
-}
+/* Subtle float — each phone at different rhythm */
+.iphone--left   { animation: phoneFloat 4.8s ease-in-out infinite; animation-delay: 0s; }
+.iphone--center { animation: phoneFloat 5.2s ease-in-out infinite; animation-delay: 1.2s; }
+.iphone--right  { animation: phoneFloat 4.4s ease-in-out infinite; animation-delay: 2.5s; }
 
 @keyframes phoneFloat {
   0%, 100% { translate: 0 0; }
