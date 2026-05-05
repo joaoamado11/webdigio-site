@@ -1074,13 +1074,16 @@
   <script src="js/animations.js?v=3"></script>
   <style>
     .hero--reveal .iphone--center {
-      animation: phoneDrop 0.9s cubic-bezier(0.36, 0, 0.66, -0.56) 0.8s both;
+      animation: phoneDrop 0.9s cubic-bezier(0.36, 0, 0.66, -0.56) 0.8s backwards,
+                 phoneFloat 5s ease-in-out 2s infinite;
     }
     .hero--reveal .iphone--left {
-      animation: phoneSlideLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
+      animation: phoneSlideLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.9s backwards,
+                 phoneFloat 5s ease-in-out 2s infinite;
     }
     .hero--reveal .iphone--right {
-      animation: phoneSlideRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
+      animation: phoneSlideRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.9s backwards,
+                 phoneFloat 5s ease-in-out 2s infinite;
     }
     @keyframes phoneDrop {
       from { opacity: 0; transform: translateX(-50%) translateY(-400px) rotate(0deg); }
