@@ -1246,32 +1246,36 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .nav__link--cta { margin-left: 0; }
   .nav__toggle { display: flex; z-index: 1001; }
 
-  .hero { min-height: auto; }
+  .hero { min-height: 100svh; }
   .hero__container {
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 7rem 2rem 3rem;
+    gap: 1rem;
+    padding: 5rem 1.25rem 1.5rem;
     text-align: center;
   }
   .hero__text { max-width: 100%; }
-  .hero__subhead { max-width: 100%; }
+  .hero__headline { font-size: clamp(2rem, 6vw, 3rem); }
+  .hero__subhead { max-width: 100%; font-size: 0.9375rem; }
   .hero__actions { justify-content: center; }
   .hero__badges { justify-content: center; }
   .hero__phones {
-    height: 440px;
+    flex: none;
+    width: 100%;
+    min-width: 0;
+    height: 380px;
     max-width: 100%;
     perspective: none;
   }
-  .iphone { width: 150px; border-radius: 26px; }
-  .iphone__screen { height: 300px; border-radius: 18px; margin: 12px 6px 6px; }
-  .iphone__island { width: 56px; height: 17px; top: 8px; border-radius: 11px; }
-  .iphone__banner { height: 42px; }
-  .iphone__banner-title { font-size: 0.5rem; }
-  .iphone__card-label { font-size: 0.35rem; }
-  .iphone__cta { height: 17px; font-size: 0.4rem; }
-  .iphone--center { top: 30px; left: 50%; }
-  .iphone--left { top: 65px; left: 15px; }
-  .iphone--right { top: 75px; right: 15px; }
+  .iphone { width: 140px; border-radius: 26px; }
+  .iphone__screen { height: 250px; border-radius: 18px; margin: 12px 6px 6px; }
+  .iphone__island { width: 52px; height: 16px; top: 8px; border-radius: 10px; }
+  .iphone__banner { height: 38px; }
+  .iphone__banner-title { font-size: 0.48rem; }
+  .iphone__card-label { font-size: 0.33rem; }
+  .iphone__cta { height: 16px; font-size: 0.38rem; }
+  .iphone--center { top: 25px; left: 50%; }
+  .iphone--left { top: 55px; left: 10px; }
+  .iphone--right { top: 65px; right: 10px; }
 
   .expertise__grid,
   .services__grid,
@@ -1294,25 +1298,28 @@ input, textarea { font-family: inherit; font-size: inherit; }
 
 @media (max-width: 480px) {
   .container { padding: 0 1.25rem; }
-  .hero__container { padding: 6rem 1rem 2rem; }
-  .hero__phones { height: 280px; }
-  .iphone { width: 110px; border-radius: 22px; }
-  .iphone__screen { height: 210px; border-radius: 14px; margin: 10px 5px 5px; }
-  .iphone__island { width: 44px; height: 13px; top: 7px; border-radius: 10px; }
-  .iphone__banner { height: 34px; }
-  .iphone__banner-title { font-size: 0.42rem; }
-  .iphone__banner-sub { font-size: 0.32rem; }
-  .iphone__card-icon { width: 7px; height: 7px; margin-bottom: 2px; }
-  .iphone__card-label { font-size: 0.3rem; }
-  .iphone__cta { height: 14px; font-size: 0.35rem; border-radius: 4px; }
-  .iphone__stat-num { font-size: 0.45rem; }
-  .iphone__stat-label { font-size: 0.3rem; }
-  .iphone__nav-brand { font-size: 0.45rem; }
-  .iphone__text-line { height: 3px; }
-  .iphone--center { top: 20px; left: 50%; }
-  .iphone--left { top: 45px; left: 0; transform: rotateY(10deg); }
-  .iphone--right { top: 50px; right: 0; transform: rotateY(-10deg); }
-  .hero__headline { font-size: 1.8rem; }
+  .hero__container { padding: 4rem 0.75rem 1.25rem; }
+  .hero__overline { font-size: 0.6rem; margin-bottom: 0.75rem; }
+  .hero__subhead { margin-bottom: 1.25rem; }
+  .hero__actions { margin-bottom: 1.5rem; }
+  .hero__phones { height: 250px; }
+  .iphone { width: 100px; border-radius: 20px; }
+  .iphone__screen { height: 185px; border-radius: 13px; margin: 9px 5px 5px; }
+  .iphone__island { width: 40px; height: 12px; top: 6px; border-radius: 8px; }
+  .iphone__banner { height: 30px; }
+  .iphone__banner-title { font-size: 0.38rem; }
+  .iphone__banner-sub { font-size: 0.3rem; }
+  .iphone__card-icon { width: 6px; height: 6px; margin-bottom: 2px; }
+  .iphone__card-label { font-size: 0.28rem; }
+  .iphone__cta { height: 13px; font-size: 0.32rem; border-radius: 4px; }
+  .iphone__stat-num { font-size: 0.4rem; }
+  .iphone__stat-label { font-size: 0.28rem; }
+  .iphone__nav-brand { font-size: 0.4rem; }
+  .iphone__text-line { height: 2.5px; }
+  .iphone--center { top: 18px; left: 50%; }
+  .iphone--left { top: 40px; left: -2px; transform: rotateY(8deg); }
+  .iphone--right { top: 45px; right: -2px; transform: rotateY(-8deg); }
+  .hero__headline { font-size: 1.7rem; }
   .hero__actions { flex-direction: column; }
   .hero__actions .btn { justify-content: center; }
   .cta__contact-options { flex-direction: column; }
@@ -1322,4 +1329,64 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .pricing__main { padding: 2rem 1.25rem; }
   .whatsapp-float { bottom: 1.25rem; right: 1.25rem; width: 3rem; height: 3rem; }
   .whatsapp-float svg { width: 1.5rem; height: 1.5rem; }
+
+  /* Chat — full-width, keyboard-aware */
+  .chat-bubble { bottom: 5rem; right: 1rem; width: 3rem; height: 3rem; }
+  .chat-bubble__icon { width: 1.5rem; height: 1.5rem; }
+  .chat-window {
+    bottom: 5rem;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 55dvh;
+    border-radius: 14px 14px 0 0;
+  }
+  .chat-window__body { height: calc(55dvh - 120px); }
+  .chat-window__footer {
+    position: sticky;
+    bottom: 0;
+    background: var(--color-surface);
+    padding: 0.75rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .chat-window__input { font-size: 1rem; padding: 0.75rem 1rem; }
+
+  /* Overall mobile polish */
+  .section { padding: 3.5rem 0; }
+  .section__title { font-size: clamp(1.5rem, 5vw, 2rem); }
+  .section__text { font-size: 0.9375rem; }
+  .header { border-radius: 0; border-left: 0; border-right: 0; border-top: 0; }
+  .nav__logo-text { display: none; }
+  .nav__list {
+    position: fixed; top: 3.75rem; left: 0; right: 0; bottom: 0;
+    background: rgba(11, 17, 32, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.75rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s;
+    z-index: 1000;
+  }
+  .nav__list.active { opacity: 1; pointer-events: auto; }
+  .nav__link { font-size: 1.125rem; padding: 0.75rem 1.5rem; }
+  .nav__link--cta { margin-left: 0; }
+  .nav__toggle { display: flex; z-index: 1001; }
+  .footer__grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer__bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .expertise__grid,
+  .services__grid,
+  .industries__grid,
+  .why__grid,
+  .approach__grid,
+  .bento-grid { grid-template-columns: 1fr; }
+  .showcase__grid { grid-template-columns: 1fr; gap: 2rem; }
+  .showcase__visual { order: -1; }
+  .pricing__box { max-width: 100%; }
+  .pricing__main { padding: 1.5rem 1rem; }
+  .pricing__amount { font-size: 2.75rem; }
+  .process__timeline { padding-left: 3rem; }
+  .process__timeline::before { left: 1.25rem; }
+  .process__number { width: 2.5rem; height: 2.5rem; font-size: 0.875rem; left: -3.125rem; }
+}
 }
