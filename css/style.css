@@ -534,9 +534,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .hero__phones {
   position: relative;
   flex: 1;
-  min-width: 380px;
-  max-width: 680px;
-  height: 620px;
+  min-width: 440px;
+  max-width: 780px;
+  height: 680px;
   perspective: 1000px;
   perspective-origin: 50% 45%;
   z-index: 3;
@@ -545,9 +545,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
 /* ---- IPHONE BASE ---- */
 .iphone {
   position: absolute;
-  width: 190px;
+  width: 220px;
   background: #0c1018;
-  border-radius: 32px;
+  border-radius: 36px;
   border: 2px solid rgba(59,130,246,0.15);
   box-shadow:
     0 40px 100px rgba(0,0,0,0.55),
@@ -595,7 +595,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
   background: #0d1117;
   border-radius: 22px;
   overflow: hidden;
-  height: 380px;
+  height: 440px;
   display: flex;
   flex-direction: column;
 }
@@ -824,9 +824,8 @@ input, textarea { font-family: inherit; font-size: inherit; }
 }
 .iphone--right .iphone__screen { border: 1px solid rgba(59,130,246,0.08); }
 
-/* Hover */
+/* Hover — subtle lift only, no z-index jump */
 .iphone:hover {
-  z-index: 10;
   box-shadow:
     0 45px 130px rgba(0,0,0,0.5),
     0 0 50px rgba(59,130,246,0.1),
