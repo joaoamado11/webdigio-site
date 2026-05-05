@@ -371,11 +371,12 @@ input, textarea { font-family: inherit; font-size: inherit; }
 }
 
 /* Hide hero content until loader finishes */
-.hero__text, .hero__phones, .hero__scroll {
+.hero__text, .hero__phones, .hero__scroll, .hero__badges {
   opacity: 0;
 }
 .hero--reveal .hero__text,
 .hero--reveal .hero__phones,
+.hero--reveal .hero__badges,
 .hero--reveal .hero__scroll {
   opacity: 1;
 }
@@ -1269,6 +1270,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
     height: 350px;
     max-width: 100%;
     perspective: none;
+    margin-top: -2rem;
   }
   .iphone { width: 140px; border-radius: 26px; }
   .iphone__screen { height: 250px; border-radius: 18px; margin: 12px 6px 6px; }
@@ -1306,7 +1308,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .hero__container { justify-content: flex-start; gap: 0; padding: 4rem 0.75rem 1rem; }
   .hero__overline { font-size: 0.6rem; margin-bottom: 0.5rem; }
   .hero__subhead { margin-bottom: 0.5rem; }
-  .hero__phones { height: 230px; }
+  .hero__phones { height: 230px; margin-top: -2rem; }
   .iphone { width: 100px; border-radius: 20px; }
   .iphone__screen { height: 185px; border-radius: 13px; margin: 9px 5px 5px; }
   .iphone__island { width: 40px; height: 12px; top: 6px; border-radius: 8px; }

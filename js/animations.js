@@ -46,11 +46,18 @@
 
   // Expose for loader
   window.startHeroAnimations = function () {
+    // Pre-hide phones so they don't flash before their entrance tweens
+    gsap.set('.iphone--center', { opacity: 0, top: -300 });
+    gsap.set('.iphone--left',  { opacity: 0, left: -180 });
+    gsap.set('.iphone--right', { opacity: 0, right: -180 });
     heroTL.play();
   };
 
   // If loader finished before GSAP/animations loaded, auto-start
   if (document.querySelector('.hero--reveal')) {
+    gsap.set('.iphone--center', { opacity: 0, top: -300 });
+    gsap.set('.iphone--left',  { opacity: 0, left: -180 });
+    gsap.set('.iphone--right', { opacity: 0, right: -180 });
     heroTL.play();
   }
 
