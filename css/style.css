@@ -386,6 +386,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 3rem;
   padding: 6rem 3rem 4rem;
   max-width: 1300px;
@@ -463,6 +464,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  z-index: 5;
 }
 .hero__badge {
   display: flex;
@@ -1257,7 +1261,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .hero__headline { font-size: clamp(2rem, 6vw, 3rem); }
   .hero__subhead { max-width: 100%; font-size: 0.9375rem; }
   .hero__actions { justify-content: center; }
-  .hero__badges { justify-content: center; }
+  .hero__badges { margin-top: 0.5rem; }
   .hero__phones {
     flex: none;
     width: 100%;

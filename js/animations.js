@@ -37,9 +37,9 @@
     .from('.hero__headline', { opacity: 0, y: 50, duration: 0.7 }, '-=0.2')
     .from('.hero__subhead', { opacity: 0, y: 25, duration: 0.5 }, '-=0.3')
     .from('.hero__actions .btn', { opacity: 0, y: 15, duration: 0.4, stagger: 0.08 }, '-=0.2')
-    .from('.hero__badge', { opacity: 0, y: 25, duration: 0.4, stagger: 0.08 }, '-=0.1')
-    .from('.iphone', { opacity: 0, y: 60, scale: 0.85, duration: 0.7, stagger: 0.12, ease: 'back.out(1.2)' }, '-=0.5')
-    .from('.hero__scroll', { opacity: 0, y: 10, duration: 0.5 }, '-=0.3');
+    .from('.iphone', { opacity: 0, y: 60, scale: 0.85, duration: 0.7, stagger: 0.12, ease: 'back.out(1.2)' }, '-=0.3')
+    .from('.hero__badge', { opacity: 0, y: 25, duration: 0.4, stagger: 0.08 }, '-=0.4')
+    .from('.hero__scroll', { opacity: 0, y: 10, duration: 0.5 }, '-=0.2');
 
   // Expose for loader
   window.startHeroAnimations = function () {
