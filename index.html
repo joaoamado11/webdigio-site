@@ -60,6 +60,14 @@
   <main>
     <!-- Hero -->
     <section class="hero" id="inicio">
+      <div class="shooting-stars" aria-hidden="true">
+        <span class="star star--1"></span>
+        <span class="star star--2"></span>
+        <span class="star star--3"></span>
+        <span class="star star--4"></span>
+        <span class="star star--5"></span>
+        <span class="star star--6"></span>
+      </div>
       <div class="hero__container">
         <!-- LEFT: Text -->
         <div class="hero__text">
@@ -1079,12 +1087,12 @@
       to   { opacity: 1; transform: translateX(-50%) translateY(0) rotate(0deg); }
     }
     @keyframes phoneSlideLeft {
-      from { opacity: 0; transform: translateX(-50%) translateX(-200px) rotate(-26deg); }
-      to   { opacity: 1; transform: translateX(-50%) translateX(0) rotate(-26deg); }
+      from { opacity: 0; transform: translateX(calc(-50% - 20px)) translateX(-200px) rotate(-25deg); }
+      to   { opacity: 1; transform: translateX(calc(-50% - 20px)) translateX(0) rotate(-25deg); }
     }
     @keyframes phoneSlideRight {
-      from { opacity: 0; transform: translateX(-50%) translateX(200px) rotate(26deg); }
-      to   { opacity: 1; transform: translateX(-50%) translateX(0) rotate(26deg); }
+      from { opacity: 0; transform: translateX(calc(-50% + 20px)) translateX(200px) rotate(25deg); }
+      to   { opacity: 1; transform: translateX(calc(-50% + 20px)) translateX(0) rotate(25deg); }
     }
   </style>
   <script>
