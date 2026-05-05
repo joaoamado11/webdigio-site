@@ -719,7 +719,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
 
 /* ── Positioning: fan-spread composition ── */
 .iphone--center {
-  top: 70px;
+  top: 45px;
   left: 50%;
   transform: translateX(-50%) rotateY(0deg);
   z-index: 5;
@@ -732,17 +732,19 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .iphone--center .iphone__screen { border: 1px solid rgba(59,130,246,0.15); }
 
 .iphone--left {
-  top: 110px;
-  left: 8px;
-  transform: rotateY(14deg) rotateZ(-2deg);
+  top: 95px;
+  left: 50%;
+  margin-left: -155px;
+  transform: rotateY(22deg) rotateZ(-1deg);
   z-index: 3;
 }
 .iphone--left .iphone__screen { border: 1px solid rgba(59,130,246,0.08); }
 
 .iphone--right {
-  top: 100px;
-  right: 8px;
-  transform: rotateY(-16deg) rotateZ(2deg);
+  top: 95px;
+  right: 50%;
+  margin-right: -155px;
+  transform: rotateY(-22deg) rotateZ(1deg);
   z-index: 3;
 }
 .iphone--right .iphone__screen { border: 1px solid rgba(59,130,246,0.08); }
@@ -755,8 +757,8 @@ input, textarea { font-family: inherit; font-size: inherit; }
     0 0 80px rgba(59,130,246,0.15),
     0 0 0 1px rgba(59,130,246,0.25);
 }
-.iphone--left:hover   { transform: rotateY(14deg) rotateZ(-2deg) translateY(-10px); }
-.iphone--right:hover  { transform: rotateY(-16deg) rotateZ(2deg) translateY(-10px); }
+.iphone--left:hover   { transform: rotateY(22deg) rotateZ(-1deg) translateY(-10px); }
+.iphone--right:hover  { transform: rotateY(-22deg) rotateZ(1deg) translateY(-10px); }
 .iphone--center:hover { transform: translateX(-50%) translateY(-10px); }
 
 /* Scroll hint */
@@ -1278,9 +1280,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .iphone__card-label { font-size: 0.33rem; }
   .iphone__cta { height: 16px; font-size: 0.38rem; }
   .iphone { animation: none; }
-  .iphone--center { top: -5px; left: 50%; }
-  .iphone--left { top: 40px; left: 10px; }
-  .iphone--right { top: 40px; right: 10px; }
+  .iphone--center { top: 0; left: 50%; }
+  .iphone--left { top: 40px; left: 50%; margin-left: -130px; transform: rotateY(18deg); }
+  .iphone--right { top: 40px; right: 50%; margin-right: -130px; transform: rotateY(-18deg); }
 
   .expertise__grid,
   .services__grid,
@@ -1321,9 +1323,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .iphone__nav-brand { font-size: 0.4rem; }
   .iphone__text-line { height: 2.5px; }
   .iphone { animation: none; }
-  .iphone--center { top: -10px; left: 50%; transform: translateX(-50%); animation: none; }
-  .iphone--left { top: 30px; left: -2px; transform: rotateY(8deg); }
-  .iphone--right { top: 30px; right: -2px; transform: rotateY(-8deg); }
+  .iphone--center { top: -5px; left: 50%; transform: translateX(-50%); animation: none; z-index: 5; }
+  .iphone--left { top: 25px; left: 50%; margin-left: -95px; transform: rotateY(16deg); z-index: 3; }
+  .iphone--right { top: 25px; right: 50%; margin-right: -95px; transform: rotateY(-16deg); z-index: 3; }
   .hero__scroll { display: none; }
   .hero__headline { font-size: 1.7rem; }
   .hero__actions { flex-direction: column; }
