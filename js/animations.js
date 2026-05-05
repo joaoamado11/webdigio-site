@@ -30,35 +30,29 @@
     }
   }, 8000);
 
-  // --- Hero Entrance (paused until loader finishes) ---
-  var heroTL = gsap.timeline({ defaults: { ease: 'power3.out' }, paused: true });
-  heroTL
-    .from('.hero__overline', { opacity: 0, y: 30, duration: 0.5 })
-    .from('.hero__headline', { opacity: 0, y: 50, duration: 0.7 }, '-=0.2')
-    .from('.hero__subhead', { opacity: 0, y: 25, duration: 0.5 }, '-=0.3')
-    .from('.hero__actions .btn', { opacity: 0, y: 15, duration: 0.4, stagger: 0.08 }, '-=0.2')
-    // iPhones: center drops from top, sides slide in
-    .from('.iphone--center', { opacity: 0, top: -300, duration: 0.8, ease: 'bounce.out', clearProps: 'top' }, '-=0.1')
-    .from('.iphone--left',   { opacity: 0, left: -180, duration: 0.7, ease: 'power3.out', clearProps: 'left' }, '-=0.65')
-    .from('.iphone--right',  { opacity: 0, right: -180, duration: 0.7, ease: 'power3.out', clearProps: 'right' }, '-=0.65')
-    .from('.hero__badge', { opacity: 0, y: 25, duration: 0.4, stagger: 0.08 }, '-=0.3')
-    .from('.hero__scroll', { opacity: 0, y: 10, duration: 0.5 }, '-=0.2');
+  // --- Hero Entrance (built fresh when triggered) ---
+  function buildHeroTimeline() {
+    var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl
+      .from('.hero__overline', { opacity: 0, y: 30, duration: 0.5 })
+      .from('.hero__headline', { opacity: 0, y: 50, duration: 0.7 }, '-=0.2')
+      .from('.hero__subhead', { opacity: 0, y: 25, duration: 0.5 }, '-=0.3')
+      .from('.hero__actions .btn', { opacity: 0, y: 15, duration: 0.4, stagger: 0.08 }, '-=0.2')
+      .fromTo('.iphone--center', { opacity: 0, marginTop: -400 }, { opacity: 1, marginTop: 0, duration: 0.9, ease: 'bounce.out' }, '-=0.1')
+      .fromTo('.iphone--left',   { opacity: 0, marginLeft: -200 }, { opacity: 1, marginLeft: 0, duration: 0.7, ease: 'power3.out' }, '-=0.7')
+      .fromTo('.iphone--right',  { opacity: 0, marginRight: -200 },{ opacity: 1, marginRight: 0, duration: 0.7, ease: 'power3.out' }, '-=0.7')
+      .from('.hero__badge', { opacity: 0, y: 25, duration: 0.4, stagger: 0.08 }, '-=0.3')
+      .from('.hero__scroll', { opacity: 0, y: 10, duration: 0.5 }, '-=0.2');
+    return tl;
+  }
 
-  // Expose for loader
   window.startHeroAnimations = function () {
-    // Pre-hide phones so they don't flash before their entrance tweens
-    gsap.set('.iphone--center', { opacity: 0, top: -300 });
-    gsap.set('.iphone--left',  { opacity: 0, left: -180 });
-    gsap.set('.iphone--right', { opacity: 0, right: -180 });
-    heroTL.play();
+    buildHeroTimeline();
   };
 
-  // If loader finished before GSAP/animations loaded, auto-start
+  // If loader finished before this script loaded, auto-start
   if (document.querySelector('.hero--reveal')) {
-    gsap.set('.iphone--center', { opacity: 0, top: -300 });
-    gsap.set('.iphone--left',  { opacity: 0, left: -180 });
-    gsap.set('.iphone--right', { opacity: 0, right: -180 });
-    heroTL.play();
+    buildHeroTimeline();
   }
 
   // --- Card section reveals ---
