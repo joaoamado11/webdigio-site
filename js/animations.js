@@ -37,14 +37,22 @@
     .from('.hero__headline', { opacity: 0, y: 50, duration: 0.7 }, '-=0.2')
     .from('.hero__subhead', { opacity: 0, y: 25, duration: 0.5 }, '-=0.3')
     .from('.hero__actions .btn', { opacity: 0, y: 15, duration: 0.4, stagger: 0.08 }, '-=0.2')
-    .from('.iphone', { opacity: 0, y: 60, scale: 0.85, duration: 0.7, stagger: 0.12, ease: 'back.out(1.2)' }, '-=0.3')
-    .from('.hero__badge', { opacity: 0, y: 25, duration: 0.4, stagger: 0.08 }, '-=0.4')
+    // iPhones: center drops from top, sides slide in
+    .from('.iphone--center', { opacity: 0, top: -300, duration: 0.8, ease: 'bounce.out', clearProps: 'top' }, '-=0.1')
+    .from('.iphone--left',   { opacity: 0, left: -180, duration: 0.7, ease: 'power3.out', clearProps: 'left' }, '-=0.65')
+    .from('.iphone--right',  { opacity: 0, right: -180, duration: 0.7, ease: 'power3.out', clearProps: 'right' }, '-=0.65')
+    .from('.hero__badge', { opacity: 0, y: 25, duration: 0.4, stagger: 0.08 }, '-=0.3')
     .from('.hero__scroll', { opacity: 0, y: 10, duration: 0.5 }, '-=0.2');
 
   // Expose for loader
   window.startHeroAnimations = function () {
     heroTL.play();
   };
+
+  // If loader finished before GSAP/animations loaded, auto-start
+  if (document.querySelector('.hero--reveal')) {
+    heroTL.play();
+  }
 
   // --- Card section reveals ---
   function revealOnScroll(selector, staggerVal) {
