@@ -778,7 +778,35 @@ input, textarea { font-family: inherit; font-size: inherit; }
     0 0 0 1px rgba(59,130,246,0.08),
     inset 0 1px 0 rgba(255,255,255,0.04);
 }
-.iphone--center .iphone__screen { border: 1px solid rgba(59,130,246,0.15); }
+.iphone--center .iphone__screen {
+  border: 1px solid rgba(59,130,246,0.15);
+  background: #f0f2f5;
+}
+.iphone--center .iphone__screen::after {
+  background: radial-gradient(ellipse at 35% 25%, rgba(255,255,255,0.9) 0%, transparent 55%);
+}
+.iphone--center .iphone__status {
+  color: rgba(0,0,0,0.5);
+}
+.iphone--center .iphone__nav-brand {
+  background: linear-gradient(135deg, #2563EB, #3B82F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.iphone--center .iphone__banner {
+  background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.06));
+  border-color: rgba(59,130,246,0.12);
+}
+.iphone--center .iphone__banner-title { color: #1a1a2e; }
+.iphone--center .iphone__banner-sub { color: rgba(0,0,0,0.4); }
+.iphone--center .iphone__card { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.05); }
+.iphone--center .iphone__card-label { color: rgba(0,0,0,0.5); }
+.iphone--center .iphone__card-icon { background: rgba(59,130,246,0.4); }
+.iphone--center .iphone__stat { background: rgba(59,130,246,0.06); border-color: rgba(59,130,246,0.1); }
+.iphone--center .iphone__stat-num { color: #2563EB; }
+.iphone--center .iphone__stat-label { color: rgba(0,0,0,0.35); }
+.iphone--center .iphone__text-line { background: rgba(0,0,0,0.06); }
 
 .iphone--left {
   top: 30px;
