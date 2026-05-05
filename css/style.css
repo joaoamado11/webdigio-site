@@ -1323,7 +1323,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .iphone__nav-brand { font-size: 0.4rem; }
   .iphone__text-line { height: 2.5px; }
   .iphone { animation: none; }
-  .iphone--center { top: 10px; left: 50%; animation: none; }
+  .iphone--center { top: 10px; left: 50%; transform: translateX(-50%); animation: none; }
   .iphone--left { top: 8px; left: -2px; transform: rotateY(8deg); }
   .iphone--right { top: 12px; right: -2px; transform: rotateY(-8deg); }
   .hero__headline { font-size: 1.7rem; }
