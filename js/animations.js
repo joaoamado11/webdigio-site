@@ -30,31 +30,6 @@
     }
   }, 8000);
 
-  // --- Hero Entrance (built fresh when triggered) ---
-  function buildHeroTimeline() {
-    var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl
-      .from('.hero__overline', { opacity: 0, y: 30, duration: 0.5 })
-      .from('.hero__headline', { opacity: 0, y: 50, duration: 0.7 }, '-=0.2')
-      .from('.hero__subhead', { opacity: 0, y: 25, duration: 0.5 }, '-=0.3')
-      .from('.hero__actions .btn', { opacity: 0, y: 15, duration: 0.4, stagger: 0.08 }, '-=0.2')
-      .fromTo('.iphone--center', { opacity: 0, marginTop: -400 }, { opacity: 1, marginTop: 0, duration: 0.9, ease: 'bounce.out' }, '-=0.1')
-      .fromTo('.iphone--left',   { opacity: 0, marginLeft: -200 }, { opacity: 1, marginLeft: 0, duration: 0.7, ease: 'power3.out' }, '-=0.7')
-      .fromTo('.iphone--right',  { opacity: 0, marginRight: -200 },{ opacity: 1, marginRight: 0, duration: 0.7, ease: 'power3.out' }, '-=0.7')
-      .from('.hero__badge', { opacity: 0, y: 25, duration: 0.4, stagger: 0.08 }, '-=0.3')
-      .from('.hero__scroll', { opacity: 0, y: 10, duration: 0.5 }, '-=0.2');
-    return tl;
-  }
-
-  window.startHeroAnimations = function () {
-    buildHeroTimeline();
-  };
-
-  // If loader finished before this script loaded, auto-start
-  if (document.querySelector('.hero--reveal')) {
-    buildHeroTimeline();
-  }
-
   // --- Card section reveals ---
   function revealOnScroll(selector, staggerVal) {
     var els = document.querySelectorAll(selector);
