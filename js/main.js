@@ -139,93 +139,33 @@
     }, 500);
   }
 
-  // --- Pricing Toggle ---
-  var pricingToggle = document.getElementById('pricingToggle');
-  if (pricingToggle) {
-    var toggleBtns = pricingToggle.querySelectorAll('.pricing-toggle__btn');
-    var indicator = document.createElement('span');
-    indicator.className = 'pricing-toggle__indicator';
-    pricingToggle.appendChild(indicator);
+  // --- Pricing Reveal ---
+  var pricingBox = document.querySelector('.pricing-single__box');
+  var pricingUpsells = document.querySelector('.pricing-single__upsells');
+  var pricingRevealed = false;
 
-    var amountEls = document.querySelectorAll('.pricing-card__amount');
-    var periodEls = document.querySelectorAll('.pricing-card__period');
-    var currentPeriod = 'monthly';
-    var pricesAnimated = false;
+  function revealPricing() {
+    if (pricingRevealed) return;
+    pricingRevealed = true;
+    if (pricingBox) pricingBox.classList.add('revealed');
+    if (pricingUpsells) pricingUpsells.classList.add('revealed');
+  }
 
-    function updateCards(period, animate) {
-      currentPeriod = period;
-      for (var i = 0; i < amountEls.length; i++) {
-        var el = amountEls[i];
-        var val = period === 'yearly' ? el.getAttribute('data-yearly') : el.getAttribute('data-monthly');
-        if (animate) {
-          animatePrice(el, val);
-        } else {
-          el.textContent = val;
-        }
+  if ('IntersectionObserver' in window && pricingBox) {
+    var pricingSection = document.getElementById('preco');
+    var pricingObserver = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        revealPricing();
+        pricingObserver.disconnect();
       }
-      for (var j = 0; j < periodEls.length; j++) {
-        periodEls[j].textContent = period === 'yearly' ? '/ano' : '/mês';
-      }
-      indicator.className = 'pricing-toggle__indicator' + (period === 'yearly' ? ' yearly' : '');
-    }
-
-    function animatePrice(el, target) {
-      var current = parseInt(el.textContent, 10);
-      var targetVal = parseInt(target, 10);
-      if (current === targetVal) return;
-      var duration = 500;
-      var start = performance.now();
-      function step(now) {
-        var progress = Math.min((now - start) / duration, 1);
-        var eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.round(current + (targetVal - current) * eased);
-        if (progress < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-
-    for (var t = 0; t < toggleBtns.length; t++) {
-      toggleBtns[t].addEventListener('click', function () {
-        var period = this.getAttribute('data-period');
-        for (var b = 0; b < toggleBtns.length; b++) {
-          toggleBtns[b].classList.remove('active');
-        }
-        this.classList.add('active');
-        updateCards(period, true);
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    if (pricingSection) {
+      requestAnimationFrame(function () {
+        pricingObserver.observe(pricingSection);
       });
     }
-
-    // Scroll-triggered card reveal
-    var pricingCards = document.querySelectorAll('.pricing-card');
-
-    function revealCards() {
-      if (pricesAnimated) return;
-      pricesAnimated = true;
-      for (var i = 0; i < pricingCards.length; i++) {
-        (function (idx) {
-          setTimeout(function () {
-            pricingCards[idx].classList.add('revealed');
-          }, idx * 200);
-        })(i);
-      }
-    }
-
-    if ('IntersectionObserver' in window) {
-      var pricingSection = document.getElementById('preco');
-      var observer = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) {
-          revealCards();
-          observer.disconnect();
-        }
-      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-      if (pricingSection) {
-        requestAnimationFrame(function () {
-          observer.observe(pricingSection);
-        });
-      }
-    } else {
-      setTimeout(revealCards, 300);
-    }
+  } else {
+    setTimeout(revealPricing, 300);
   }
 
 })();
