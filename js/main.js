@@ -6,6 +6,12 @@
 (function () {
   'use strict';
 
+  // --- Scroll to top on refresh ---
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+
   // --- DOM Elements ---
   var header = document.getElementById('header');
   var navToggle = document.getElementById('navToggle');
@@ -143,12 +149,19 @@
 
     var amountEls = document.querySelectorAll('.pricing-card__amount');
     var periodEls = document.querySelectorAll('.pricing-card__period');
+    var currentPeriod = 'monthly';
+    var pricesAnimated = false;
 
-    function updateCards(period) {
+    function updateCards(period, animate) {
+      currentPeriod = period;
       for (var i = 0; i < amountEls.length; i++) {
         var el = amountEls[i];
         var val = period === 'yearly' ? el.getAttribute('data-yearly') : el.getAttribute('data-monthly');
-        animatePrice(el, val);
+        if (animate) {
+          animatePrice(el, val);
+        } else {
+          el.textContent = val;
+        }
       }
       for (var j = 0; j < periodEls.length; j++) {
         periodEls[j].textContent = period === 'yearly' ? '/ano' : '/mês';
@@ -160,7 +173,7 @@
       var current = parseInt(el.textContent, 10);
       var targetVal = parseInt(target, 10);
       if (current === targetVal) return;
-      var duration = 400;
+      var duration = 500;
       var start = performance.now();
       function step(now) {
         var progress = Math.min((now - start) / duration, 1);
@@ -178,8 +191,44 @@
           toggleBtns[b].classList.remove('active');
         }
         this.classList.add('active');
-        updateCards(period);
+        updateCards(period, true);
       });
+    }
+
+    // Scroll-triggered card reveal
+    var pricingCards = document.querySelectorAll('.pricing-card');
+    for (var pc = 0; pc < pricingCards.length; pc++) {
+      pricingCards[pc].style.opacity = '0';
+      pricingCards[pc].style.transform = 'translateY(30px)';
+      pricingCards[pc].style.filter = 'blur(10px)';
+      pricingCards[pc].style.transition = 'opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease';
+    }
+
+    function revealCards() {
+      if (pricesAnimated) return;
+      pricesAnimated = true;
+      for (var i = 0; i < pricingCards.length; i++) {
+        (function (idx) {
+          setTimeout(function () {
+            pricingCards[idx].style.opacity = '1';
+            pricingCards[idx].style.transform = 'translateY(0)';
+            pricingCards[idx].style.filter = 'blur(0px)';
+          }, idx * 150);
+        })(i);
+      }
+    }
+
+    if ('IntersectionObserver' in window) {
+      var pricingSection = document.getElementById('preco');
+      var observer = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          revealCards();
+          observer.disconnect();
+        }
+      }, { threshold: 0.2 });
+      if (pricingSection) observer.observe(pricingSection);
+    } else {
+      revealCards();
     }
   }
 

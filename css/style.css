@@ -1101,7 +1101,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
   border: 1px solid var(--color-border);
 }
 .pricing-toggle__btn {
-  position: relative; z-index: 1;
+  position: relative; z-index: 2;
   padding: 0.6rem 1.75rem;
   border-radius: 100px;
   font-size: 0.875rem; font-weight: 500;
@@ -1112,14 +1112,15 @@ input, textarea { font-family: inherit; font-size: inherit; }
 }
 .pricing-toggle__btn.active { color: var(--color-white); }
 .pricing-toggle__indicator {
-  position: absolute; top: 0.25rem; bottom: 0.25rem;
+  position: absolute; top: 0.25rem; left: 0; bottom: 0.25rem;
   width: calc(50% - 0.25rem);
   background: var(--color-primary);
   border-radius: 100px;
-  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  z-index: 1;
 }
-.pricing-toggle__indicator.yearly { left: calc(50% - 0.25rem); }
+.pricing-toggle__indicator.yearly { transform: translateX(calc(100% + 0.5rem)); }
 .pricing-toggle__badge {
   position: absolute; right: -0.5rem; top: -0.75rem;
   transform: translateX(100%);
