@@ -348,12 +348,12 @@ input, textarea { font-family: inherit; font-size: inherit; }
   top: 0; left: 0;
   width: 60%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
   transform: skewX(-25deg) translateX(-180%);
   pointer-events: none;
 }
 .nav__link:hover::before {
-  animation: navGlowSweep 0.55s ease;
+  animation: navGlowSweep 0.75s ease-in-out;
 }
 
 @keyframes navGlowSweep {
