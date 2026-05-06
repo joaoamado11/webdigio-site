@@ -955,7 +955,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
 }
 .logo-cloud__track:hover { animation-play-state: paused; }
 .logo-cloud__track img {
-  height: 1.25rem;
+  height: 3.75rem;
   width: auto;
   pointer-events: none;
   user-select: none;
