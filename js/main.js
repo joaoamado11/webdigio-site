@@ -139,6 +139,29 @@
     }, 500);
   }
 
+  // --- Process Tablets Fold Animation ---
+  var tablets = document.querySelectorAll('.tablet');
+  if (tablets.length && 'IntersectionObserver' in window) {
+    var tabletObserver = new IntersectionObserver(function (entries) {
+      for (var ti = 0; ti < entries.length; ti++) {
+        if (entries[ti].isIntersecting) {
+          entries[ti].target.classList.add('unfolded');
+        } else {
+          entries[ti].target.classList.remove('unfolded');
+        }
+      }
+    }, { threshold: 0.4, rootMargin: '0px 0px -80px 0px' });
+
+    for (var ti = 0; ti < tablets.length; ti++) {
+      tabletObserver.observe(tablets[ti]);
+    }
+  } else if (tablets.length) {
+    // Fallback - show all unfolded
+    for (var ti = 0; ti < tablets.length; ti++) {
+      tablets[ti].classList.add('unfolded');
+    }
+  }
+
   // --- Process Accordion ---
   var accordion = document.getElementById('faqAccordion');
   if (accordion) {
