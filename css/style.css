@@ -332,6 +332,9 @@ input, textarea { font-family: inherit; font-size: inherit; }
 }
 .nav__list { display: flex; align-items: center; gap: 0.25rem; }
 .nav__link {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
   padding: 0.5rem 1rem;
   font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);
   border-radius: var(--radius-sm);
@@ -339,29 +342,23 @@ input, textarea { font-family: inherit; font-size: inherit; }
   cursor: pointer;
 }
 .nav__link:hover { color: var(--color-text); background: var(--color-surface); }
-.nav__link span { display: inline-block; transition: transform var(--transition-fast); }
-.nav__link:hover span { animation: navWave 0.45s ease-in-out forwards; }
-.nav__link:hover span:nth-child(1) { animation-delay: 0s; }
-.nav__link:hover span:nth-child(2) { animation-delay: 0.03s; }
-.nav__link:hover span:nth-child(3) { animation-delay: 0.06s; }
-.nav__link:hover span:nth-child(4) { animation-delay: 0.09s; }
-.nav__link:hover span:nth-child(5) { animation-delay: 0.12s; }
-.nav__link:hover span:nth-child(6) { animation-delay: 0.15s; }
-.nav__link:hover span:nth-child(7) { animation-delay: 0.18s; }
-.nav__link:hover span:nth-child(8) { animation-delay: 0.21s; }
-.nav__link:hover span:nth-child(9) { animation-delay: 0.24s; }
-.nav__link:hover span:nth-child(10) { animation-delay: 0.27s; }
-.nav__link:hover span:nth-child(11) { animation-delay: 0.30s; }
-.nav__link:hover span:nth-child(12) { animation-delay: 0.33s; }
-.nav__link:hover span:nth-child(13) { animation-delay: 0.36s; }
-.nav__link:hover span:nth-child(14) { animation-delay: 0.39s; }
-.nav__link:hover span:nth-child(15) { animation-delay: 0.42s; }
+.nav__link::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  transform: skewX(-25deg) translateX(-180%);
+  pointer-events: none;
+}
+.nav__link:hover::before {
+  animation: navGlowSweep 0.55s ease;
+}
 
-@keyframes navWave {
-  0%   { transform: translateY(0); }
-  40%  { transform: translateY(-4px); }
-  70%  { transform: translateY(1px); }
-  100% { transform: translateY(0); }
+@keyframes navGlowSweep {
+  from { transform: skewX(-25deg) translateX(-180%); }
+  to   { transform: skewX(-25deg) translateX(250%); }
 }
 .nav__link--cta {
   background: var(--color-primary);
