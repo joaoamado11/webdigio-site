@@ -942,15 +942,18 @@ input, textarea { font-family: inherit; font-size: inherit; }
 
 /* --- Logo Cloud --- */
 .logo-cloud {
-  padding: 3rem 0;
   overflow: hidden;
   mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
+.logo-cloud .section__header { margin-bottom: 2rem; }
+.logo-cloud .section__title { color: var(--color-text); }
+.logo-cloud .section__tag { color: var(--color-primary-light); }
 .logo-cloud__track {
   display: flex;
   gap: 2.5rem;
   width: max-content;
+  padding: 2rem 0;
   animation: logoScroll 30s linear infinite;
 }
 .logo-cloud__track:hover { animation-play-state: paused; }
