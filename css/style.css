@@ -940,6 +940,15 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .showcase__mockup-line { height: 10px; background: rgba(255, 255, 255, 0.04); border-radius: 5px; }
 .showcase__mockup-line--short { width: 65%; }
 
+/* --- Sparkles --- */
+.sparkles { position: relative; min-height: 50vh; display: flex; align-items: center; }
+.sparkles__canvas { position: absolute; inset: 0; z-index: 0; }
+.sparkles__canvas canvas { display: block; }
+.sparkles .container { position: relative; z-index: 1; }
+.sparkles__content { max-width: 600px; }
+.sparkles__content .section__title { color: var(--color-text); }
+.sparkles__content .section__tag { color: var(--color-primary-light); }
+
 /* --- Services --- */
 .services { background: var(--color-bg); }
 .services__grid { gap: 1.5rem; }
