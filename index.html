@@ -226,20 +226,6 @@
       </div>
     </section>
 
-    <!-- Sparkles Divider -->
-    <section class="sparkles section" id="sparkles">
-      <div class="sparkles__canvas" id="sparklesCanvas"></div>
-      <div class="container">
-        <div class="sparkles__content" data-reveal>
-          <span class="section__tag">Porquê Webdigio</span>
-          <h2 class="section__title">Tecnologia que brilha. Resultados que falam.</h2>
-          <p class="section__text">
-            Cada projeto é uma combinação de estratégia, design e engenharia — tudo pensado para fazer o seu negócio destacar-se.
-          </p>
-        </div>
-      </div>
-    </section>
-
     <!-- Showcase -->
     <section class="showcase section" id="showcase">
       <div class="aurora-bg" aria-hidden="true"></div>
@@ -632,6 +618,13 @@
       </div>
     </section>
   </main>
+
+  <!-- Logo Cloud -->
+  <section class="logo-cloud" id="logoCloud">
+    <div class="logo-cloud__track" id="logoTrack">
+      <!-- duplicated for seamless loop -->
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
@@ -1365,38 +1358,46 @@
   })();
   </script>
 
-  <!-- Sparkles Particles -->
-  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@3/tsparticles.engine.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3/tsparticles.slim.bundle.min.js"></script>
+  <!-- Logo Cloud -->
   <script>
   (function () {
-    var canvas = document.getElementById('sparklesCanvas');
-    if (!canvas || !window.tsParticles) return;
-    tsParticles.load({
-      id: 'sparklesCanvas',
-      options: {
-        fpsLimit: 120,
-        fullScreen: false,
-        particles: {
-          number: { value: 120, density: { enable: true } },
-          color: { value: '#3b82f6' },
-          opacity: {
-            value: { min: 0.1, max: 0.5 },
-            animation: { enable: true, speed: 2, sync: false }
-          },
-          size: { value: { min: 1, max: 3 } },
-          move: {
-            enable: true,
-            speed: { min: 0.2, max: 0.8 },
-            direction: 'none',
-            straight: false
-          },
-          shape: { type: 'circle' }
-        },
-        detectRetina: true,
-        background: { color: 'transparent' }
+    var logos = [
+      { src: 'assets/logos/html5.svg', alt: 'HTML5' },
+      { src: 'assets/logos/css3.svg', alt: 'CSS3' },
+      { src: 'assets/logos/javascript.svg', alt: 'JavaScript' },
+      { src: 'assets/logos/react.svg', alt: 'React' },
+      { src: 'assets/logos/nextjs.svg', alt: 'Next.js' },
+      { src: 'assets/logos/tailwind.svg', alt: 'Tailwind CSS' },
+      { src: 'assets/logos/figma.svg', alt: 'Figma' },
+      { src: 'assets/logos/nodejs.svg', alt: 'Node.js' },
+      { src: 'assets/logos/typescript.svg', alt: 'TypeScript' },
+      { src: 'assets/logos/vscode.svg', alt: 'VS Code' }
+    ];
+
+    var track = document.getElementById('logoTrack');
+    if (!track) return;
+
+    function buildItem(logo) {
+      var img = document.createElement('img');
+      img.src = logo.src;
+      img.alt = logo.alt;
+      img.loading = 'lazy';
+      img.onerror = function () {
+        // fallback: show alt text if logo image missing
+        var span = document.createElement('span');
+        span.textContent = logo.alt;
+        span.style.cssText = 'font-size:0.875rem;font-weight:600;color:var(--color-text-muted);white-space:nowrap;letter-spacing:0.02em;';
+        img.parentNode.replaceChild(span, img);
+      };
+      return img;
+    }
+
+    // Build two copies for seamless loop
+    for (var r = 0; r < 2; r++) {
+      for (var i = 0; i < logos.length; i++) {
+        track.appendChild(buildItem(logos[i]));
       }
-    });
+    }
   })();
   </script>
 </body>
