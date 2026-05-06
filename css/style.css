@@ -1372,6 +1372,46 @@ input, textarea { font-family: inherit; font-size: inherit; }
   color: var(--color-bg);
   border-color: var(--color-white);
 }
+
+/* --- Step Forward Button --- */
+.btn-step-forward {
+  position: relative;
+  display: inline-flex; align-items: center;
+  height: 3rem;
+  padding: 0.25rem 3.5rem 0.25rem 1.5rem;
+  border-radius: 100px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 0.875rem; font-weight: 500;
+  margin-top: 1.75rem;
+  cursor: pointer;
+  transition: padding 0.5s ease;
+  overflow: hidden;
+  border: none;
+}
+.btn-step-forward:hover {
+  padding: 0.25rem 1.5rem 0.25rem 3.5rem;
+}
+.btn-step-forward__label {
+  position: relative; z-index: 1;
+  transition: all 0.5s ease;
+}
+.btn-step-forward__icon {
+  position: absolute; right: 0.25rem;
+  width: 2.5rem; height: 2.5rem;
+  background: var(--color-bg);
+  color: var(--color-text);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+.btn-step-forward:hover .btn-step-forward__icon {
+  right: calc(100% - 2.75rem);
+  transform: rotate(45deg);
+}
+
 .cta__form-wrapper { position: relative; }
 .cta__form {
   padding: 2.5rem;
