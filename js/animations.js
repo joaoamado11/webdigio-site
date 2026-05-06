@@ -117,49 +117,61 @@
   var ipadStack = document.getElementById('ipadStack');
   var ipadCards = document.querySelectorAll('.ipad-card');
   if (ipadStack && ipadCards.length > 0) {
-    var totalCards = ipadCards.length;
-    var sceneDuration = totalCards * 0.9; // scroll "distance" in viewport heights
+    var total = ipadCards.length;
 
-    // Initial setup: position and rotate cards in 3D stack
-    for (var i = 0; i < totalCards; i++) {
+    // Initial state: Card 1 flat on top, Cards 2-7 tilted and behind
+    for (var i = 0; i < total; i++) {
       var card = ipadCards[i];
-      var depth = (totalCards - 1 - i); // 6,5,4,3,2,1,0 (top card has depth 0)
-      gsap.set(card, {
-        zIndex: totalCards - i,
-        rotationX: -5 * depth,
-        rotationY: 0,
-        rotationZ: 0,
-        y: depth * 12,
-        scale: 1 - depth * 0.03,
-        filter: 'brightness(' + (1 - depth * 0.08) + ')',
-        transformOrigin: 'center center',
-      });
+      var depth = i; // 0=card1(top), 1=card2, ..., 6=card7(bottom)
+      if (i === 0) {
+        gsap.set(card, { zIndex: total, rotationX: 0, y: 0, scale: 1, filter: 'brightness(1)', transformOrigin: 'center top' });
+      } else {
+        gsap.set(card, {
+          zIndex: total - i,
+          rotationX: -8 * depth,
+          y: depth * 8,
+          scale: 1 - depth * 0.02,
+          filter: 'brightness(' + (1 - depth * 0.06) + ')',
+          transformOrigin: 'center top',
+        });
+      }
     }
 
-    // Create the scroll animation
-    var stackTimeline = gsap.timeline({
+    // Scroll scrub: fold current → reveal next, sequentially
+    var tl = gsap.timeline({
       scrollTrigger: {
         trigger: ipadStack,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 1.2,
+        scrub: 1.6,
       }
     });
 
-    // Each card folds up and away as we scroll
-    for (var j = 0; j < totalCards - 1; j++) {
-      var currentCard = ipadCards[totalCards - 1 - j]; // Start from top card
-      var stagger = j / totalCards;
+    for (var j = 0; j < total - 1; j++) {
+      var current = ipadCards[j];   // Card 1, 2, ..., 6
+      var next = ipadCards[j + 1];  // Card 2, 3, ..., 7
+      var t = j * 1.3;
 
-      stackTimeline.to(currentCard, {
-        rotationX: -90,
-        y: -300,
-        scale: 0.85,
+      // Current card folds up and away
+      tl.to(current, {
+        rotationX: 85,
+        y: -350,
+        scale: 0.75,
         opacity: 0,
-        filter: 'brightness(0.5) blur(4px)',
-        duration: 1.2,
+        filter: 'brightness(0.2) blur(5px)',
+        duration: 0.8,
         ease: 'power2.in',
-      }, stagger * sceneDuration);
+      }, t);
+
+      // Next card flattens into view (if not the last)
+      tl.to(next, {
+        rotationX: 0,
+        y: 0,
+        scale: 1,
+        filter: 'brightness(1)',
+        duration: 0.7,
+        ease: 'power2.out',
+      }, t + 0.3);
     }
   }
 
