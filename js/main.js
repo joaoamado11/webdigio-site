@@ -140,7 +140,7 @@
   }
 
   // --- Process Accordion ---
-  var accordion = document.getElementById('processAccordion');
+  var accordion = document.getElementById('faqAccordion');
   if (accordion) {
     var accordionTriggers = accordion.querySelectorAll('.accordion__trigger');
     for (var ai = 0; ai < accordionTriggers.length; ai++) {
