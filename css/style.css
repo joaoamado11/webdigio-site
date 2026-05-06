@@ -1085,7 +1085,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
 }
 .accordion__item.active .accordion__content { max-height: 150px; }
 .accordion__content p {
-  padding: 0 0 1.5rem 3.5rem;
+  padding: 0.75rem 0 1.5rem 3.5rem;
   font-size: 0.9375rem; line-height: 1.6;
   color: var(--color-text-muted);
 }
