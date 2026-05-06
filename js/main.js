@@ -139,6 +139,25 @@
     }, 500);
   }
 
+  // --- Process Accordion ---
+  var accordion = document.getElementById('processAccordion');
+  if (accordion) {
+    var accordionTriggers = accordion.querySelectorAll('.accordion__trigger');
+    for (var ai = 0; ai < accordionTriggers.length; ai++) {
+      accordionTriggers[ai].addEventListener('click', function () {
+        var item = this.parentElement;
+        var isActive = item.classList.contains('active');
+        // Close all
+        var allItems = accordion.querySelectorAll('.accordion__item');
+        for (var aj = 0; aj < allItems.length; aj++) {
+          allItems[aj].classList.remove('active');
+        }
+        // Open clicked (unless it was already open)
+        if (!isActive) item.classList.add('active');
+      });
+    }
+  }
+
   // --- Pricing Reveal ---
   var pricingBox = document.querySelector('.pricing-single__box');
   var pricingUpsells = document.querySelector('.pricing-single__upsells');

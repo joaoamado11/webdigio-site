@@ -1001,32 +1001,94 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .services__card p { color: var(--color-text-muted); font-size: 0.9375rem; line-height: 1.6; }
 
 /* --- Process --- */
+/* --- Process Accordion --- */
 .process { background: var(--color-surface); }
-.process__timeline {
-  max-width: 720px; margin: 0 auto;
-  display: flex; flex-direction: column;
-  position: relative; padding-left: 5rem;
+.accordion { max-width: 600px; margin: 0 auto; }
+
+.accordion__item { border-bottom: 1px solid var(--color-border); }
+.accordion__item:last-child { border-bottom: 0; }
+
+.accordion__trigger {
+  display: flex; align-items: center; gap: 1rem;
+  width: 100%; padding: 1.25rem 0.25rem;
+  border: none; background: none; cursor: pointer;
+  position: relative;
+  font-family: var(--font-body);
+  text-align: left;
 }
-.process__timeline::before {
-  content: ''; position: absolute; left: 2.25rem; top: 0; bottom: 0;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--color-primary), var(--color-border));
-}
-.process__step { position: relative; padding-bottom: 3rem; }
-.process__step:last-child { padding-bottom: 0; }
-.process__number {
-  position: absolute; left: -5rem; top: 0;
-  width: 4.5rem; height: 4.5rem;
+.accordion__number {
+  position: relative; width: 2.5rem; height: 2.5rem;
   display: flex; align-items: center; justify-content: center;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
-  font-family: var(--font-heading);
-  font-size: 1.125rem; font-weight: 700; color: var(--color-primary-light);
-  z-index: 1;
+  flex-shrink: 0;
 }
-.process__step-content h3 { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.375rem; letter-spacing: -0.02em; }
-.process__step-content p { color: var(--color-text-muted); font-size: 0.9375rem; line-height: 1.6; }
+.accordion__number::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: var(--color-text);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+}
+.accordion__item.active .accordion__number::before {
+  transform: scale(1); opacity: 1;
+}
+.accordion__item:hover .accordion__number::before {
+  transform: scale(0.85); opacity: 0.08;
+}
+.accordion__item.active:hover .accordion__number::before {
+  transform: scale(1); opacity: 1;
+}
+.accordion__number span {
+  position: relative; z-index: 1;
+  font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  transition: color 0.2s;
+}
+.accordion__item.active .accordion__number span { color: var(--color-bg); }
+.accordion__title {
+  font-family: var(--font-heading); font-size: 1.35rem; font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: -0.02em;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s;
+}
+.accordion__item:hover .accordion__title,
+.accordion__item.active .accordion__title { transform: translateX(4px); color: var(--color-text); }
+
+.accordion__icon {
+  margin-left: auto; flex-shrink: 0;
+  width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--color-text-muted);
+}
+.accordion__item.active .accordion__icon { transform: rotate(45deg); color: var(--color-text); }
+.accordion__item:hover .accordion__icon { color: var(--color-text); }
+.accordion__item.active .accordion__icon svg { opacity: 1; }
+.accordion__item:not(.active):not(:hover) .accordion__icon svg { opacity: 0.4; }
+
+.accordion__line {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: var(--color-border);
+}
+.accordion__line-active {
+  position: absolute; bottom: 0; left: 0; height: 1px;
+  background: var(--color-text);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.accordion__item.active .accordion__line-active { transform: scaleX(1); width: 100%; }
+.accordion__item:not(.active):hover .accordion__line-active { transform: scaleX(0.3); width: 100%; }
+
+.accordion__content {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.accordion__item.active .accordion__content { max-height: 150px; }
+.accordion__content p {
+  padding: 0 0 1.5rem 3.5rem;
+  font-size: 0.9375rem; line-height: 1.6;
+  color: var(--color-text-muted);
+}
 
 /* --- Why Us (was Differentiation) --- */
 .why { background: var(--color-bg); }
@@ -1494,9 +1556,8 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .approach__grid,
   .bento-grid { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
 
-  .process__timeline { padding-left: 4rem; }
-  .process__timeline::before { left: 1.75rem; }
-  .process__number { width: 3.5rem; height: 3.5rem; font-size: 1rem; left: -4rem; }
+  .accordion__title { font-size: 1.15rem; }
+  .accordion__content p { padding-left: 3.5rem; }
 
   .pricing-single { flex-direction: column; max-width: 460px; }
   .pricing-single__upsells { flex: none; }
@@ -1593,8 +1654,8 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .pricing-card__amount { font-size: 2.5rem; }
   .pricing-single__box .pricing-card__inner { padding: 1.5rem 1.25rem; }
   .pricing-single__upsells { flex: none; padding: 1.25rem; }
-  .process__timeline { padding-left: 3rem; }
-  .process__timeline::before { left: 1.25rem; }
-  .process__number { width: 2.5rem; height: 2.5rem; font-size: 0.875rem; left: -3.125rem; }
+  .accordion__title { font-size: 1.05rem; }
+  .accordion__trigger { gap: 0.75rem; }
+  .accordion__content p { padding-left: 0; padding-top: 0.5rem; }
 }
 }
