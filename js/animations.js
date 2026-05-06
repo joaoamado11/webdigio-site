@@ -113,4 +113,54 @@
     });
   });
 
+  // --- iPad Stack ---
+  var ipadStack = document.getElementById('ipadStack');
+  var ipadCards = document.querySelectorAll('.ipad-card');
+  if (ipadStack && ipadCards.length > 0) {
+    var totalCards = ipadCards.length;
+    var sceneDuration = totalCards * 0.9; // scroll "distance" in viewport heights
+
+    // Initial setup: position and rotate cards in 3D stack
+    for (var i = 0; i < totalCards; i++) {
+      var card = ipadCards[i];
+      var depth = (totalCards - 1 - i); // 6,5,4,3,2,1,0 (top card has depth 0)
+      gsap.set(card, {
+        zIndex: totalCards - i,
+        rotationX: -5 * depth,
+        rotationY: 0,
+        rotationZ: 0,
+        y: depth * 12,
+        scale: 1 - depth * 0.03,
+        filter: 'brightness(' + (1 - depth * 0.08) + ')',
+        transformOrigin: 'center center',
+      });
+    }
+
+    // Create the scroll animation
+    var stackTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ipadStack,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1.2,
+      }
+    });
+
+    // Each card folds up and away as we scroll
+    for (var j = 0; j < totalCards - 1; j++) {
+      var currentCard = ipadCards[totalCards - 1 - j]; // Start from top card
+      var stagger = j / totalCards;
+
+      stackTimeline.to(currentCard, {
+        rotationX: -90,
+        y: -300,
+        scale: 0.85,
+        opacity: 0,
+        filter: 'brightness(0.5) blur(4px)',
+        duration: 1.2,
+        ease: 'power2.in',
+      }, stagger * sceneDuration);
+    }
+  }
+
 })();
