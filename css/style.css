@@ -1169,8 +1169,10 @@ input, textarea { font-family: inherit; font-size: inherit; }
   position: relative;
 }
 .pricing-card--popular {
-  transform: scale(1.03);
   z-index: 2;
+}
+.pricing-card--popular.revealed {
+  transform: scale(1.03);
 }
 .pricing-card__popular-badge {
   position: absolute; top: -0.8rem; left: 50%; transform: translateX(-50%);
