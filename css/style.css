@@ -332,8 +332,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
 }
 .nav__list { display: flex; align-items: center; gap: 0.25rem; }
 .nav__link {
-  position: relative;
-  overflow: hidden;
   padding: 0.5rem 1rem;
   font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);
   border-radius: var(--radius-sm);
@@ -341,24 +339,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
   cursor: pointer;
 }
 .nav__link:hover { color: var(--color-text); background: var(--color-surface); }
-.nav__link::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
-  transform: skewX(-25deg) translateX(-180%);
-  pointer-events: none;
-}
-.nav__link:hover::before {
-  animation: navGlowSweep 0.75s ease-in-out;
-}
-
-@keyframes navGlowSweep {
-  from { transform: skewX(-25deg) translateX(-180%); }
-  to   { transform: skewX(-25deg) translateX(250%); }
-}
 .nav__link--cta {
   background: var(--color-primary);
   color: var(--color-white) !important;
