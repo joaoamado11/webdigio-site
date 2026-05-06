@@ -197,12 +197,6 @@
 
     // Scroll-triggered card reveal
     var pricingCards = document.querySelectorAll('.pricing-card');
-    for (var pc = 0; pc < pricingCards.length; pc++) {
-      pricingCards[pc].style.opacity = '0';
-      pricingCards[pc].style.transform = 'translateY(30px)';
-      pricingCards[pc].style.filter = 'blur(10px)';
-      pricingCards[pc].style.transition = 'opacity 0.6s ease, transform 0.6s ease, filter 0.6s ease';
-    }
 
     function revealCards() {
       if (pricesAnimated) return;
@@ -210,9 +204,7 @@
       for (var i = 0; i < pricingCards.length; i++) {
         (function (idx) {
           setTimeout(function () {
-            pricingCards[idx].style.opacity = '1';
-            pricingCards[idx].style.transform = 'translateY(0)';
-            pricingCards[idx].style.filter = 'blur(0px)';
+            pricingCards[idx].classList.add('revealed');
           }, idx * 200);
         })(i);
       }
@@ -227,17 +219,12 @@
         }
       }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
       if (pricingSection) {
-        // Ensure initial hidden state is painted before observing
         requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            observer.observe(pricingSection);
-          });
+          observer.observe(pricingSection);
         });
       }
     } else {
-      requestAnimationFrame(function () {
-        revealCards();
-      });
+      setTimeout(revealCards, 300);
     }
   }
 
