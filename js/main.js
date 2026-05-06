@@ -201,7 +201,7 @@
       pricingCards[pc].style.opacity = '0';
       pricingCards[pc].style.transform = 'translateY(30px)';
       pricingCards[pc].style.filter = 'blur(10px)';
-      pricingCards[pc].style.transition = 'opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease';
+      pricingCards[pc].style.transition = 'opacity 0.6s ease, transform 0.6s ease, filter 0.6s ease';
     }
 
     function revealCards() {
@@ -213,7 +213,7 @@
             pricingCards[idx].style.opacity = '1';
             pricingCards[idx].style.transform = 'translateY(0)';
             pricingCards[idx].style.filter = 'blur(0px)';
-          }, idx * 150);
+          }, idx * 200);
         })(i);
       }
     }
@@ -225,10 +225,19 @@
           revealCards();
           observer.disconnect();
         }
-      }, { threshold: 0.2 });
-      if (pricingSection) observer.observe(pricingSection);
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+      if (pricingSection) {
+        // Ensure initial hidden state is painted before observing
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            observer.observe(pricingSection);
+          });
+        });
+      }
     } else {
-      revealCards();
+      requestAnimationFrame(function () {
+        revealCards();
+      });
     }
   }
 
