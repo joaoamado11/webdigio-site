@@ -295,13 +295,13 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .header {
   position: fixed; top: 1rem; left: 1rem; right: 1rem;
   z-index: 1000;
-  background: #0B1120;
+  background: #1A2744;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   transition: all var(--transition-base);
 }
 .header--scrolled {
-  background: #0B1120;
+  background: #1A2744;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 }
 .nav {
