@@ -133,4 +133,54 @@
     }, 500);
   }
 
+  // --- Pricing Toggle ---
+  var pricingToggle = document.getElementById('pricingToggle');
+  if (pricingToggle) {
+    var toggleBtns = pricingToggle.querySelectorAll('.pricing-toggle__btn');
+    var indicator = document.createElement('span');
+    indicator.className = 'pricing-toggle__indicator';
+    pricingToggle.appendChild(indicator);
+
+    var amountEls = document.querySelectorAll('.pricing-card__amount');
+    var periodEls = document.querySelectorAll('.pricing-card__period');
+
+    function updateCards(period) {
+      for (var i = 0; i < amountEls.length; i++) {
+        var el = amountEls[i];
+        var val = period === 'yearly' ? el.getAttribute('data-yearly') : el.getAttribute('data-monthly');
+        animatePrice(el, val);
+      }
+      for (var j = 0; j < periodEls.length; j++) {
+        periodEls[j].textContent = period === 'yearly' ? '/ano' : '/mês';
+      }
+      indicator.className = 'pricing-toggle__indicator' + (period === 'yearly' ? ' yearly' : '');
+    }
+
+    function animatePrice(el, target) {
+      var current = parseInt(el.textContent, 10);
+      var targetVal = parseInt(target, 10);
+      if (current === targetVal) return;
+      var duration = 400;
+      var start = performance.now();
+      function step(now) {
+        var progress = Math.min((now - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(current + (targetVal - current) * eased);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    for (var t = 0; t < toggleBtns.length; t++) {
+      toggleBtns[t].addEventListener('click', function () {
+        var period = this.getAttribute('data-period');
+        for (var b = 0; b < toggleBtns.length; b++) {
+          toggleBtns[b].classList.remove('active');
+        }
+        this.classList.add('active');
+        updateCards(period);
+      });
+    }
+  }
+
 })();
