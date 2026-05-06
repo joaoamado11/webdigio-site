@@ -23,6 +23,19 @@
     emailAddress: 'geral@webdigio.pt',
   };
 
+  // --- Wavy hover for nav links ---
+  for (var n = 0; n < navLinks.length; n++) {
+    var link = navLinks[n];
+    var text = link.textContent || '';
+    var chars = text.split('');
+    link.textContent = '';
+    for (var c = 0; c < chars.length; c++) {
+      var span = document.createElement('span');
+      span.textContent = chars[c];
+      link.appendChild(span);
+    }
+  }
+
   // --- Sticky Header ---
   function handleScroll() {
     var scrolled = window.scrollY > 40;

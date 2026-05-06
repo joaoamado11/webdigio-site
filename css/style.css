@@ -339,6 +339,30 @@ input, textarea { font-family: inherit; font-size: inherit; }
   cursor: pointer;
 }
 .nav__link:hover { color: var(--color-text); background: var(--color-surface); }
+.nav__link span { display: inline-block; transition: transform var(--transition-fast); }
+.nav__link:hover span { animation: navWave 0.45s ease-in-out forwards; }
+.nav__link:hover span:nth-child(1) { animation-delay: 0s; }
+.nav__link:hover span:nth-child(2) { animation-delay: 0.03s; }
+.nav__link:hover span:nth-child(3) { animation-delay: 0.06s; }
+.nav__link:hover span:nth-child(4) { animation-delay: 0.09s; }
+.nav__link:hover span:nth-child(5) { animation-delay: 0.12s; }
+.nav__link:hover span:nth-child(6) { animation-delay: 0.15s; }
+.nav__link:hover span:nth-child(7) { animation-delay: 0.18s; }
+.nav__link:hover span:nth-child(8) { animation-delay: 0.21s; }
+.nav__link:hover span:nth-child(9) { animation-delay: 0.24s; }
+.nav__link:hover span:nth-child(10) { animation-delay: 0.27s; }
+.nav__link:hover span:nth-child(11) { animation-delay: 0.30s; }
+.nav__link:hover span:nth-child(12) { animation-delay: 0.33s; }
+.nav__link:hover span:nth-child(13) { animation-delay: 0.36s; }
+.nav__link:hover span:nth-child(14) { animation-delay: 0.39s; }
+.nav__link:hover span:nth-child(15) { animation-delay: 0.42s; }
+
+@keyframes navWave {
+  0%   { transform: translateY(0); }
+  40%  { transform: translateY(-4px); }
+  70%  { transform: translateY(1px); }
+  100% { transform: translateY(0); }
+}
 .nav__link--cta {
   background: var(--color-primary);
   color: var(--color-white) !important;
