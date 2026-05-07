@@ -521,24 +521,20 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .word-animate {
   display: inline-block;
   opacity: 0;
+  margin: 0 0.1em;
+  transition: color 0.3s ease, transform 0.3s ease;
   will-change: opacity, transform, filter;
 }
 
-@keyframes word-appear {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(0.8);
-    filter: blur(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0px);
-  }
+.word-animate:hover {
+  color: #cbd5e1;
+  transform: translateY(-2px);
 }
 
-.word-animate--visible {
-  animation: word-appear 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--delay) forwards;
+@keyframes word-appear {
+  0% { opacity: 0; transform: translateY(30px) scale(0.8); filter: blur(10px); }
+  50% { opacity: 0.8; transform: translateY(10px) scale(0.95); filter: blur(2px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
 /* Expanded state — hero becomes a normal section */
