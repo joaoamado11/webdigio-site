@@ -26,7 +26,7 @@
     this.y = Math.random() * (innerHeight - this.size * 2) + this.size * 2;
     this.dx = (Math.random() * 0.4) - 0.2;
     this.dy = (Math.random() * 0.4) - 0.2;
-    this.color = 'rgba(191, 128, 255, 0.8)';
+    this.color = 'rgba(59, 130, 246, 0.8)';
   }
 
   Particle.prototype.draw = function () {
@@ -85,7 +85,7 @@
 
           ctx.strokeStyle = mouseAtEdge
             ? 'rgba(255, 255, 255, ' + opacity + ')'
-            : 'rgba(200, 150, 255, ' + opacity + ')';
+            : 'rgba(59, 130, 246, ' + opacity + ')';
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(particles[a].x, particles[a].y);

@@ -482,14 +482,14 @@ input, textarea { font-family: inherit; font-size: inherit; }
 }
 .hero__title {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-size: clamp(2rem, 5.5vw, 5rem);
   font-weight: 700;
   color: #fff;
   letter-spacing: -0.03em;
-  line-height: 1.15;
+  line-height: 1.2;
   text-shadow: 0 2px 20px rgba(0,0,0,0.4);
-  will-change: transform;
-  white-space: nowrap;
+  will-change: opacity;
+  max-width: 90vw;
 }
 .hero__tagline {
   margin-top: 1rem;
@@ -1648,7 +1648,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
   .nav__toggle { display: flex; z-index: 1001; }
 
   .hero-scroll-expand .hero__title {
-    font-size: clamp(1.8rem, 10vw, 3rem);
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
   }
   .hero-scroll-expand .hero__tagline {
     font-size: 0.75rem;
@@ -1678,7 +1678,8 @@ input, textarea { font-family: inherit; font-size: inherit; }
 @media (max-width: 480px) {
   .container { padding: 0 1.25rem; }
   .hero-scroll-expand .hero__title {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
+    max-width: 85vw;
   }
   .hero-scroll-expand .hero__tagline {
     font-size: 0.65rem;

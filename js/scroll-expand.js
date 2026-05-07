@@ -13,8 +13,7 @@
   var bg = document.getElementById('heroBg');
   var card = document.getElementById('heroCard');
   var overlay = document.getElementById('heroOverlay');
-  var titleL = document.getElementById('heroTitleL');
-  var titleR = document.getElementById('heroTitleR');
+  var heroTitle = document.getElementById('heroTitle');
   var tagline = document.getElementById('heroTagline');
   var hint = document.getElementById('heroHint');
   var st = null;
@@ -41,10 +40,8 @@
     // Overlay fades
     overlay.style.opacity = Math.max(0, 1 - p * 1.2);
 
-    // Title splits — move apart / together
-    var tx = p * (isM ? 22 : 28);
-    if (titleL) titleL.style.transform = 'translateX(-' + tx + 'vw)';
-    if (titleR) titleR.style.transform = 'translateX(' + tx + 'vw)';
+    // Title fades out
+    if (heroTitle) heroTitle.style.opacity = Math.max(0, 1 - p * 1.3);
 
     // Tagline fades
     if (tagline) tagline.style.opacity = Math.max(0, 1 - p * 1.5);
