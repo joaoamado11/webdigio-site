@@ -20,32 +20,13 @@
   var st = null;
   var wordSpans = [];
 
-  // ---- Split element text into word spans ----
-  function splitIntoWords(el, stagger) {
-    if (!el) return [];
-    var text = el.textContent.trim();
-    var words = text.split(/\s+/);
-    el.innerHTML = '';
-    var spans = [];
-    words.forEach(function (word, i) {
-      var span = document.createElement('span');
-      span.className = 'word-animate';
-      span.dataset.index = i;
-      span.textContent = word;
-      span.style.setProperty('--delay', (i * stagger).toFixed(3) + 's');
-      el.appendChild(span);
-      if (i < words.length - 1) {
-        el.appendChild(document.createTextNode(' '));
-      }
-      spans.push(span);
-    });
-    return spans;
-  }
-
-  // ---- Entrance: trigger word-appear animation ----
+  // ---- Entrance: trigger word-appear animation via setTimeout (DigitalSerenity pattern) ----
   function animateWordsIn() {
     wordSpans.forEach(function (sp) {
-      sp.classList.add('word-animate--visible');
+      var delay = parseInt(sp.getAttribute('data-delay')) || 0;
+      setTimeout(function () {
+        sp.style.animation = 'word-appear 0.8s ease-out forwards';
+      }, delay);
     });
   }
 
@@ -81,8 +62,6 @@
     var n = wordSpans.length;
     if (n > 0) {
       for (var i = 0; i < n; i++) {
-        // Each word starts fading when progress passes its threshold
-        // threshold = i / n  (0 to 1), word fully faded at (i+1)/n
         var threshold = i / n;
         var fadeP = Math.max(0, Math.min(1, (p - threshold) * n));
         wordSpans[i].style.opacity = 1 - fadeP;
@@ -116,16 +95,18 @@
     render(0);
   }
 
-  // ---- Init words + entrance ----
+  // ---- Init: collect existing word spans from HTML + trigger entrance ----
   function initWords() {
-    // If words were already split, don't do it again
-    if (heroTitle && !heroTitle.querySelector('.word-animate')) {
-      var titleWords = splitIntoWords(heroTitle, 0.12);
-      var tagWords = tagline ? splitIntoWords(tagline, 0.06) : [];
-      wordSpans = titleWords.concat(tagWords);
-      // Trigger entrance after a tiny delay (post-reveal)
-      setTimeout(animateWordsIn, 100);
+    wordSpans = heroTitle
+      ? Array.from(heroTitle.querySelectorAll('.word-animate'))
+      : [];
+    if (tagline) {
+      wordSpans = wordSpans.concat(
+        Array.from(tagline.querySelectorAll('.word-animate'))
+      );
     }
+    // Trigger entrance (DigitalSerenity: setTimeout per word with data-delay)
+    setTimeout(animateWordsIn, 500);
   }
 
   // Wait for hero reveal (after loader)
