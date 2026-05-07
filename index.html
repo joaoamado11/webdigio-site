@@ -97,38 +97,128 @@
       </div>
     </section>
 
-    <!-- Expertise -->
-    <section class="expertise section" id="expertise">
-      <div class="container">
-        <div class="section__header">
-          <span class="section__tag">O que fazemos</span>
-          <h2 class="section__title">Excelência em cada detalhe do produto digital</h2>
-          <p class="section__text">
-            Não fazemos apenas websites. Pensamos, desenhamos e desenvolvemos experiências digitais completas que colocam o seu negócio à frente.
-          </p>
+    <!-- Cinematic Hero (formerly Expertise) -->
+    <section class="cinematic-hero section" id="expertise">
+      <!-- Film grain overlay -->
+      <div class="cinematic__grain" aria-hidden="true"></div>
+      <!-- Grid background -->
+      <div class="cinematic__grid-bg" aria-hidden="true"></div>
+
+      <!-- BACKGROUND LAYER: Hero taglines -->
+      <div class="cinematic__hero-text">
+        <h1 class="cinematic__text-track">Design que converte,</h1>
+        <h1 class="cinematic__text-days">desenvolvimento que entrega.</h1>
+      </div>
+
+      <!-- BACKGROUND LAYER 2: CTA (hidden until end) -->
+      <div class="cinematic__cta">
+        <h2>Vamos criar o seu site?</h2>
+        <p class="cinematic__cta-desc">
+          Em 2 a 5 dias o seu site está pronto. Design premium, sem mensalidades, com suporte contínuo.
+        </p>
+        <div class="cinematic__cta-buttons">
+          <a href="#contacto" class="cinematic__btn-light">
+            <span>Falar no WhatsApp</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+          <a href="#preco" class="cinematic__btn-dark">
+            <span>Ver Preço</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
-        <div class="expertise__grid bento-grid">
-          <div class="expertise__card" data-reveal>
-            <svg class="expertise__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/><circle cx="7" cy="7" r="1"/><circle cx="12" cy="7" r="1"/><circle cx="17" cy="7" r="1"/>
-            </svg>
-            <h3 class="expertise__card-title">Web Design</h3>
-            <p>Interfaces modernas que comunicam profissionalismo. Cada pixel é pensado para guiar o utilizador e converter visitas em contactos.</p>
+      </div>
+
+      <!-- FOREGROUND LAYER: Deep Blue Card -->
+      <div class="cinematic__card" id="cinematicCard">
+        <div class="cinematic__card-sheen" aria-hidden="true"></div>
+
+        <!-- 3-col grid inside card -->
+        <div class="cinematic__card-grid">
+          <!-- LEFT: Description -->
+          <div class="cinematic__desc">
+            <h3>Parceria digital completa</h3>
+            <p><span class="text-white fw-semibold">Webdigio</span> é a sua agência digital de confiança. Criamos websites profissionais, rápidos e otimizados para conversão — do design ao desenvolvimento, sem complicações.</p>
           </div>
-          <div class="expertise__card" data-reveal>
-            <svg class="expertise__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="12" y1="2" x2="12" y2="22"/>
-            </svg>
-            <h3 class="expertise__card-title">Desenvolvimento</h3>
-            <p>Código limpo, rápido e otimizado. Utilizamos as melhores tecnologias para garantir performance, segurança e escalabilidade.</p>
+
+          <!-- CENTER: iPhone Mockup -->
+          <div class="cinematic__mockup-wrap">
+            <div class="cinematic__mockup-inner">
+              <!-- iPhone Bezel -->
+              <div class="cinematic__iphone" id="iphoneMockup">
+                <!-- Hardware buttons -->
+                <div class="cinematic__hw-btn" style="top:120px;left:-3px;width:3px;height:25px;border-radius:3px 0 0 3px;"></div>
+                <div class="cinematic__hw-btn" style="top:160px;left:-3px;width:3px;height:45px;border-radius:3px 0 0 3px;"></div>
+                <div class="cinematic__hw-btn" style="top:220px;left:-3px;width:3px;height:45px;border-radius:3px 0 0 3px;"></div>
+                <div class="cinematic__hw-btn" style="top:170px;right:-3px;width:3px;height:70px;border-radius:0 3px 3px 0;"></div>
+
+                <!-- Screen -->
+                <div class="cinematic__iphone-screen">
+                  <div class="cinematic__screen-glare"></div>
+
+                  <!-- Dynamic Island -->
+                  <div class="cinematic__dynamic-island">
+                    <div class="cinematic__di-dot"></div>
+                  </div>
+
+                  <!-- App UI -->
+                  <div class="cinematic__app-ui">
+                    <!-- Header -->
+                    <div class="cinematic__widget" style="margin-bottom: 2rem;">
+                      <div>
+                        <span class="cinematic__widget-label">Hoje</span>
+                        <span class="cinematic__widget-title">Progresso</span>
+                      </div>
+                      <div class="cinematic__widget-avatar">W</div>
+                    </div>
+
+                    <!-- Progress ring -->
+                    <div class="cinematic__ring-wrap">
+                      <svg class="cinematic__ring-svg" viewBox="0 0 176 176" aria-hidden="true">
+                        <circle cx="88" cy="88" r="64" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="12" />
+                        <circle class="cinematic__progress-ring" cx="88" cy="88" r="64" fill="none" stroke="#3B82F6" stroke-width="12" />
+                      </svg>
+                      <div class="cinematic__ring-text">
+                        <span class="cinematic__counter-val">0</span>
+                        <span class="cinematic__ring-label">Preço único</span>
+                      </div>
+                    </div>
+
+                    <!-- Widgets -->
+                    <div class="cinematic__widget-list">
+                      <div class="cinematic__widget cinematic__widget-card">
+                        <div class="cinematic__widget-icon cinematic__widget-icon--blue">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div><div class="cinematic__widget-bar w-20"></div><div class="cinematic__widget-bar w-12"></div></div>
+                      </div>
+                      <div class="cinematic__widget cinematic__widget-card">
+                        <div class="cinematic__widget-icon cinematic__widget-icon--green">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <div><div class="cinematic__widget-bar w-16"></div><div class="cinematic__widget-bar w-24"></div></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Home bar -->
+                  <div class="cinematic__home-bar"></div>
+                </div>
+              </div>
+
+              <!-- Floating badges -->
+              <div class="cinematic__badge" style="top:1.5rem;left:-1rem;">
+                <div class="cinematic__badge-icon">🚀</div>
+                <div><p class="cinematic__badge-title">Entrega rápida</p><p class="cinematic__badge-sub">2 a 5 dias</p></div>
+              </div>
+              <div class="cinematic__badge" style="bottom:3rem;right:-1rem;">
+                <div class="cinematic__badge-icon">✅</div>
+                <div><p class="cinematic__badge-title">Sem mensalidades</p><p class="cinematic__badge-sub">Pagamento único</p></div>
+              </div>
+            </div>
           </div>
-          <div class="expertise__card" data-reveal>
-            <svg class="expertise__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-            </svg>
-            <h3 class="expertise__card-title">Performance</h3>
-            <p>Sites que carregam em milissegundos. Performance não é opcional — é a base de uma boa experiência e de um melhor posicionamento no Google.</p>
-          </div>
+
+          <!-- RIGHT: Brand name -->
+          <div class="cinematic__brand">Webdigio</div>
         </div>
       </div>
     </section>
@@ -1083,6 +1173,7 @@
   <script src="js/animations.js?v=3"></script>
   <script src="js/particles.js"></script>
   <script src="js/scroll-expand.js"></script>
+  <script src="js/cinematic-hero.js"></script>
   <script>
   (function () {
     var done = false;
