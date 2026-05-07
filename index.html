@@ -91,8 +91,8 @@
         <div class="hero__text-group">
           <h1 class="hero__title" id="heroTitle">Presença digital que gera clientes</h1>
           <p class="hero__tagline" id="heroTagline">em 2 a 5 dias · design premium · sem mensalidades</p>
-          <p class="hero__hint" id="heroHint">Scroll para expandir</p>
         </div>
+        <p class="hero__hint" id="heroHint">Scroll para expandir</p>
       </div>
     </section>
 
@@ -1181,8 +1181,6 @@
       if (typeof gsap === 'undefined') return;
       if (!document.querySelector('.hero--reveal')) return;
       done = true;
-      gsap.from('.hero__title', { opacity: 0, y: 30, duration: 0.6, ease: 'power3.out', delay: 0.1 });
-      gsap.from('.hero__tagline', { opacity: 0, y: 20, duration: 0.5, ease: 'power3.out', delay: 0.3 });
       gsap.from('.hero__hint', { opacity: 0, y: 15, duration: 0.5, ease: 'power3.out', delay: 0.7 });
       gsap.from('.hero__card', { opacity: 0, scale: 0.85, duration: 0.7, ease: 'power3.out', delay: 0.15 });
       gsap.from('.hero__bg', { opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.1 });
