@@ -491,6 +491,18 @@ input, textarea { font-family: inherit; font-size: inherit; }
   will-change: opacity;
   max-width: 90vw;
 }
+.hero__subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3vw, 2.5rem);
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin-top: 0.75rem;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  position: relative;
+  will-change: opacity;
+}
 .hero__tagline {
   margin-top: 1rem;
   font-size: clamp(0.75rem, 1.4vw, 1rem);
@@ -498,6 +510,26 @@ input, textarea { font-family: inherit; font-size: inherit; }
   font-weight: 300;
   letter-spacing: 0.08em;
   will-change: opacity;
+}
+
+/* --- DigitalSerenity underline grow --- */
+.text-decoration-animate {
+  position: relative;
+}
+.text-decoration-animate::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  animation: underline-grow 2s ease-out forwards;
+  animation-delay: 2.2s;
+}
+@keyframes underline-grow {
+  to { width: 80%; }
 }
 .hero__hint {
   position: absolute;
