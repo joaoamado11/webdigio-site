@@ -500,7 +500,11 @@ input, textarea { font-family: inherit; font-size: inherit; }
   will-change: opacity;
 }
 .hero__hint {
-  margin-top: 1.25rem;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
   font-size: 0.7rem;
   color: rgba(255,255,255,0.3);
   letter-spacing: 0.25em;
@@ -511,6 +515,30 @@ input, textarea { font-family: inherit; font-size: inherit; }
 @keyframes hintPulse {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 0.8; }
+}
+
+/* --- Word-by-word animate (DigitalSerenity style) --- */
+.word-animate {
+  display: inline-block;
+  opacity: 0;
+  will-change: opacity, transform, filter;
+}
+
+@keyframes word-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.8);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.word-animate--visible {
+  animation: word-appear 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--delay) forwards;
 }
 
 /* Expanded state — hero becomes a normal section */
