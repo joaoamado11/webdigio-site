@@ -15,7 +15,6 @@
   var card = document.getElementById('heroCard');
   var overlay = document.getElementById('heroOverlay');
   var heroTitle = document.getElementById('heroTitle');
-  var subtitle = document.getElementById('heroSubtitle');
   var tagline = document.getElementById('heroTagline');
   var hint = document.getElementById('heroHint');
   var st = null;
@@ -59,17 +58,20 @@
     // Background fades out (revealing particles underneath)
     if (bg) bg.style.opacity = Math.max(0, 1 - p);
 
-    // "Webdigio" title fades uniformly
-    if (heroTitle) heroTitle.style.opacity = Math.max(0, 1 - p * 1.3);
-
-    // --- Word-by-word staggered fade-out for subtitle + tagline ---
+    // --- Word-by-word staggered fade-out ---
     var n = wordSpans.length;
-    for (var i = 0; i < n; i++) {
-      var threshold = i / n;
-      var fadeP = Math.max(0, Math.min(1, (p - threshold) * n));
-      wordSpans[i].style.opacity = 1 - fadeP;
-      wordSpans[i].style.transform = 'translateY(' + (-fadeP * 25) + 'px)';
-      wordSpans[i].style.filter = 'blur(' + (fadeP * 8) + 'px)';
+    if (n > 0) {
+      for (var i = 0; i < n; i++) {
+        var threshold = i / n;
+        var fadeP = Math.max(0, Math.min(1, (p - threshold) * n));
+        wordSpans[i].style.opacity = 1 - fadeP;
+        wordSpans[i].style.transform = 'translateY(' + (-fadeP * 25) + 'px)';
+        wordSpans[i].style.filter = 'blur(' + (fadeP * 8) + 'px)';
+      }
+    } else {
+      // Fallback: fade whole elements
+      if (heroTitle) heroTitle.style.opacity = Math.max(0, 1 - p * 1.3);
+      if (tagline) tagline.style.opacity = Math.max(0, 1 - p * 1.5);
     }
 
     // Toggle expanded class for both directions
@@ -95,12 +97,9 @@
 
   // ---- Init: collect existing word spans from HTML + trigger entrance ----
   function initWords() {
-    wordSpans = [];
-    if (subtitle) {
-      wordSpans = wordSpans.concat(
-        Array.from(subtitle.querySelectorAll('.word-animate'))
-      );
-    }
+    wordSpans = heroTitle
+      ? Array.from(heroTitle.querySelectorAll('.word-animate'))
+      : [];
     if (tagline) {
       wordSpans = wordSpans.concat(
         Array.from(tagline.querySelectorAll('.word-animate'))
