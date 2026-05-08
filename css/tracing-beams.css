@@ -1,5 +1,5 @@
 /* ============================================================
-   Tracing Beams — Animated SVG light beams on scroll
+   Tracing Beams — PCB Circuit Animation
    ============================================================ */
 
 .tracing-beams {
@@ -9,25 +9,11 @@
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  mix-blend-mode: screen; /* blends glow with dark background */
 }
 
-.tracing-beam__dot {
-  transition: opacity 0.3s ease;
-}
-
-/* Glow pulse for active dots */
-@keyframes beamPulse {
-  0%, 100% { opacity: 0.6; }
-  50%      { opacity: 1; }
-}
-
-.tracing-beam__dot--active {
-  animation: beamPulse 2s ease-in-out infinite;
-}
-
-/* Reduce intensity on mobile */
 @media (max-width: 768px) {
-  .tracing-beams path {
-    opacity: 0.4;
+  .tracing-beams {
+    opacity: 0.6;
   }
 }
