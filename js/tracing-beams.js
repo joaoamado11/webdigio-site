@@ -8,62 +8,75 @@
   'use strict';
 
   // ── Beam definitions ──────────────────────────────────────
-  // Each beam: path string, stroke width, gradient colors (top→bottom),
-  // opacity, and scroll range (0=top of page, 1=bottom)
+  // Circuit-board style traces: angular paths (orthogonal + 45°),
+  // branching routes, terminating around y=52–60 (middle of page).
+  // scrollEnd ~0.50–0.58 means beams finish revealing near mid-page.
   var BEAMS = [
     {
-      // Wide dramatic S-curve, left side
-      path: 'M -2 0 C 30 12, -10 35, 12 48 C 34 61, -5 82, 18 100',
-      width: 1.8,
-      colors: ['#A855F7', '#6366F1', '#3B82F6'],
+      // Main trunk — starts center-left, runs down then branches right
+      path: 'M 12 0 L 12 18 L 28 18 L 28 36 L 18 36 L 18 54 L 22 54 L 22 58',
+      width: 1.6,
+      colors: ['#A855F7', '#6366F1'],
       opacity: 0.35,
-      scrollStart: 0.05,
-      scrollEnd: 0.95
-    },
-    {
-      // Tight oscillating wave, center-left
-      path: 'M 18 0 C 5 8, 32 14, 18 22 C 4 30, 32 36, 18 44 C 4 52, 32 58, 18 66 C 4 74, 32 80, 18 88 C 4 96, 32 98, 18 100',
-      width: 1.2,
-      colors: ['#06B6D4', '#22D3EE', '#67E8F9'],
-      opacity: 0.28,
       scrollStart: 0.0,
-      scrollEnd: 0.85
+      scrollEnd: 0.55,
+      nodes: [[12,18],[28,18],[28,36],[18,36],[18,54],[22,54]],
+      end: [22,58]
     },
     {
-      // Gentle wave, near center
-      path: 'M 45 0 C 55 20, 32 28, 48 40 C 64 52, 35 62, 50 72 C 65 82, 38 92, 48 100',
-      width: 1.5,
-      colors: ['#3B82F6', '#60A5FA', '#93C5FD'],
-      opacity: 0.25,
-      scrollStart: 0.02,
-      scrollEnd: 0.98
-    },
-    {
-      // Diagonal sweep, left-to-right then back
-      path: 'M 30 0 C 70 18, 10 38, 60 54 C 90 64, 25 76, 65 100',
+      // Branch off trunk at (28,18) — runs parallel then crosses right
+      path: 'M 28 18 L 38 18 L 38 32 L 52 32 L 52 50',
       width: 1.0,
-      colors: ['#818CF8', '#6366F1', '#A5B4FC'],
-      opacity: 0.22,
-      scrollStart: 0.08,
-      scrollEnd: 0.92
-    },
-    {
-      // Tight right-side wave
-      path: 'M 82 0 C 68 12, 96 20, 82 32 C 68 44, 96 52, 82 64 C 68 76, 96 84, 82 92 C 68 98, 96 100, 82 100',
-      width: 1.3,
-      colors: ['#8B5CF6', '#7C3AED', '#C084FC'],
-      opacity: 0.26,
+      colors: ['#06B6D4', '#22D3EE'],
+      opacity: 0.28,
       scrollStart: 0.03,
-      scrollEnd: 0.9
+      scrollEnd: 0.52,
+      nodes: [[38,18],[38,32],[52,32]],
+      end: [52,50]
     },
     {
-      // Bold far-right sweep
-      path: 'M 96 0 C 78 22, 108 32, 88 54 C 68 72, 102 82, 82 100',
-      width: 2.0,
-      colors: ['#EC4899', '#D946EF', '#A855F7'],
-      opacity: 0.3,
-      scrollStart: 0.06,
-      scrollEnd: 0.96
+      // Center trace — zigzag through the middle
+      path: 'M 48 0 L 48 12 L 36 12 L 36 28 L 56 28 L 56 44 L 44 44 L 44 56',
+      width: 1.4,
+      colors: ['#3B82F6', '#60A5FA'],
+      opacity: 0.30,
+      scrollStart: 0.02,
+      scrollEnd: 0.57,
+      nodes: [[48,12],[36,12],[36,28],[56,28],[56,44],[44,44]],
+      end: [44,56]
+    },
+    {
+      // Right-of-center — diagonal-routing trace (45°-style via stair-step)
+      path: 'M 64 0 L 64 22 L 78 22 L 78 38 L 62 38 L 62 52',
+      width: 1.0,
+      colors: ['#818CF8', '#A5B4FC'],
+      opacity: 0.25,
+      scrollStart: 0.04,
+      scrollEnd: 0.50,
+      nodes: [[64,22],[78,22],[78,38],[62,38]],
+      end: [62,52]
+    },
+    {
+      // Right side — dense zigzag, many turns
+      path: 'M 82 0 L 82 10 L 90 10 L 90 26 L 76 26 L 76 42 L 86 42 L 86 54',
+      width: 1.2,
+      colors: ['#8B5CF6', '#C084FC'],
+      opacity: 0.28,
+      scrollStart: 0.01,
+      scrollEnd: 0.54,
+      nodes: [[82,10],[90,10],[90,26],[76,26],[76,42],[86,42]],
+      end: [86,54]
+    },
+    {
+      // Far right — crosses over to center then ends
+      path: 'M 94 0 L 94 14 L 84 14 L 84 34 L 94 34 L 94 50',
+      width: 1.8,
+      colors: ['#EC4899', '#A855F7'],
+      opacity: 0.32,
+      scrollStart: 0.05,
+      scrollEnd: 0.53,
+      nodes: [[94,14],[84,14],[84,34],[94,34]],
+      end: [94,50]
     }
   ];
 
@@ -71,6 +84,7 @@
   var svg = null;
   var paths = [];
   var dots = [];
+  var endpoints = [];  // glowing circles at beam termination points
   var pathLengths = [];
   var lastProgress = -1;
   var ticking = false;
@@ -130,7 +144,7 @@
       paths.push(path);
       svg.appendChild(path);
 
-      // Glowing dot (hidden initially)
+      // Glowing dot at leading edge (hidden initially)
       var dot = document.createElementNS(NS, 'circle');
       dot.setAttribute('r', String(beam.width * 2.5));
       dot.setAttribute('fill', beam.colors[0]);
@@ -139,6 +153,19 @@
       dot.setAttribute('class', 'tracing-beam__dot');
       dots.push(dot);
       svg.appendChild(dot);
+
+      // Endpoint pad — circuit-board style termination circle
+      var ep = document.createElementNS(NS, 'circle');
+      ep.setAttribute('cx', String(beam.end[0]));
+      ep.setAttribute('cy', String(beam.end[1]));
+      ep.setAttribute('r', String(beam.width * 2));
+      ep.setAttribute('fill', 'none');
+      ep.setAttribute('stroke', beam.colors[beam.colors.length - 1]);
+      ep.setAttribute('stroke-width', String(beam.width * 0.8));
+      ep.setAttribute('opacity', '0');
+      ep.setAttribute('class', 'tracing-beam__endpoint');
+      endpoints.push(ep);
+      svg.appendChild(ep);
     });
 
     svg.insertBefore(defs, svg.firstChild);
@@ -193,6 +220,17 @@
       } else {
         dot.setAttribute('opacity', '0');
         dot.classList.remove('tracing-beam__dot--active');
+      }
+
+      // Endpoint pad — glow when beam completes (eased > 0.85)
+      if (endpoints[i]) {
+        var epOpacity = eased > 0.85 ? (eased - 0.85) / 0.15 : 0;
+        endpoints[i].setAttribute('opacity', String(epOpacity));
+        if (eased > 0.95) {
+          endpoints[i].classList.add('tracing-beam__endpoint--lit');
+        } else {
+          endpoints[i].classList.remove('tracing-beam__endpoint--lit');
+        }
       }
     }
   }
