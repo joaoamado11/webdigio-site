@@ -9,11 +9,9 @@
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  will-change: transform;
 }
 
 .tracing-beam__dot {
-  filter: blur(1px);
   transition: opacity 0.3s ease;
 }
 
@@ -27,22 +25,9 @@
   animation: beamPulse 2s ease-in-out infinite;
 }
 
-.tracing-beam__endpoint {
-  transition: opacity 0.4s ease;
-}
-
-@keyframes endpointPulse {
-  0%, 100% { opacity: 0.5; }
-  50%      { opacity: 1; }
-}
-
-.tracing-beam__endpoint--lit {
-  animation: endpointPulse 2.5s ease-in-out infinite;
-}
-
 /* Reduce intensity on mobile */
 @media (max-width: 768px) {
   .tracing-beams path {
-    opacity: 0.5; /* halve whatever opacity is set inline */
+    opacity: 0.4;
   }
 }
