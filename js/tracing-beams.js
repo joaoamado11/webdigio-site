@@ -82,13 +82,11 @@
 
   // ── State ──────────────────────────────────────────────────
   var svg = null;
-  var groups = [];     // <g> wrappers for each beam (parallax target)
   var paths = [];
   var dots = [];
-  var endpoints = [];
+  var endpoints = [];  // glowing circles at beam termination points
   var pathLengths = [];
   var lastProgress = -1;
-  var lastScrollY = 0;
   var ticking = false;
 
   // ── Build SVG overlay ──────────────────────────────────────
@@ -135,11 +133,6 @@
       });
       defs.appendChild(grad);
 
-      // Create group wrapper for this beam (parallax target)
-      var g = document.createElementNS(NS, 'g');
-      g.setAttribute('class', 'tracing-beam__group');
-      groups.push(g);
-
       // Path
       var path = document.createElementNS(NS, 'path');
       path.setAttribute('d', beam.path);
@@ -149,7 +142,7 @@
       path.setAttribute('stroke-linecap', 'round');
       path.setAttribute('stroke-linejoin', 'round');
       paths.push(path);
-      g.appendChild(path);
+      svg.appendChild(path);
 
       // Glowing dot at leading edge (hidden initially)
       var dot = document.createElementNS(NS, 'circle');
@@ -159,7 +152,7 @@
       dot.setAttribute('filter', 'url(#tracing-beam-glow)');
       dot.setAttribute('class', 'tracing-beam__dot');
       dots.push(dot);
-      g.appendChild(dot);
+      svg.appendChild(dot);
 
       // Endpoint pad — circuit-board style termination circle
       var ep = document.createElementNS(NS, 'circle');
@@ -172,9 +165,7 @@
       ep.setAttribute('opacity', '0');
       ep.setAttribute('class', 'tracing-beam__endpoint');
       endpoints.push(ep);
-      g.appendChild(ep);
-
-      svg.appendChild(g);
+      svg.appendChild(ep);
     });
 
     svg.insertBefore(defs, svg.firstChild);
@@ -242,17 +233,6 @@
         }
       }
     }
-
-    // ── Per-beam parallax motion ───────────────────────────
-    for (var j = 0; j < groups.length; j++) {
-      if (!groups[j]) continue;
-      // Each beam drifts at its own rate — reverses naturally on scroll-up
-      var rate = 0.04 + (j / groups.length) * 0.06;
-      var yOffset = scrollTop * rate;
-      var xOffset = Math.sin(scrollTop * 0.002 + j * 1.2) * 15;
-      groups[j].setAttribute('transform', 'translate(' + xOffset + ', ' + yOffset + ')');
-    }
-    lastScrollY = scrollTop;
   }
 
   function onScroll() {
