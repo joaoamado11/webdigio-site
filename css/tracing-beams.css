@@ -1,0 +1,35 @@
+/* ============================================================
+   Tracing Beams — Animated SVG light beams on scroll
+   ============================================================ */
+
+.tracing-beams {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.tracing-beam__dot {
+  filter: blur(1px);
+  transition: opacity 0.3s ease;
+}
+
+/* Glow pulse for active dots */
+@keyframes beamPulse {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+
+.tracing-beam__dot--active {
+  animation: beamPulse 2s ease-in-out infinite;
+}
+
+/* Reduce intensity on mobile */
+@media (max-width: 768px) {
+  .tracing-beams path {
+    opacity: 0.5; /* halve whatever opacity is set inline */
+  }
+}
