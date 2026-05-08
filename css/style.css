@@ -92,6 +92,30 @@ input, textarea { font-family: inherit; font-size: inherit; }
   border: 1px solid var(--glass-border-dark);
 }
 
+/* --- Floating Sections (glass + parallax) --- */
+.section--floating {
+  background: rgba(17, 24, 39, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  border-radius: var(--radius-2xl);
+  margin: 0 1rem 2rem;
+}
+.section--floating__inner {
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .section--floating {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--color-surface);
+    border-radius: 0;
+    margin: 0;
+    border: none;
+  }
+}
+
 .gradient-text {
   background: var(--gradient-text);
   -webkit-background-clip: text;
@@ -993,7 +1017,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .fw-semibold { font-weight: 600; }
 
 /* --- Showcase (was Solution) --- */
-.showcase { background: var(--color-surface); }
 .showcase .section__title { color: var(--color-text); }
 .showcase .section__text { color: var(--color-text-muted); }
 .showcase .section__tag { color: var(--color-primary-light); }
@@ -1061,7 +1084,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
 }
 
 /* --- Services --- */
-.services { background: var(--color-bg); }
 .services__grid { gap: 1.5rem; }
 .services__card {
   padding: 2.5rem 2rem;
@@ -1090,7 +1112,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
 
 /* --- Process --- */
 /* --- Process --- */
-.process { background: var(--color-surface); }
 .process__timeline {
   max-width: 720px; margin: 0 auto;
   display: flex; flex-direction: column;
@@ -1118,7 +1139,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .process__step-content p { color: var(--color-text-muted); font-size: 0.9375rem; line-height: 1.6; }
 
 /* --- FAQ Accordion --- */
-.faq { background: var(--color-surface); }
 .accordion { max-width: 600px; margin: 0 auto; }
 
 .accordion__item { border-bottom: 1px solid var(--color-border); }
@@ -1207,7 +1227,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
 }
 
 /* --- Why Us (was Differentiation) --- */
-.why { background: var(--color-bg); }
 .why .section__title { color: var(--color-text); }
 .why .section__tag { color: var(--color-primary-light); }
 .why__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
@@ -1242,7 +1261,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .why__card p { color: var(--color-text-muted); font-size: 0.9375rem; line-height: 1.6; }
 
 /* --- Industries (was Target) --- */
-.industries { background: var(--color-surface); }
 .industries__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 .industries__card {
   display: flex; flex-direction: column; align-items: center; text-align: center;
@@ -1264,7 +1282,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
 
 /* --- Pricing --- */
 /* --- Pricing New --- */
-.pricing-new { background: var(--color-bg); }
 .pricing-new .section__text { margin-top: 0.5rem; }
 
 .pricing-single {
@@ -1397,7 +1414,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .pricing-card__features li:first-child::before { display: none; }
 
 /* --- Approach (was Strategy) --- */
-.approach { background: var(--color-surface); }
 .approach .section__title { color: var(--color-text); }
 .approach .section__tag { color: var(--color-primary-light); }
 .approach__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; position: relative; z-index: 1; }
@@ -1439,7 +1455,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
 
 /* --- CTA / Contact --- */
 .cta {
-  background: var(--color-bg);
   position: relative;
 }
 .cta .section__title { color: var(--color-text); }
