@@ -35,12 +35,17 @@
     }
   }
 
+  var MAX_OFFSET = 40;
+
   function update() {
     ticking = false;
+    if (window.innerWidth < 768) return;
+
     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
 
     for (var i = 0; i < wrappers.length; i++) {
-      var offset = scrollY * (1 - speeds[i]);
+      var rawOffset = scrollY * (1 - speeds[i]);
+      var offset = rawOffset > MAX_OFFSET ? MAX_OFFSET : rawOffset;
       wrappers[i].style.transform = 'translateY(' + offset + 'px)';
     }
   }
