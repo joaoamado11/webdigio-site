@@ -1,5 +1,5 @@
 /* ============================================================
-   Tracing Beams — PCB Circuit Animation
+   Tracing Beams — PCB Circuit Branches
    ============================================================ */
 
 .tracing-beams {
@@ -9,11 +9,10 @@
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  mix-blend-mode: screen; /* blends glow with dark background */
 }
 
 @media (max-width: 768px) {
   .tracing-beams {
-    opacity: 0.6;
+    opacity: 0.55;
   }
 }
