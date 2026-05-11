@@ -360,46 +360,47 @@ main { position: relative; z-index: 1; }
 }
 
 /* Left Column: Arrows + Pills */
-.af-left { flex: 0 0 320px; display: flex; gap: 0.75rem; }
+.af-left { flex: 0 0 340px; display: flex; gap: 0.75rem; }
 
 /* Arrow Nav */
 .af-arrows {
-  display: flex; flex-direction: column; gap: 0.375rem; flex-shrink: 0;
+  display: flex; flex-direction: column; gap: 0.5rem; flex-shrink: 0; padding-top: 0.25rem;
 }
 .af-arrow {
-  width: 28px; height: 28px; border-radius: var(--radius-sm);
+  width: 30px; height: 30px; border-radius: var(--radius-sm);
   background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
   color: var(--color-text-dim); cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.3s ease;
 }
-.af-arrow svg { width: 12px; height: 12px; }
+.af-arrow svg { width: 14px; height: 14px; }
 .af-arrow:hover { background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.2); color: var(--color-primary-light); }
 
 /* Pills */
-.af-pills { flex: 1; display: flex; flex-direction: column; gap: 0.375rem; }
+.af-pills { flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
 .af-pill {
   border-radius: var(--radius-lg); overflow: hidden;
   background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
   transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
-  display: flex;
+  display: flex; cursor: pointer;
 }
 .af-pill:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
 
-/* Toggle button (+ / x) */
+/* Toggle button (+ / x) — bigger, centered with text */
 .af-pill__toggle {
-  width: 36px; flex-shrink: 0; display: flex; align-items: flex-start; justify-content: center;
-  padding-top: 0.6rem; background: none; border: none; cursor: pointer;
+  width: 44px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer;
   color: var(--color-text-dim); transition: all 0.3s ease;
+  pointer-events: none;
 }
-.af-pill__toggle svg { width: 14px; height: 14px; transition: transform 0.35s ease; }
+.af-pill__toggle svg { width: 18px; height: 18px; transition: transform 0.35s ease; }
 .af-pill--open .af-pill__toggle svg { transform: rotate(45deg); }
 .af-pill--open .af-pill__toggle { color: var(--color-primary-light); }
 
 /* Pill body */
-.af-pill__body { flex: 1; padding: 0.55rem 0.75rem 0.55rem 0; min-width: 0; }
+.af-pill__body { flex: 1; padding: 0.75rem 0.75rem 0.75rem 0; min-width: 0; }
 .af-pill__title {
-  font-size: 0.8125rem; font-weight: 500; color: var(--color-text-muted);
+  font-size: 0.875rem; font-weight: 500; color: var(--color-text-muted);
   transition: color 0.3s ease; line-height: 1.4;
 }
 .af-pill--open .af-pill__title { color: var(--color-primary-light); }
@@ -411,14 +412,15 @@ main { position: relative; z-index: 1; }
   margin-top: 0;
 }
 .af-pill__detail p {
-  font-size: 0.75rem; color: var(--color-text-dim); line-height: 1.5; padding-top: 0.5rem;
+  font-size: 0.8125rem; color: var(--color-text-dim); line-height: 1.5; padding-top: 0.5rem;
 }
-.af-pill--open .af-pill__detail { max-height: 100px; opacity: 1; margin-top: 0.25rem; }
+.af-pill--open .af-pill__detail { max-height: 120px; opacity: 1; margin-top: 0.25rem; }
 
 /* iPhone Mockup */
 .af-phone {
   position: relative; flex-shrink: 0;
   width: 260px; height: 520px;
+  margin: 0 auto;
   background: #0a0a0f;
   border-radius: 3rem;
   border: 3px solid rgba(255,255,255,0.12);

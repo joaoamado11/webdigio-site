@@ -1599,13 +1599,9 @@
     }
 
     pills.forEach(function(pill){
-      var toggle = pill.querySelector('.af-pill__toggle');
-      if (!toggle) return;
-      toggle.addEventListener('click', function(e){
-        e.stopPropagation();
+      pill.addEventListener('click', function(){
         var idx = parseInt(pill.getAttribute('data-idx'));
         var wasOpen = pill.classList.contains('af-pill--open');
-        // Close all others
         pills.forEach(function(p){ p.classList.remove('af-pill--open'); });
         if (!wasOpen) { pill.classList.add('af-pill--open'); }
         showScreen(idx);
