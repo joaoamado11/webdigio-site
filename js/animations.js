@@ -52,7 +52,8 @@
 
   revealOnScroll('.expertise__card', 0.1);
   revealOnScroll('.services__card', 0.1);
-  revealOnScroll('.bd-card', 0.06);
+  revealOnScroll('.af-card', 0.06);
+  revealOnScroll('.af-hero', 0);
   revealOnScroll('.industries__card', 0.08);
   revealOnScroll('.process__step', 0.12);
   revealOnScroll('.showcase__item', 0.06);
