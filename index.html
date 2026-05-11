@@ -426,14 +426,69 @@
         </div>
 
         <div class="af-wrapper" data-reveal>
-          <!-- iPhone Mockup -->
+          <!-- Left Column: Nav Arrows + Pills -->
+          <div class="af-left">
+            <div class="af-arrows">
+              <button class="af-arrow af-arrow--up" id="afUp" aria-label="Anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+              </button>
+              <button class="af-arrow af-arrow--down" id="afDown" aria-label="Seguinte">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+            </div>
+
+            <div class="af-pills" id="afPills">
+              <div class="af-pill af-pill--open" data-idx="0">
+                <button class="af-pill__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                <div class="af-pill__body">
+                  <span class="af-pill__title">Sem mensalidades</span>
+                  <div class="af-pill__detail"><p>Pagamento único. O site é seu. Sem fidelizações, sem custos escondidos, sem surpresas. Ao contrário das agências tradicionais que cobram todos os meses.</p></div>
+                </div>
+              </div>
+              <div class="af-pill" data-idx="1">
+                <button class="af-pill__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                <div class="af-pill__body">
+                  <span class="af-pill__title">Entrega em 2 a 5 dias</span>
+                  <div class="af-pill__detail"><p>Primeiro lançamos, depois otimizamos. Enquanto outras agências demoram semanas, nós entregamos em dias. Rápido não significa pior — significa eficiente.</p></div>
+                </div>
+              </div>
+              <div class="af-pill" data-idx="2">
+                <button class="af-pill__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                <div class="af-pill__body">
+                  <span class="af-pill__title">Prospeção Direta</span>
+                  <div class="af-pill__detail"><p>Encontramos negócios no Google Maps, Instagram e presencialmente. Contacto direto, personalizado e sem intermediários.</p></div>
+                </div>
+              </div>
+              <div class="af-pill" data-idx="3">
+                <button class="af-pill__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                <div class="af-pill__body">
+                  <span class="af-pill__title">Sistema de Otimização</span>
+                  <div class="af-pill__detail"><p>Após a entrega, enviamos um formulário estruturado para refinar o conteúdo. Menos bloqueios, mais qualidade, processo padronizado.</p></div>
+                </div>
+              </div>
+              <div class="af-pill" data-idx="4">
+                <button class="af-pill__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                <div class="af-pill__body">
+                  <span class="af-pill__title">Foco no que interessa: clientes</span>
+                  <div class="af-pill__detail"><p>Cada elemento do site é pensado para converter visitas em contactos. Os seus clientes querem resolver um problema — nós fazemos os dois.</p></div>
+                </div>
+              </div>
+              <div class="af-pill" data-idx="5">
+                <button class="af-pill__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                <div class="af-pill__body">
+                  <span class="af-pill__title">Website vs Redes Sociais</span>
+                  <div class="af-pill__detail"><p>Um site próprio transmite profissionalismo e controlo. As redes sociais atraem atenção — o website é onde a confiança e a decisão acontecem.</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: iPhone Mockup -->
           <div class="af-phone">
             <div class="af-phone__notch"></div>
             <div class="af-phone__screen">
               <div class="af-phone__content af-phone__content--active" data-af="0">
-                <div class="af-phone__icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
+                <div class="af-phone__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
                 <span class="af-phone__label">Pagamento Único</span>
               </div>
               <div class="af-phone__content" data-af="1">
@@ -457,54 +512,6 @@
                 <span class="af-phone__label">Website vs Redes</span>
               </div>
             </div>
-          </div>
-
-          <!-- Feature Cards -->
-          <div class="af-tabs">
-            <button class="af-tab af-tab--active" data-index="0">
-              <span class="af-tab__dot"></span>
-              Sem mensalidades
-            </button>
-            <button class="af-tab" data-index="1">
-              <span class="af-tab__dot"></span>
-              Entrega 2-5 dias
-            </button>
-            <button class="af-tab" data-index="2">
-              <span class="af-tab__dot"></span>
-              Prospeção Direta
-            </button>
-            <button class="af-tab" data-index="3">
-              <span class="af-tab__dot"></span>
-              Sistema Otimização
-            </button>
-            <button class="af-tab" data-index="4">
-              <span class="af-tab__dot"></span>
-              Foco no cliente
-            </button>
-            <button class="af-tab" data-index="5">
-              <span class="af-tab__dot"></span>
-              Website vs Redes
-            </button>
-          </div>
-
-          <!-- Detail Panel -->
-          <div class="af-detail">
-            <p class="af-detail__text" data-af-detail="0">Pagamento único. O site é seu. Sem fidelizações, sem custos escondidos, sem surpresas. Ao contrário das agências tradicionais que cobram todos os meses.</p>
-            <p class="af-detail__text af-detail__text--hidden" data-af-detail="1">Primeiro lançamos, depois otimizamos. Enquanto outras agências demoram semanas, nós entregamos em dias. Rápido não significa pior — significa eficiente.</p>
-            <p class="af-detail__text af-detail__text--hidden" data-af-detail="2">Encontramos negócios no Google Maps, Instagram e presencialmente. Contacto direto, personalizado e sem intermediários.</p>
-            <p class="af-detail__text af-detail__text--hidden" data-af-detail="3">Após a entrega, enviamos um formulário estruturado para refinar o conteúdo. Menos bloqueios, mais qualidade, processo padronizado.</p>
-            <p class="af-detail__text af-detail__text--hidden" data-af-detail="4">Cada elemento do site é pensado para converter visitas em contactos. Os seus clientes querem resolver um problema — nós fazemos os dois.</p>
-            <p class="af-detail__text af-detail__text--hidden" data-af-detail="5">Um site próprio transmite profissionalismo e controlo. As redes sociais atraem atenção — o website é onde a confiança e a decisão acontecem.</p>
-          </div>
-
-          <!-- Carousel Dots -->
-          <div class="af-dots">
-            <button class="af-dot af-dot--active" data-index="0"></button>
-            <button class="af-dot" data-index="1"></button>
-            <button class="af-dot" data-index="2"></button>
-            <button class="af-dot" data-index="3"></button>
-            <button class="af-dot" data-index="4"></button>
-            <button class="af-dot" data-index="5"></button>
           </div>
         </div>
       </div>
@@ -1579,36 +1586,45 @@
   })();
   </script>
 
-  <!-- Apple Feature Block — Tab Switching -->
+  <!-- Apple Feature Block — Pills + iPhone Sync -->
   <script>
   (function(){
-    var tabs = document.querySelectorAll('.af-tab');
-    var dots = document.querySelectorAll('.af-dot');
+    var pills = document.querySelectorAll('.af-pill');
     var screens = document.querySelectorAll('.af-phone__content');
-    var details = document.querySelectorAll('.af-detail__text');
+    var current = 0;
 
-    function activate(index) {
-      tabs.forEach(function(t){ t.classList.remove('af-tab--active'); });
-      dots.forEach(function(d){ d.classList.remove('af-dot--active'); });
-      screens.forEach(function(s){ s.classList.remove('af-phone__content--active'); });
-      details.forEach(function(d){ d.classList.add('af-detail__text--hidden'); });
-
-      if (tabs[index]) tabs[index].classList.add('af-tab--active');
-      if (dots[index]) dots[index].classList.add('af-dot--active');
-      if (screens[index]) screens[index].classList.add('af-phone__content--active');
-      var detail = document.querySelector('[data-af-detail="'+index+'"]');
-      if (detail) detail.classList.remove('af-detail__text--hidden');
+    function showScreen(idx) {
+      current = idx;
+      screens.forEach(function(s, i){ s.classList.toggle('af-phone__content--active', i === idx); });
     }
 
-    tabs.forEach(function(tab){
-      tab.addEventListener('click', function(){
-        activate(parseInt(tab.getAttribute('data-index')));
+    pills.forEach(function(pill){
+      var toggle = pill.querySelector('.af-pill__toggle');
+      if (!toggle) return;
+      toggle.addEventListener('click', function(e){
+        e.stopPropagation();
+        var idx = parseInt(pill.getAttribute('data-idx'));
+        var wasOpen = pill.classList.contains('af-pill--open');
+        // Close all others
+        pills.forEach(function(p){ p.classList.remove('af-pill--open'); });
+        if (!wasOpen) { pill.classList.add('af-pill--open'); }
+        showScreen(idx);
       });
     });
-    dots.forEach(function(dot){
-      dot.addEventListener('click', function(){
-        activate(parseInt(dot.getAttribute('data-index')));
-      });
+
+    // Arrows
+    var up = document.getElementById('afUp'), down = document.getElementById('afDown');
+    if (up) up.addEventListener('click', function(){
+      current = Math.max(0, current - 1);
+      pills.forEach(function(p){ p.classList.remove('af-pill--open'); });
+      if (pills[current]) pills[current].classList.add('af-pill--open');
+      showScreen(current);
+    });
+    if (down) down.addEventListener('click', function(){
+      current = Math.min(pills.length - 1, current + 1);
+      pills.forEach(function(p){ p.classList.remove('af-pill--open'); });
+      if (pills[current]) pills[current].classList.add('af-pill--open');
+      showScreen(current);
     });
   })();
   </script>
