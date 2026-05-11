@@ -632,13 +632,11 @@ main { position: relative; z-index: 1; }
   display: flex;
   align-items: center;
   height: 3rem;
-  background: rgba(11, 17, 32, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(59, 130, 246, 0.25);
+  background: transparent;
+  border: 1px solid transparent;
   border-radius: 9999px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: none;
   transition: width 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               border-radius 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: default;
@@ -2092,7 +2090,7 @@ main { position: relative; z-index: 1; }
 /* --- backdrop-filter fallback --- */
 @supports not (backdrop-filter: blur(1px)) {
   .glass { background: rgba(17, 24, 39, 0.9); }
-  .dock { background: rgba(11, 17, 32, 0.95); }
+  .dock { background: transparent; }
 }
 
 /* --- Responsive --- */
