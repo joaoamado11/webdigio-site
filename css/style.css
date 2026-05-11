@@ -80,19 +80,52 @@ main { position: relative; z-index: 1; }
 
 /* Play/Pause Button */
 .playpause {
-  position: absolute; top: 1.5rem; right: 1.5rem; z-index: 10;
-  width: 36px; height: 36px; border-radius: 50%;
+  width: 28px; height: 28px; border-radius: 50%;
   background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
-  color: var(--color-text-muted); cursor: pointer;
+  color: var(--color-text-dim); cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.3s ease; padding: 0;
 }
 .playpause:hover { background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.25); color: var(--color-primary-light); }
-.playpause svg { width: 14px; height: 14px; position: absolute; }
+.playpause svg { width: 11px; height: 11px; position: absolute; }
 .playpause__pause { opacity: 1; }
 .playpause__play { opacity: 0; }
 .playpause[data-playing="false"] .playpause__pause { opacity: 0; }
 .playpause[data-playing="false"] .playpause__play { opacity: 1; }
+
+/* Playpause in af-arrows */
+.playpause--af { margin-top: 0.375rem; flex-shrink: 0; }
+
+/* Playpause in fc-nav */
+.playpause--fc { flex-shrink: 0; margin-right: 0.25rem; }
+
+/* Pill progress bar */
+.af-pill--open::after {
+  content: ''; position: absolute; top: 0; left: 0; height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  border-radius: 0 1px 1px 0; z-index: 2;
+  animation: pillProgress 10s linear forwards;
+}
+@keyframes pillProgress { from { width: 0%; } to { width: 100%; } }
+
+/* Scroll to Top Button */
+.scroll-top {
+  position: fixed; bottom: 6.5rem; left: 2rem; z-index: 998;
+  width: 3.5rem; height: 3.5rem; border-radius: 50%;
+  background: var(--color-surface); border: 1px solid rgba(59,130,246,0.15);
+  color: var(--color-text-muted); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  opacity: 0; pointer-events: none; transform: translateY(16px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+}
+.scroll-top--visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.scroll-top:hover { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+.scroll-top svg { width: 1.25rem; height: 1.25rem; }
+@media (max-width: 480px) {
+  .scroll-top { bottom: 5rem; left: 1rem; width: 3rem; height: 3rem; }
+  .scroll-top svg { width: 1rem; height: 1rem; }
+}
 
 .glass {
   background: var(--glass-bg);

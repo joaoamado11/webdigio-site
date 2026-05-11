@@ -370,10 +370,6 @@
     </section>
 <!-- Process — Feature Carousel -->
     <section class="process section section--floating" id="processo">
-      <button class="playpause" id="playPauseProcesso" aria-label="Pausar animação" data-playing="true">
-        <svg class="playpause__play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        <svg class="playpause__pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-      </button>
       <div class="section--floating__inner" data-parallax-speed="0.96">
         <div class="container">
           <div class="section__header">
@@ -399,6 +395,10 @@
             </div>
 
             <nav class="fc-nav" id="fcNav">
+              <button class="playpause playpause--fc" id="playPauseProcesso" aria-label="Pausar animação" data-playing="true">
+                <svg class="playpause__play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="playpause__pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
               <button class="fc-nav__btn fc-nav__btn--active" data-step="0">
                 <span class="fc-nav__num">1</span>
                 <span class="fc-nav__label">Contacto</span>
@@ -422,10 +422,6 @@
     </section>
 <!-- Diferenciais — Apple Feature Block -->
     <section class="section section--floating" id="porque-nos">
-      <button class="playpause" id="playPausePorque" aria-label="Pausar animação" data-playing="true">
-        <svg class="playpause__play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        <svg class="playpause__pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-      </button>
       <div class="section--floating__inner" data-parallax-speed="0.94">
       <div class="container">
         <div class="section__header">
@@ -443,10 +439,14 @@
               <button class="af-arrow af-arrow--down" id="afDown" aria-label="Seguinte">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
+              <button class="playpause playpause--af" id="playPausePorque" aria-label="Pausar animação" data-playing="true">
+                <svg class="playpause__play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="playpause__pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
             </div>
 
             <div class="af-pills" id="afPills">
-              <div class="af-pill af-pill--open" data-idx="0">
+              <div class="af-pill af-pill--open" data-idx="0" style="position:relative">
                 <button class="af-pill__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
                 <div class="af-pill__body">
                   <span class="af-pill__title">Sem mensalidades</span>
@@ -853,6 +853,11 @@
   <a href="#" class="whatsapp-float" id="whatsappFloat" aria-label="Falar no WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
   </a>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
 
   <!-- ===== AI Chat Widget ===== -->
   <button class="chat-bubble" id="chatBubble" aria-label="Abrir chat">
@@ -1594,47 +1599,91 @@
   })();
   </script>
 
-  <!-- Play/Pause Buttons -->
+  <!-- Play/Pause + Scroll-to-top + Force top on reload -->
   <script>
   (function(){
+    // Force scroll to top on reload
+    if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+    window.addEventListener('beforeunload', function(){ window.scrollTo(0, 0); });
+    window.scrollTo(0, 0);
+
+    // Scroll to top button
+    var scrollBtn = document.getElementById('scrollTop');
+    if (scrollBtn) {
+      window.addEventListener('scroll', function(){
+        var show = window.scrollY > 600;
+        scrollBtn.classList.toggle('scroll-top--visible', show);
+      }, {passive:true});
+      scrollBtn.addEventListener('click', function(){
+        window.scrollTo({top:0, behavior:'smooth'});
+      });
+    }
+
     // Processo — toggle carousel auto-rotation
     var ppProcesso = document.getElementById('playPauseProcesso');
     if (ppProcesso) {
       ppProcesso.addEventListener('click', function(){
         var paused = this.getAttribute('data-playing') === 'false';
         this.setAttribute('data-playing', paused ? 'true' : 'false');
-        // Signal feature carousel to pause/resume
         document.body.classList.toggle('carousel-paused', !paused);
       });
     }
 
-    // Porque Nos — toggle pill auto-cycle
+    // Porque Nos — pill auto-cycle (10s) with hover pause
+    var CYCLE_DELAY = 10000;
     var ppPorque = document.getElementById('playPausePorque');
     var pillCycle = null;
-    if (ppPorque) {
-      function cyclePills() {
-        var pills = document.querySelectorAll('.af-pill');
-        var opened = document.querySelector('.af-pill--open');
-        var idx = opened ? parseInt(opened.getAttribute('data-idx')) : -1;
-        var next = (idx + 1) % pills.length;
-        pills.forEach(function(p){ p.classList.remove('af-pill--open'); });
-        if (pills[next]) pills[next].classList.add('af-pill--open');
-        // Also update iPhone screen
-        var screens = document.querySelectorAll('.af-phone__content');
-        screens.forEach(function(s, i){ s.classList.toggle('af-phone__content--active', i === next); });
+    var pillsContainer = document.getElementById('afPills');
+    var isHovering = false;
+    var isPlaying = true;
+
+    function resetPillProgress() {
+      var open = document.querySelector('.af-pill--open');
+      if (open) {
+        open.classList.remove('af-pill--open');
+        void open.offsetWidth; // force reflow to restart animation
+        open.classList.add('af-pill--open');
       }
-      ppPorque.addEventListener('click', function(){
-        var paused = this.getAttribute('data-playing') === 'false';
-        this.setAttribute('data-playing', paused ? 'true' : 'false');
-        if (!paused) {
-          pillCycle = setInterval(cyclePills, 3000);
-        } else {
-          clearInterval(pillCycle);
-        }
-      });
-      // Start auto-cycling by default
-      pillCycle = setInterval(cyclePills, 3000);
     }
+
+    function cyclePills() {
+      if (!isPlaying || isHovering) return;
+      var pills = document.querySelectorAll('.af-pill');
+      var opened = document.querySelector('.af-pill--open');
+      var idx = opened ? parseInt(opened.getAttribute('data-idx')) : -1;
+      var next = (idx + 1) % pills.length;
+      pills.forEach(function(p){ p.classList.remove('af-pill--open'); });
+      if (pills[next]) { pills[next].classList.add('af-pill--open'); resetPillProgress(); }
+      var screens = document.querySelectorAll('.af-phone__content');
+      screens.forEach(function(s, i){ s.classList.toggle('af-phone__content--active', i === next); });
+    }
+
+    function startCycle() {
+      clearInterval(pillCycle);
+      pillCycle = setInterval(cyclePills, CYCLE_DELAY);
+      resetPillProgress();
+    }
+
+    function stopCycle() {
+      clearInterval(pillCycle);
+      pillCycle = null;
+    }
+
+    if (ppPorque) {
+      ppPorque.addEventListener('click', function(){
+        isPlaying = !isPlaying;
+        this.setAttribute('data-playing', isPlaying ? 'true' : 'false');
+        if (isPlaying) startCycle(); else stopCycle();
+      });
+    }
+
+    if (pillsContainer) {
+      pillsContainer.addEventListener('mouseenter', function(){ isHovering = true; });
+      pillsContainer.addEventListener('mouseleave', function(){ isHovering = false; if (isPlaying) startCycle(); });
+    }
+
+    // Start auto-cycling
+    if (ppPorque) startCycle();
   })();
   </script>
 
