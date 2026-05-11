@@ -93,11 +93,16 @@ main { position: relative; z-index: 1; }
 .playpause[data-playing="false"] .playpause__pause { opacity: 0; }
 .playpause[data-playing="false"] .playpause__play { opacity: 1; }
 
-/* Playpause in af-arrows */
-.playpause--af { margin-top: 0.375rem; flex-shrink: 0; }
+/* Playpause in af-arrows — match arrow size */
+.playpause--af { width: 30px; height: 30px; flex-shrink: 0; }
+.playpause--af svg { width: 13px; height: 13px; }
 
-/* Playpause in fc-nav */
-.playpause--fc { flex-shrink: 0; margin-right: 0.25rem; }
+/* Playpause in fc-nav — match nav pill height */
+.playpause--fc {
+  width: 32px; height: 32px; flex-shrink: 0; margin-right: 0.25rem;
+  align-self: center;
+}
+.playpause--fc svg { width: 13px; height: 13px; }
 
 /* Pill progress bar */
 .af-pill--open::after {
