@@ -758,12 +758,7 @@
     <section class="cta section section--floating" id="contacto">
       <div class="section--floating__inner" data-parallax-speed="0.90">
         <div class="aurora-bg" aria-hidden="true"></div>
-        <div class="cta-bloom" aria-hidden="true">
-          <div class="cta-bloom__sq"></div><div class="cta-bloom__sq"></div><div class="cta-bloom__sq"></div>
-          <div class="cta-bloom__sq"></div><div class="cta-bloom__sq"></div><div class="cta-bloom__sq"></div>
-          <div class="cta-bloom__sq"></div><div class="cta-bloom__sq"></div><div class="cta-bloom__sq"></div>
-          <div class="cta-bloom__sq"></div><div class="cta-bloom__sq"></div><div class="cta-bloom__sq"></div>
-        </div>
+        <div class="cta-bloom" aria-hidden="true" id="ctaBloom"></div>
         <div class="container">
           <div class="cta__grid">
             <div class="cta__content" data-reveal>
@@ -1618,18 +1613,33 @@
   })();
   </script>
 
-  <!-- CTA Bloom — reveal on scroll -->
+  <!-- CTA Bloom — 25 nested squares -->
   <script>
   (function(){
-    var bloom = document.querySelector('.cta-bloom');
+    var bloom = document.getElementById('ctaBloom');
     if (!bloom) return;
+    // Build 25 squares
+    var colors = ['147,51,234','168,85,247','196,181,253','139,92,246','124,58,237'];
+    for (var i = 0; i < 25; i++) {
+      var sq = document.createElement('div');
+      sq.className = 'cta-bloom__sq';
+      var size = 20 + i * 24;
+      sq.style.width = size + 'px';
+      sq.style.height = size + 'px';
+      sq.style.top = '50%';
+      sq.style.left = '50%';
+      sq.style.animationDelay = (i * 0.08) + 's';
+      var c = colors[i % colors.length];
+      sq.style.borderColor = 'rgba(' + c + ',0.3)';
+      sq.style.borderImage = 'linear-gradient(45deg, rgba(' + colors[0] + ',0.5), rgba(' + colors[1] + ',0.4), rgba(' + colors[2] + ',0.3), rgba(' + colors[3] + ',0.4), rgba(' + colors[4] + ',0.5)) 1';
+      bloom.appendChild(sq);
+    }
+    // IntersectionObserver to start animation
     var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting) {
-          bloom.classList.add('cta-bloom--revealed');
-        }
-      });
-    }, { threshold: 0.3 });
+      if (entries[0].isIntersecting) {
+        bloom.classList.add('cta-bloom--revealed');
+      }
+    }, { threshold: 0.2 });
     observer.observe(bloom.parentElement);
   })();
   </script>
