@@ -132,7 +132,107 @@ main { position: relative; z-index: 1; }
   .scroll-top svg { width: 1rem; height: 1rem; }
 }
 
-.glass {
+/* ============================================================
+   Expanding Cards (Setores)
+   ============================================================ */
+.exp-cards {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;
+  height: 500px; gap: 0.5rem; list-style: none; padding: 0;
+  transition: grid-auto-columns 0.5s ease-out;
+}
+.exp-cards:has(.exp-card:hover) .exp-card:not(:hover) { grid-auto-columns: 0.8fr; }
+.exp-card {
+  position: relative; border-radius: var(--radius-xl); overflow: hidden;
+  cursor: pointer; transition: all 0.5s ease-out; min-width: 80px;
+}
+.exp-card:hover { grid-auto-columns: 4fr !important; }
+
+.exp-card__img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; transition: transform 0.5s ease-out;
+}
+.exp-card:hover .exp-card__img { transform: scale(1.05); }
+
+.exp-card__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%);
+}
+
+.exp-card__body {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 2rem;
+}
+
+.exp-card__label {
+  font-size: 0.75rem; font-weight: 300; text-transform: uppercase;
+  letter-spacing: 0.15em; color: rgba(255,255,255,0.7); writing-mode: horizontal-tb;
+}
+.exp-card:hover .exp-card__label { writing-mode: horizontal-tb; }
+
+/* Title: vertical when collapsed, horizontal when expanded */
+.exp-card:not(:hover) .exp-card__label {
+  writing-mode: vertical-rl; transform: rotate(180deg); position: absolute;
+  top: 1.5rem; left: 50%; translate: -50% 0; white-space: nowrap;
+}
+
+.exp-card__title {
+  font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;
+  color: #fff; margin-bottom: 0.25rem;
+  opacity: 0; transition: opacity 0.3s ease 0.15s;
+}
+.exp-card:hover .exp-card__title { opacity: 1; }
+
+.exp-card__desc {
+  font-size: 0.875rem; color: rgba(255,255,255,0.75); line-height: 1.5; max-width: 300px;
+  opacity: 0; transition: opacity 0.3s ease 0.22s;
+}
+.exp-card:hover .exp-card__desc { opacity: 1; }
+
+/* Active (for mobile tap) */
+.exp-card--active .exp-card__title,
+.exp-card--active .exp-card__desc { opacity: 1; }
+.exp-card--active .exp-card__label { writing-mode: horizontal-tb !important; transform: none !important; position: static !important; }
+
+@media (max-width: 768px) {
+  .exp-cards { height: 400px; }
+  .exp-card__title { font-size: 1.2rem; }
+}
+
+/* ============================================================
+   Nested Squares Bloom (CTA)
+   ============================================================ */
+.cta-bloom {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 400px; height: 400px; z-index: 0; pointer-events: none;
+}
+.cta-bloom__sq {
+  position: absolute; top: 50%; left: 50%;
+  border: 1.5px solid rgba(59,130,246,0.15);
+  animation: bloomScale 3s ease-in-out infinite;
+}
+.cta-bloom__sq:nth-child(1)  { width: 40px; height: 40px; animation-delay: 0s; }
+.cta-bloom__sq:nth-child(2)  { width: 60px; height: 60px; animation-delay: 0.2s; }
+.cta-bloom__sq:nth-child(3)  { width: 80px; height: 80px; animation-delay: 0.4s; }
+.cta-bloom__sq:nth-child(4)  { width: 100px; height: 100px; animation-delay: 0.6s; }
+.cta-bloom__sq:nth-child(5)  { width: 120px; height: 120px; animation-delay: 0.8s; }
+.cta-bloom__sq:nth-child(6)  { width: 140px; height: 140px; animation-delay: 1s; }
+.cta-bloom__sq:nth-child(7)  { width: 160px; height: 160px; animation-delay: 1.2s; }
+.cta-bloom__sq:nth-child(8)  { width: 180px; height: 180px; animation-delay: 1.4s; }
+.cta-bloom__sq:nth-child(9)  { width: 200px; height: 200px; animation-delay: 1.6s; }
+.cta-bloom__sq:nth-child(10) { width: 220px; height: 220px; animation-delay: 1.8s; }
+.cta-bloom__sq:nth-child(11) { width: 240px; height: 240px; animation-delay: 2s; }
+.cta-bloom__sq:nth-child(12) { width: 260px; height: 260px; animation-delay: 2.2s; }
+
+@keyframes bloomScale {
+  0%   { transform: translate(-50%,-50%) scale(0.5) rotate(0deg); opacity: 0; }
+  30%  { opacity: 0.6; }
+  70%  { opacity: 0.6; }
+  100% { transform: translate(-50%,-50%) scale(1.8) rotate(90deg); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .cta-bloom { width: 250px; height: 250px; }
+}
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
