@@ -210,12 +210,12 @@ main { position: relative; z-index: 1; }
   position: absolute; border: 1.5px solid transparent;
 }
 .cta-bloom--revealed .cta-bloom__sq {
-  animation: bloomNest 2.5s ease-in-out infinite alternate;
+  animation: bloomNest 2.5s ease-in-out forwards;
 }
 @keyframes bloomNest {
   0%   { transform: translate(-50%,-50%) scale(0) rotate(0deg); opacity: 0; }
-  20%  { opacity: 1; }
-  100% { transform: translate(-50%,-50%) scale(2) rotate(180deg); opacity: 0.7; }
+  15%  { opacity: 1; }
+  100% { transform: translate(-50%,-50%) scale(2.5) rotate(180deg); opacity: 1; }
 }
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
