@@ -1618,6 +1618,22 @@
   })();
   </script>
 
+  <!-- CTA Bloom — reveal on scroll -->
+  <script>
+  (function(){
+    var bloom = document.querySelector('.cta-bloom');
+    if (!bloom) return;
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          bloom.classList.add('cta-bloom--revealed');
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(bloom.parentElement);
+  })();
+  </script>
+
   <!-- Expanding Cards — mobile click -->
   <script>
   (function(){
