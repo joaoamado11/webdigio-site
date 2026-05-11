@@ -423,122 +423,89 @@
         <div class="section__header">
           <span class="section__tag">Porquê a Webdigio</span>
           <h2 class="section__title">Não vendemos sites. Vendemos crescimento.</h2>
-          <p class="section__text">O que nos torna a escolha certa para o seu negócio.</p>
         </div>
 
-        <!-- Central Hero Card -->
-        <div class="af-hero glass-dark" data-reveal>
-          <div class="af-hero__glow" aria-hidden="true"></div>
-          <div class="af-hero__inner">
-            <div class="af-hero__badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-            <div>
-              <h3 class="af-hero__title">Tudo o que precisa,<br>sem surpresas.</h3>
-              <p class="af-hero__desc">Do design ao desenvolvimento, oferecemos um serviço completo — transparente, rápido e sem mensalidades.</p>
+        <div class="af-wrapper" data-reveal>
+          <!-- iPhone Mockup -->
+          <div class="af-phone">
+            <div class="af-phone__notch"></div>
+            <div class="af-phone__screen">
+              <div class="af-phone__content af-phone__content--active" data-af="0">
+                <div class="af-phone__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <span class="af-phone__label">Pagamento Único</span>
+              </div>
+              <div class="af-phone__content" data-af="1">
+                <div class="af-phone__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <span class="af-phone__label">2 a 5 Dias</span>
+              </div>
+              <div class="af-phone__content" data-af="2">
+                <div class="af-phone__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                <span class="af-phone__label">Prospeção</span>
+              </div>
+              <div class="af-phone__content" data-af="3">
+                <div class="af-phone__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                <span class="af-phone__label">Otimização</span>
+              </div>
+              <div class="af-phone__content" data-af="4">
+                <div class="af-phone__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                <span class="af-phone__label">Foco no Cliente</span>
+              </div>
+              <div class="af-phone__content" data-af="5">
+                <div class="af-phone__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                <span class="af-phone__label">Website vs Redes</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Feature Cards Grid -->
-        <div class="af-grid">
-
-          <div class="af-card glass-dark" data-reveal>
-            <div class="af-card__inner">
-              <div class="af-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7c-.6-1.5-2-2.6-3.7-2.8-1.4-.2-2.7-1-3.9-1.3-1.3-.3-2.7.2-3.5 1.3-.5.7-.6 1.6-.5 2.5M4 11c0 3.5 2.5 6.5 5.5 7.5l1 .3c1.5.4 3 .4 4.5 0l1-.3c3-1 5.5-4 5.5-7.5M19 7H5c-1 0-2 1-2 2v1c0 1 1 2 2 2h14c1 0 2-1 2-2V9c0-1-1-2-2-2z"/><circle cx="8" cy="9" r="1.5"/><circle cx="16" cy="9" r="1.5"/></svg>
-              </div>
-              <h4 class="af-card__title">Sem mensalidades</h4>
-              <p class="af-card__text">Pagamento único. O site é seu.</p>
-              <div class="af-card__detail">
-                <p>Sem fidelizações, sem custos escondidos, sem surpresas. Ao contrário das agências tradicionais que cobram todos os meses.</p>
-              </div>
-            </div>
-            <button class="af-card__toggle" aria-label="Expandir">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <!-- Feature Cards -->
+          <div class="af-tabs">
+            <button class="af-tab af-tab--active" data-index="0">
+              <span class="af-tab__dot"></span>
+              Sem mensalidades
+            </button>
+            <button class="af-tab" data-index="1">
+              <span class="af-tab__dot"></span>
+              Entrega 2-5 dias
+            </button>
+            <button class="af-tab" data-index="2">
+              <span class="af-tab__dot"></span>
+              Prospeção Direta
+            </button>
+            <button class="af-tab" data-index="3">
+              <span class="af-tab__dot"></span>
+              Sistema Otimização
+            </button>
+            <button class="af-tab" data-index="4">
+              <span class="af-tab__dot"></span>
+              Foco no cliente
+            </button>
+            <button class="af-tab" data-index="5">
+              <span class="af-tab__dot"></span>
+              Website vs Redes
             </button>
           </div>
 
-          <div class="af-card glass-dark" data-reveal>
-            <div class="af-card__inner">
-              <div class="af-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              </div>
-              <h4 class="af-card__title">Entrega em 2 a 5 dias</h4>
-              <p class="af-card__text">Primeiro lançamos, depois otimizamos.</p>
-              <div class="af-card__detail">
-                <p>Enquanto outras agências demoram semanas, nós entregamos em dias. Rápido não significa pior — significa eficiente.</p>
-              </div>
-            </div>
-            <button class="af-card__toggle" aria-label="Expandir">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
+          <!-- Detail Panel -->
+          <div class="af-detail">
+            <p class="af-detail__text" data-af-detail="0">Pagamento único. O site é seu. Sem fidelizações, sem custos escondidos, sem surpresas. Ao contrário das agências tradicionais que cobram todos os meses.</p>
+            <p class="af-detail__text af-detail__text--hidden" data-af-detail="1">Primeiro lançamos, depois otimizamos. Enquanto outras agências demoram semanas, nós entregamos em dias. Rápido não significa pior — significa eficiente.</p>
+            <p class="af-detail__text af-detail__text--hidden" data-af-detail="2">Encontramos negócios no Google Maps, Instagram e presencialmente. Contacto direto, personalizado e sem intermediários.</p>
+            <p class="af-detail__text af-detail__text--hidden" data-af-detail="3">Após a entrega, enviamos um formulário estruturado para refinar o conteúdo. Menos bloqueios, mais qualidade, processo padronizado.</p>
+            <p class="af-detail__text af-detail__text--hidden" data-af-detail="4">Cada elemento do site é pensado para converter visitas em contactos. Os seus clientes querem resolver um problema — nós fazemos os dois.</p>
+            <p class="af-detail__text af-detail__text--hidden" data-af-detail="5">Um site próprio transmite profissionalismo e controlo. As redes sociais atraem atenção — o website é onde a confiança e a decisão acontecem.</p>
           </div>
 
-          <div class="af-card glass-dark" data-reveal>
-            <div class="af-card__inner">
-              <div class="af-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </div>
-              <h4 class="af-card__title">Prospeção Direta</h4>
-              <p class="af-card__text">Encontramos negócios e contactamos diretamente.</p>
-              <div class="af-card__detail">
-                <p>Google Maps, Instagram e presencialmente. Contacto direto, personalizado e sem intermediários. Controlo total da aquisição de clientes.</p>
-              </div>
-            </div>
-            <button class="af-card__toggle" aria-label="Expandir">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
+          <!-- Carousel Dots -->
+          <div class="af-dots">
+            <button class="af-dot af-dot--active" data-index="0"></button>
+            <button class="af-dot" data-index="1"></button>
+            <button class="af-dot" data-index="2"></button>
+            <button class="af-dot" data-index="3"></button>
+            <button class="af-dot" data-index="4"></button>
+            <button class="af-dot" data-index="5"></button>
           </div>
-
-          <div class="af-card glass-dark" data-reveal>
-            <div class="af-card__inner">
-              <div class="af-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <h4 class="af-card__title">Sistema de Otimização</h4>
-              <p class="af-card__text">Formulário estruturado pós-entrega.</p>
-              <div class="af-card__detail">
-                <p>Após a entrega, enviamos um formulário para refinar o conteúdo. Menos bloqueios, mais qualidade, processo padronizado.</p>
-              </div>
-            </div>
-            <button class="af-card__toggle" aria-label="Expandir">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-          </div>
-
-          <div class="af-card glass-dark" data-reveal>
-            <div class="af-card__inner">
-              <div class="af-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-              </div>
-              <h4 class="af-card__title">Foco no que interessa: clientes</h4>
-              <p class="af-card__text">Cada elemento feito para converter.</p>
-              <div class="af-card__detail">
-                <p>Cada elemento do site é pensado para converter visitas em contactos. Os seus clientes não querem um site — querem resolver um problema. Nós fazemos os dois.</p>
-              </div>
-            </div>
-            <button class="af-card__toggle" aria-label="Expandir">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-          </div>
-
-          <div class="af-card glass-dark" data-reveal>
-            <div class="af-card__inner">
-              <div class="af-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              </div>
-              <h4 class="af-card__title">Website vs Redes Sociais</h4>
-              <p class="af-card__text">Mais profissionalismo e controlo.</p>
-              <div class="af-card__detail">
-                <p>Um site próprio transmite profissionalismo. As redes sociais atraem atenção — o website é onde a confiança e a decisão acontecem.</p>
-              </div>
-            </div>
-            <button class="af-card__toggle" aria-label="Expandir">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-          </div>
-
         </div>
       </div>
       </div>
@@ -1612,19 +1579,35 @@
   })();
   </script>
 
-  <!-- Apple Feature Cards — Expand/Collapse -->
+  <!-- Apple Feature Block — Tab Switching -->
   <script>
   (function(){
-    var cards = document.querySelectorAll('.af-card');
-    cards.forEach(function(card){
-      var toggle = card.querySelector('.af-card__toggle');
-      if (!toggle) return;
-      toggle.addEventListener('click', function(e){
-        e.stopPropagation();
-        card.classList.toggle('af-card--open');
+    var tabs = document.querySelectorAll('.af-tab');
+    var dots = document.querySelectorAll('.af-dot');
+    var screens = document.querySelectorAll('.af-phone__content');
+    var details = document.querySelectorAll('.af-detail__text');
+
+    function activate(index) {
+      tabs.forEach(function(t){ t.classList.remove('af-tab--active'); });
+      dots.forEach(function(d){ d.classList.remove('af-dot--active'); });
+      screens.forEach(function(s){ s.classList.remove('af-phone__content--active'); });
+      details.forEach(function(d){ d.classList.add('af-detail__text--hidden'); });
+
+      if (tabs[index]) tabs[index].classList.add('af-tab--active');
+      if (dots[index]) dots[index].classList.add('af-dot--active');
+      if (screens[index]) screens[index].classList.add('af-phone__content--active');
+      var detail = document.querySelector('[data-af-detail="'+index+'"]');
+      if (detail) detail.classList.remove('af-detail__text--hidden');
+    }
+
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        activate(parseInt(tab.getAttribute('data-index')));
       });
-      card.addEventListener('click', function(){
-        card.classList.toggle('af-card--open');
+    });
+    dots.forEach(function(dot){
+      dot.addEventListener('click', function(){
+        activate(parseInt(dot.getAttribute('data-index')));
       });
     });
   })();
