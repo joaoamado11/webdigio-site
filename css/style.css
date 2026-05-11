@@ -78,6 +78,22 @@ input, textarea { font-family: inherit; font-size: inherit; }
 main { position: relative; z-index: 1; }
 .section { padding: 7rem 0; position: relative; overflow: hidden; z-index: 1; }
 
+/* Play/Pause Button */
+.playpause {
+  position: absolute; top: 1.5rem; right: 1.5rem; z-index: 10;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  color: var(--color-text-muted); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s ease; padding: 0;
+}
+.playpause:hover { background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.25); color: var(--color-primary-light); }
+.playpause svg { width: 14px; height: 14px; position: absolute; }
+.playpause__pause { opacity: 1; }
+.playpause__play { opacity: 0; }
+.playpause[data-playing="false"] .playpause__pause { opacity: 0; }
+.playpause[data-playing="false"] .playpause__play { opacity: 1; }
+
 .glass {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);

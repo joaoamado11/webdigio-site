@@ -370,6 +370,10 @@
     </section>
 <!-- Process — Feature Carousel -->
     <section class="process section section--floating" id="processo">
+      <button class="playpause" id="playPauseProcesso" aria-label="Pausar animação" data-playing="true">
+        <svg class="playpause__play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="playpause__pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      </button>
       <div class="section--floating__inner" data-parallax-speed="0.96">
         <div class="container">
           <div class="section__header">
@@ -418,6 +422,10 @@
     </section>
 <!-- Diferenciais — Apple Feature Block -->
     <section class="section section--floating" id="porque-nos">
+      <button class="playpause" id="playPausePorque" aria-label="Pausar animação" data-playing="true">
+        <svg class="playpause__play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="playpause__pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      </button>
       <div class="section--floating__inner" data-parallax-speed="0.94">
       <div class="container">
         <div class="section__header">
@@ -1583,6 +1591,50 @@
     document.addEventListener('mouseleave', function () {
       aura.style.opacity = '0';
     });
+  })();
+  </script>
+
+  <!-- Play/Pause Buttons -->
+  <script>
+  (function(){
+    // Processo — toggle carousel auto-rotation
+    var ppProcesso = document.getElementById('playPauseProcesso');
+    if (ppProcesso) {
+      ppProcesso.addEventListener('click', function(){
+        var paused = this.getAttribute('data-playing') === 'false';
+        this.setAttribute('data-playing', paused ? 'true' : 'false');
+        // Signal feature carousel to pause/resume
+        document.body.classList.toggle('carousel-paused', !paused);
+      });
+    }
+
+    // Porque Nos — toggle pill auto-cycle
+    var ppPorque = document.getElementById('playPausePorque');
+    var pillCycle = null;
+    if (ppPorque) {
+      function cyclePills() {
+        var pills = document.querySelectorAll('.af-pill');
+        var opened = document.querySelector('.af-pill--open');
+        var idx = opened ? parseInt(opened.getAttribute('data-idx')) : -1;
+        var next = (idx + 1) % pills.length;
+        pills.forEach(function(p){ p.classList.remove('af-pill--open'); });
+        if (pills[next]) pills[next].classList.add('af-pill--open');
+        // Also update iPhone screen
+        var screens = document.querySelectorAll('.af-phone__content');
+        screens.forEach(function(s, i){ s.classList.toggle('af-phone__content--active', i === next); });
+      }
+      ppPorque.addEventListener('click', function(){
+        var paused = this.getAttribute('data-playing') === 'false';
+        this.setAttribute('data-playing', paused ? 'true' : 'false');
+        if (!paused) {
+          pillCycle = setInterval(cyclePills, 3000);
+        } else {
+          clearInterval(pillCycle);
+        }
+      });
+      // Start auto-cycling by default
+      pillCycle = setInterval(cyclePills, 3000);
+    }
   })();
   </script>
 
