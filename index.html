@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-PT">
 <head>
   <meta charset="UTF-8">
@@ -17,104 +17,106 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
   <link rel="stylesheet" href="css/tracing-beams.css">
+	  <link rel="stylesheet" href="css/text-type.css">
+  <link rel="stylesheet" href="css/floating-lines.css">
+  <link rel="stylesheet" href="css/reveal-text.css">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
 
-  <!-- Loading Screen -->
+  <div class="cursor-aura" id="cursorAura"></div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Full-page Dot Grid Background -->
+  <div class="dot-grid-bg" id="dotGridBg"></div>
+
+  <!-- Loading Screen — Weave Spinner -->
   <div class="loader" id="loader" aria-hidden="true">
     <div class="loader__bg"></div>
     <div class="loader__glow"></div>
-    <div class="loader__content">
-      <div class="loader__mark">W</div>
-      <div class="loader__brand">Webdigio</div>
-      <div class="loader__tagline">Agência Digital Premium</div>
-      <div class="loader__progress">
-        <div class="loader__progress-bar" id="loaderBar"></div>
+    <div class="spinner-wrapper">
+      <div class="spinner-container">
+        <div class="thread t1"></div>
+        <div class="thread t2"></div>
+        <div class="thread t3"></div>
+        <div class="thread t4"></div>
+        <div class="node"></div>
       </div>
-      <p class="loader__text" id="loaderText">A preparar algo incrível</p>
+    </div>
+    <p class="loader__text" id="loaderText">A preparar algo incrível</p>
+  </div>
+
+  <!-- Dock Navigation -->
+  <div class="dock" id="dockNav">
+    <div class="dock__logo">
+      <span class="dock__logo-mark" aria-hidden="true">W</span>
+      <span class="dock__logo-text">ebdigio</span>
+    </div>
+    <div class="dock__items">
+      <a href="#expertise" class="dock__link">Expertise</a>
+      <a href="#servicos" class="dock__link">Serviços</a>
+      <a href="#processo" class="dock__link">Processo</a>
+      <a href="#preco" class="dock__link">Preço</a>
+      <a href="#contacto" class="dock__link dock__link--cta">Contactar</a>
+    </div>
+    <div class="dock__collapsed-icon" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
     </div>
   </div>
 
-  <!-- Header -->
-  <header class="header" id="header">
-    <nav class="nav container">
-      <a href="#" class="nav__logo">
-        <span class="nav__logo-mark">W</span>
-        <span class="nav__logo-text">ebdigio</span>
-      </a>
-      <ul class="nav__list" id="navList">
-        <li class="nav__item"><a href="#expertise" class="nav__link">Expertise</a></li>
-        <li class="nav__item"><a href="#servicos" class="nav__link">Serviços</a></li>
-        <li class="nav__item"><a href="#processo" class="nav__link">Processo</a></li>
-        <li class="nav__item"><a href="#preco" class="nav__link">Preço</a></li>
-        <li class="nav__item"><a href="#contacto" class="nav__link nav__link--cta">Contactar</a></li>
-      </ul>
-      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </header>
 
   <main>
     <!-- Hero — Scroll-Expand -->
     <section class="hero hero-scroll-expand" id="scrollHero">
-      <!-- Particle network (revealed as globe fades out) -->
-      <canvas id="heroParticles" class="hero__particles"></canvas>
 
-      <!-- Background (fades out during expansion) -->
-      <div class="hero__bg" id="heroBg">
-        <picture>
-          <source srcset="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=60 400w,
-                          https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=70 800w,
-                          https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80 1920w"
-                  sizes="100vw"
-                  type="image/jpeg">
-          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80"
-               alt="" class="hero__bg-img" loading="eager">
-        </picture>
-        <div class="hero__bg-overlay"></div>
-      </div>
+      <!-- Dark overlay (fades during expansion to reveal fluid) -->
+      <div class="hero__bg-overlay" id="heroOverlayBg"></div>
 
       <div class="hero__stage">
-        <!-- Expanding media card -->
+        <!-- Title ABOVE the laptop -->
+        <h1 class="hero__title" id="heroTitle"
+            data-blur-text="Welcome to Webdigio" data-blur-delay="220" data-blur-direction="bottom"></h1>
+
+	        <!-- Shiny subtitle -->
+	                                <!-- Expanding Safari mockup -->
         <div class="hero__card" id="heroCard">
           <div class="hero__card-img-wrap">
-            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80"
-                 alt="Webdigio showcase" class="hero__card-img" loading="eager">
+            <!-- Safari browser chrome -->
+            <div class="safari-mockup">
+              <div class="safari-mockup__chrome">
+                <div class="safari-mockup__traffic-lights">
+                  <span class="safari-mockup__light safari-mockup__light--red"></span>
+                  <span class="safari-mockup__light safari-mockup__light--yellow"></span>
+                  <span class="safari-mockup__light safari-mockup__light--green"></span>
+                </div>
+                <div class="safari-mockup__url-bar">
+                  <svg class="safari-mockup__lock" width="10" height="12" viewBox="0 0 10 12" fill="none"><rect x="1" y="4" width="8" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3 4V3a2 2 0 1 1 4 0v1" stroke="currentColor" stroke-width="1.2"/></svg>
+                  <span class="safari-mockup__url">webdigio.com</span>
+                </div>
+              </div>
+              <div class="safari-mockup__content">
+                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80"
+                     alt="Webdigio showcase" class="hero__card-img" loading="eager">
+              </div>
+            </div>
           </div>
           <div class="hero__card-overlay" id="heroOverlay"></div>
         </div>
-
-        <!-- Title text (fades on scroll) -->
-        <div class="hero__text-group">
-          <h1 class="hero__title" id="heroTitle">
-            <span class="word-animate" data-delay="700">Presença</span>
-            <span class="word-animate" data-delay="850">digital</span>
-            <span class="word-animate" data-delay="1000">que</span>
-            <span class="word-animate" data-delay="1150">gera</span>
-            <span class="word-animate" data-delay="1300">clientes</span>
-          </h1>
-          <p class="hero__tagline" id="heroTagline">
-            <span class="word-animate" data-delay="1600">em</span>
-            <span class="word-animate" data-delay="1720">2</span>
-            <span class="word-animate" data-delay="1840">a</span>
-            <span class="word-animate" data-delay="1960">5</span>
-            <span class="word-animate" data-delay="2080">dias</span>
-            <span class="word-animate" data-delay="2200">·</span>
-            <span class="word-animate" data-delay="2320">design</span>
-            <span class="word-animate" data-delay="2440">premium</span>
-            <span class="word-animate" data-delay="2560">·</span>
-            <span class="word-animate" data-delay="2680">sem</span>
-            <span class="word-animate" data-delay="2800">mensalidades</span>
-          </p>
-        </div>
-        <p class="hero__hint" id="heroHint">Scroll para expandir</p>
+<!-- Subtitle BELOW the laptop -->
+        <p class="hero__subtitle" id="heroSubtitle"
+           data-text-type
+           data-text='["Presença digital que gera clientes."]'
+           data-typing-speed="50"
+           data-show-cursor="true"
+           data-initial-delay="1200" data-loop="false"></p>
       </div>
-    </section>
 
+      <p class="hero__hint" id="heroHint">Scroll para expandir</p>
+    </section>
     <!-- Cinematic Hero (formerly Expertise) -->
     <section class="cinematic-hero section" id="expertise">
       <!-- Film grain overlay -->
@@ -128,23 +130,6 @@
         <h1 class="cinematic__text-days">desenvolvimento que entrega.</h1>
       </div>
 
-      <!-- BACKGROUND LAYER 2: CTA (hidden until end) -->
-      <div class="cinematic__cta">
-        <h2>Vamos criar o seu site?</h2>
-        <p class="cinematic__cta-desc">
-          Em 2 a 5 dias o seu site está pronto. Design premium, sem mensalidades, com suporte contínuo.
-        </p>
-        <div class="cinematic__cta-buttons">
-          <a href="#contacto" class="cinematic__btn-light">
-            <span>Falar no WhatsApp</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-          </a>
-          <a href="#preco" class="cinematic__btn-dark">
-            <span>Ver Preço</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
 
       <!-- FOREGROUND LAYER: Deep Blue Card -->
       <div class="cinematic__card" id="cinematicCard">
@@ -248,6 +233,7 @@
         <div class="container">
           <div class="showcase__grid">
             <div class="showcase__content" data-reveal>
+              
               <span class="section__tag">A nossa abordagem</span>
               <h2 class="section__title">Nós tratamos da tecnologia. Você foca-se no seu negócio.</h2>
               <p class="section__text">
@@ -300,65 +286,89 @@
       </div>
     </section>
 
-    <!-- Services -->
-    <section class="services section section--floating" id="servicos">
-      <div class="section--floating__inner" data-parallax-speed="0.94">
-        <div class="container">
-          <div class="section__header">
-            <span class="section__tag">Serviços</span>
-            <h2 class="section__title">Tudo o que precisa para começar a receber clientes</h2>
-            <p class="section__text">Um serviço completo, rápido e sem mensalidades. Da criação à otimização, tratamos de tudo.</p>
-          </div>
-          <div class="services__grid bento-grid">
-            <div class="services__card" data-reveal>
-              <svg class="services__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-              </svg>
+    
+    
+    <!-- Services — Horizontal Cards -->
+    <section class="services section" id="servicos">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__tag">Serviços</span>
+          <h2 class="section__title">Tudo o que precisa para começar a receber clientes</h2>
+          <p class="section__text">Um serviço completo, rápido e sem mensalidades. Scroll para explorar.</p>
+        </div>
+      </div>
+      <div class="hs-container" id="horizontalScroll">
+        <div class="hs-track" id="hsTrack">
+          <div class="hs-card glass-dark">
+            <div class="hs-card__iphone">
+              <div class="hs-card__iphone-screen">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Site Express" loading="lazy">
+              </div>
+            </div>
+            <div class="hs-card__info">
               <h3>Site Express</h3>
-              <p>Criação rápida de websites profissionais com até 5 páginas. Design moderno, responsivo e pronto a converter visitantes em clientes.</p>
+              <p>Criação rápida de websites profissionais com até 5 páginas</p>
             </div>
-            <div class="services__card services__card--featured" data-reveal>
-              <svg class="services__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
-                <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-              </svg>
+          </div>
+          <div class="hs-card glass-dark">
+            <div class="hs-card__iphone">
+              <div class="hs-card__iphone-screen">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="Formulário" loading="lazy">
+              </div>
+            </div>
+            <div class="hs-card__info">
               <h3>Formulário Pós-Criação</h3>
-              <p>Após a entrega inicial, enviamos um formulário estruturado para recolher toda a informação do seu negócio. Assim aceleramos o processo e melhoramos o resultado final.</p>
+              <p>Recolha estruturada de informação do seu negócio</p>
             </div>
-            <div class="services__card" data-reveal>
-              <svg class="services__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-              </svg>
+          </div>
+          <div class="hs-card glass-dark">
+            <div class="hs-card__iphone">
+              <div class="hs-card__iphone-screen">
+                <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="SEO" loading="lazy">
+              </div>
+            </div>
+            <div class="hs-card__info">
               <h3>SEO & Performance</h3>
-              <p>Sites otimizados para o Google desde o primeiro dia. Velocidade, estrutura e boas práticas para aparecer nas pesquisas certas.</p>
+              <p>Sites otimizados para o Google desde o primeiro dia</p>
             </div>
-            <div class="services__card" data-reveal>
-              <svg class="services__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-              </svg>
+          </div>
+          <div class="hs-card glass-dark">
+            <div class="hs-card__iphone">
+              <div class="hs-card__iphone-screen">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Copywriting" loading="lazy">
+              </div>
+            </div>
+            <div class="hs-card__info">
               <h3>Copywriting Profissional</h3>
-              <p>Textos que comunicam valor e vendem. Copywriting estratégico adaptado ao seu setor para transmitir profissionalismo e confiança.</p>
+              <p>Textos que comunicam valor e vendem</p>
             </div>
-            <div class="services__card" data-reveal>
-              <svg class="services__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
+          </div>
+          <div class="hs-card glass-dark">
+            <div class="hs-card__iphone">
+              <div class="hs-card__iphone-screen">
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80" alt="WhatsApp" loading="lazy">
+              </div>
+            </div>
+            <div class="hs-card__info">
               <h3>WhatsApp & Contactos</h3>
-              <p>Integração direta com WhatsApp e formulários de contacto. Facilite a vida dos seus clientes e receba mais pedidos.</p>
+              <p>Integração direta com WhatsApp e formulários</p>
             </div>
-            <div class="services__card" data-reveal>
-              <svg class="services__card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-              </svg>
+          </div>
+          <div class="hs-card glass-dark">
+            <div class="hs-card__iphone">
+              <div class="hs-card__iphone-screen">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600&q=80" alt="Suporte" loading="lazy">
+              </div>
+            </div>
+            <div class="hs-card__info">
               <h3>Suporte Pós-Entrega</h3>
-              <p>O site não termina na entrega. Oferecemos suporte contínuo e ajustes para garantir que tudo se mantém rápido, seguro e atualizado.</p>
+              <p>Acompanhamento contínuo após a entrega</p>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- Process -->
+<!-- Process — Feature Carousel -->
     <section class="process section section--floating" id="processo">
       <div class="section--floating__inner" data-parallax-speed="0.96">
         <div class="container">
@@ -367,89 +377,174 @@
             <h2 class="section__title">Entrega primeiro. Otimiza depois.</h2>
             <p class="section__text">Um processo pensado para ser rápido e eficiente, sem depender de informação do cliente para começar.</p>
           </div>
-          <div class="process__timeline">
-            <div class="process__step" data-reveal>
-              <div class="process__number">01</div>
-              <div class="process__step-content">
-                <h3>Contacto inicial</h3>
-                <p>Falamos por WhatsApp. Percebemos o seu negócio e objetivos. Sem compromisso, 15 minutos.</p>
+
+          <!-- Feature Carousel -->
+          <div class="feature-carousel" id="featureCarousel">
+            <div class="fc-card glass-dark">
+              <div class="fc-card__inner">
+                <div class="fc-card__text">
+                  <span class="fc-card__step-label" id="fcStepLabel">Step 1</span>
+                  <h3 class="fc-card__title" id="fcTitle">Contacto inicial</h3>
+                  <p class="fc-card__desc" id="fcDesc">Falamos por WhatsApp. Percebemos o seu negócio e objetivos. Sem compromisso, 15 minutos.</p>
+                </div>
+                <div class="fc-card__images" id="fcImages">
+                  <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80" alt="" class="fc-card__img fc-card__img--main" id="fcImg1">
+                  <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80" alt="" class="fc-card__img fc-card__img--second" id="fcImg2" style="display:none;">
+                </div>
               </div>
             </div>
-            <div class="process__step" data-reveal>
-              <div class="process__number">02</div>
-              <div class="process__step-content">
-                <h3>Fecho da venda</h3>
-                <p>Proposta clara e direta. Sem surpresas, sem letras pequenas. Pagamento único, sem mensalidades.</p>
-              </div>
-            </div>
-            <div class="process__step" data-reveal>
-              <div class="process__number">03</div>
-              <div class="process__step-content">
-                <h3>Criação rápida</h3>
-                <p>Desenvolvemos o site com base em informação mínima. Design, textos e SEO em 2 a 5 dias úteis.</p>
-              </div>
-            </div>
-            <div class="process__step" data-reveal>
-              <div class="process__number">04</div>
-              <div class="process__step-content">
-                <h3>Entrega versão inicial</h3>
-                <p>Site online e funcional. O seu negócio já está no ar enquanto recolhemos mais informação para otimizar.</p>
-              </div>
-            </div>
-            <div class="process__step" data-reveal>
-              <div class="process__number">05</div>
-              <div class="process__step-content">
-                <h3>Formulário ao cliente</h3>
-                <p>Enviamos um formulário estruturado para recolher detalhes do negócio, serviços, imagens e FAQs.</p>
-              </div>
-            </div>
-            <div class="process__step" data-reveal>
-              <div class="process__number">06</div>
-              <div class="process__step-content">
-                <h3>Ajustes finais</h3>
-                <p>Com a informação recebida, refinamos o site. Conteúdo mais rico, personalizado e alinhado com o negócio.</p>
-              </div>
-            </div>
-            <div class="process__step" data-reveal>
-              <div class="process__number">07</div>
-              <div class="process__step-content">
-                <h3>Entrega final</h3>
-                <p>Site completo, otimizado e pronto para gerar clientes. Com suporte contínuo para o que precisar.</p>
-              </div>
-            </div>
+
+            <nav class="fc-nav" id="fcNav">
+              <button class="fc-nav__btn fc-nav__btn--active" data-step="0">
+                <span class="fc-nav__num">1</span>
+                <span class="fc-nav__label">Contacto</span>
+              </button>
+              <button class="fc-nav__btn" data-step="1">
+                <span class="fc-nav__num">2</span>
+                <span class="fc-nav__label">Criação</span>
+              </button>
+              <button class="fc-nav__btn" data-step="2">
+                <span class="fc-nav__num">3</span>
+                <span class="fc-nav__label">Refinamento</span>
+              </button>
+              <button class="fc-nav__btn" data-step="3">
+                <span class="fc-nav__num">4</span>
+                <span class="fc-nav__label">Entrega</span>
+              </button>
+            </nav>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Why Us -->
-    <section class="why section section--floating" id="porque-nos">
-      <div class="section--floating__inner" data-parallax-speed="0.93">
-        <div class="container">
-          <div class="section__header">
-            <span class="section__tag">Porquê a Webdigio</span>
-            <h2 class="section__title">Não vendemos sites. Vendemos crescimento.</h2>
-          </div>
-          <div class="why__grid">
-            <div class="why__card why__card--featured" data-reveal>
-              <div class="why__card-badge">O mais importante</div>
-              <h3>Sem mensalidades</h3>
-              <p>Pagamento único. O site é seu. Sem fidelizações, sem custos escondidos, sem surpresas. Ao contrário das agências tradicionais que cobram todos os meses.</p>
-            </div>
-            <div class="why__card" data-reveal>
-              <h3>Entrega em 2 a 5 dias</h3>
-              <p>Primeiro lançamos, depois otimizamos. Enquanto outras agências demoram semanas, nós entregamos em dias. Rápido não significa pior — significa eficiente.</p>
-            </div>
-            <div class="why__card" data-reveal>
-              <h3>Sistema de Otimização Pós-Criação</h3>
-              <p>Após a entrega, enviamos um formulário estruturado para melhorar o conteúdo. Menos bloqueios, mais qualidade, processo padronizado.</p>
-            </div>
-            <div class="why__card" data-reveal>
-              <h3>Foco no que interessa: clientes</h3>
-              <p>Cada elemento do site é pensado para converter visitas em contactos. Os seus clientes não querem um site — querem resolver um problema. Nós fazemos os dois.</p>
-            </div>
-          </div>
+    <!-- Diferenciais — Bento Grid (Porque Nos + Vantagem Competitiva) -->
+    <section class="section section--floating" id="porque-nos">
+      <div class="section--floating__inner" data-parallax-speed="0.94">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__tag">Porque a Webdigio</span>
+          <h2 class="section__title">Nao vendemos sites. Vendemos crescimento.</h2>
+          <p class="section__text">O que nos torna a escolha certa para o seu negocio.</p>
         </div>
+
+        <div class="bento-grid" id="bentoDiferenciais">
+
+          <!-- Card 1: Sem mensalidades -->
+          <article class="bd-card bd-card--starfield bd-card--savings" data-reveal>
+            <canvas class="bd-card__galaxy" aria-hidden="true"></canvas>
+            <div class="bd-card__anim-area"><div class="bd-card__anim-glow"></div></div>
+            <div class="bd-card__inner">
+              <div class="bd-card__top">
+                <div class="bd-card__icon-wrap"><svg class="bd-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7c-.56-1.4-1.9-2.5-3.5-2.7C14.1 4.1 12.8 3.3 11.6 3c-1.3-.3-2.7.2-3.5 1.3-.5.7-.6 1.6-.5 2.5M4 11c0 3.5 2.5 6.5 5.5 7.5l1 .3c1.5.4 3 .4 4.5 0l1-.3c3-1 5.5-4 5.5-7.5M19 7H5c-1 0-2 1-2 2v1c0 1 1 2 2 2h14c1 0 2-1 2-2V9c0-1-1-2-2-2z"/><circle cx="8" cy="9" r="1.5"/><circle cx="16" cy="9" r="1.5"/></svg></div>
+                <span class="bd-card__badge">O mais importante</span>
+              </div>
+              <div class="bd-card__content">
+                <h3 class="bd-card__name">Sem mensalidades</h3>
+                <p class="bd-card__desc">Pagamento unico. O site e seu. Sem fidelizacoes, sem custos escondidos, sem surpresas.</p>
+              </div>
+              <div class="bd-card__tags"><span>#Transparencia</span><span>#Pagamento unico</span></div>
+              <span class="bd-card__cta">Saber mais &rarr;</span>
+            </div>
+            <div class="bd-card__border-glow" aria-hidden="true"></div>
+          </article>
+
+          <!-- Card 2: Entrega em 2 a 5 dias -->
+          <article class="bd-card bd-card--starfield bd-card--clock" data-reveal>
+            <canvas class="bd-card__galaxy" aria-hidden="true"></canvas>
+            <div class="bd-card__anim-area"><div class="bd-card__anim-clock"><span class="hand"></span></div></div>
+            <div class="bd-card__inner">
+              <div class="bd-card__top">
+                <div class="bd-card__icon-wrap"><svg class="bd-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <span class="bd-card__badge">Rapido</span>
+              </div>
+              <div class="bd-card__content">
+                <h3 class="bd-card__name">Entrega em 2 a 5 dias</h3>
+                <p class="bd-card__desc">Primeiro lancamos, depois otimizamos. Enquanto outras agencias demoram semanas, nos entregamos em dias.</p>
+              </div>
+              <div class="bd-card__tags"><span>#Velocidade</span><span>#Eficiencia</span></div>
+              <span class="bd-card__cta">Saber mais &rarr;</span>
+            </div>
+            <div class="bd-card__border-glow" aria-hidden="true"></div>
+          </article>
+
+          <!-- Card 3: Prospecao Direta -->
+          <article class="bd-card bd-card--starfield bd-card--search" data-reveal>
+            <canvas class="bd-card__galaxy" aria-hidden="true"></canvas>
+            <div class="bd-card__anim-area"><div class="bd-card__anim-ripple"><span></span><span></span><span></span></div></div>
+            <div class="bd-card__inner">
+              <div class="bd-card__top">
+                <div class="bd-card__icon-wrap"><svg class="bd-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                <span class="bd-card__badge">Proativo</span>
+              </div>
+              <div class="bd-card__content">
+                <h3 class="bd-card__name">Prospecao Direta</h3>
+                <p class="bd-card__desc">Encontramos negocios no Google Maps, Instagram e presencialmente. Contacto direto e personalizado.</p>
+              </div>
+              <div class="bd-card__tags"><span>#Aquisicao</span><span>#Direto</span></div>
+              <span class="bd-card__cta">Saber mais &rarr;</span>
+            </div>
+            <div class="bd-card__border-glow" aria-hidden="true"></div>
+          </article>
+
+          <!-- Card 4: Sistema Otimizacao -->
+          <article class="bd-card bd-card--starfield bd-card--doc" data-reveal>
+            <canvas class="bd-card__galaxy" aria-hidden="true"></canvas>
+            <div class="bd-card__anim-area"><div class="bd-card__anim-lines"><span></span><span></span><span></span></div></div>
+            <div class="bd-card__inner">
+              <div class="bd-card__top">
+                <div class="bd-card__icon-wrap"><svg class="bd-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+                <span class="bd-card__badge">Exclusivo</span>
+              </div>
+              <div class="bd-card__content">
+                <h3 class="bd-card__name">Sistema de Otimizacao</h3>
+                <p class="bd-card__desc">Apos a entrega, enviamos um formulario estruturado para refinar o conteudo. Menos bloqueios, mais qualidade.</p>
+              </div>
+              <div class="bd-card__tags"><span>#Processo</span><span>#Qualidade</span></div>
+              <span class="bd-card__cta">Saber mais &rarr;</span>
+            </div>
+            <div class="bd-card__border-glow" aria-hidden="true"></div>
+          </article>
+
+          <!-- Card 5: Foco no cliente -->
+          <article class="bd-card bd-card--starfield bd-card--target" data-reveal>
+            <canvas class="bd-card__galaxy" aria-hidden="true"></canvas>
+            <div class="bd-card__anim-area"><div class="bd-card__anim-rings"><span></span><span></span></div></div>
+            <div class="bd-card__inner">
+              <div class="bd-card__top">
+                <div class="bd-card__icon-wrap"><svg class="bd-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                <span class="bd-card__badge">Foco total</span>
+              </div>
+              <div class="bd-card__content">
+                <h3 class="bd-card__name">Foco no que interessa: clientes</h3>
+                <p class="bd-card__desc">Cada elemento do site e pensado para converter visitas em contactos. Os seus clientes querem resolver um problema.</p>
+              </div>
+              <div class="bd-card__tags"><span>#Conversao</span><span>#Resultados</span></div>
+              <span class="bd-card__cta">Saber mais &rarr;</span>
+            </div>
+            <div class="bd-card__border-glow" aria-hidden="true"></div>
+          </article>
+
+          <!-- Card 6: Website vs Redes Sociais (Full width) -->
+          <article class="bd-card bd-card--starfield bd-card--globe" data-reveal>
+            <canvas class="bd-card__galaxy" aria-hidden="true"></canvas>
+            <div class="bd-card__anim-area"><div class="bd-card__anim-orbits"><span></span><span></span></div></div>
+            <div class="bd-card__inner">
+              <div class="bd-card__top">
+                <div class="bd-card__icon-wrap"><svg class="bd-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                <span class="bd-card__badge">Diferenciador</span>
+              </div>
+              <div class="bd-card__content">
+                <h3 class="bd-card__name">Website vs Redes Sociais</h3>
+                <p class="bd-card__desc">Um site proprio transmite mais profissionalismo e controlo. As redes sociais ajudam a atrair atencao — o website e onde a decisao acontece.</p>
+              </div>
+              <div class="bd-card__tags"><span>#Credibilidade</span><span>#Controlo</span><span>#Profissionalismo</span></div>
+              <span class="bd-card__cta">Saber mais &rarr;</span>
+            </div>
+            <div class="bd-card__border-glow" aria-hidden="true"></div>
+          </article>
+
+        </div>
+      </div>
       </div>
     </section>
 
@@ -559,62 +654,6 @@
               <div class="pricing-single__upsell">
                 <span class="pricing-single__upsell-name">Automações</span>
                 <span class="pricing-single__upsell-desc">Chatbots, respostas automáticas e integrações personalizadas</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Approach -->
-    <section class="approach section section--floating" id="abordagem">
-      <div class="section--floating__inner" data-parallax-speed="0.91">
-        <div class="container">
-          <div class="section__header">
-            <span class="section__tag">Vantagem Competitiva</span>
-            <h2 class="section__title">O que nos torna diferentes</h2>
-          </div>
-          <div class="approach__grid">
-            <div class="approach__card" data-reveal>
-              <div class="approach__card-front">
-                <svg class="approach__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                </svg>
-                <h3>Prospeção Direta</h3>
-                <p>Encontramos negócios no Google Maps, Instagram e presencialmente. Contacto direto, personalizado e sem intermediários.</p>
-                <span class="approach__hint">Passe o cursor para saber mais</span>
-              </div>
-              <div class="approach__card-back">
-                <h3>Prospeção Direta</h3>
-                <p>Identificamos negócios sem presença online ou com sites desatualizados. Contacto direto e pessoal: mostramos o problema, apresentamos a solução e fechamos. Controlo total da aquisição de clientes, sem depender de anúncios ou intermediários.</p>
-              </div>
-            </div>
-            <div class="approach__card" data-reveal>
-              <div class="approach__card-front">
-                <svg class="approach__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-                </svg>
-                <h3>Velocidade como vantagem</h3>
-                <p>Primeiro entregamos, depois otimizamos. O cliente vê resultados em dias, não em meses.</p>
-                <span class="approach__hint">Passe o cursor para saber mais</span>
-              </div>
-              <div class="approach__card-back">
-                <h3>Velocidade como vantagem</h3>
-                <p>Enquanto agências tradicionais bloqueiam tudo à espera de conteúdo do cliente, nós avançamos com informação mínima. O site fica online em 2 a 5 dias. Depois, refinamos com o formulário estruturado. Resultado: menos atritos, mais rapidez.</p>
-              </div>
-            </div>
-            <div class="approach__card" data-reveal>
-              <div class="approach__card-front">
-                <svg class="approach__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                </svg>
-                <h3>Website vs Redes Sociais</h3>
-                <p>Um site próprio transmite mais profissionalismo e controlo do que apenas redes sociais.</p>
-                <span class="approach__hint">Passe o cursor para saber mais</span>
-              </div>
-              <div class="approach__card-back">
-                <h3>Mais do que apenas um website</h3>
-                <p>Um website profissional permite apresentar produtos, serviços e portfólio de forma organizada, credível e diferenciada. Enquanto nas redes sociais o conteúdo se perde e compete por atenção, um site oferece um espaço próprio com controlo total sobre a apresentação e imagem do negócio. As redes sociais ajudam a atrair atenção — o website é onde a confiança e a decisão acontecem.</p>
               </div>
             </div>
           </div>
@@ -793,7 +832,7 @@
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <a href="#" class="nav__logo">
+          <a href="#" class="nav__logo footer-logo">
             <span class="nav__logo-mark">W</span>
             <span class="nav__logo-text">ebdigio</span>
           </a>
@@ -1109,10 +1148,10 @@
   <script>
   (function () {
     var loader = document.getElementById('loader');
-    var bar = document.getElementById('loaderBar');
+    // bar removed (snowball spinner)
     var text = document.getElementById('loaderText');
     var hero = document.querySelector('.hero');
-    if (!loader || !bar || !text) return;
+    if (!loader || !text) return;
 
     var minTime = 2200;       // minimum display time (ms)
     var startTime = Date.now();
@@ -1135,8 +1174,7 @@
       // Ease the progress
       var eased = fakeProgress * fakeProgress * (3 - 2 * fakeProgress);
       progress = Math.floor(eased * 100);
-      bar.style.width = progress + '%';
-
+      
       // Rotate phrases
       var phraseIdx = Math.min(
         loadingPhrases.length - 1,
@@ -1161,7 +1199,6 @@
       done = true;
 
       // Fill to 100%
-      bar.style.width = '100%';
       text.style.opacity = '0';
       setTimeout(function () {
         text.textContent = 'Vamos a isso';
@@ -1207,10 +1244,45 @@
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/animations.js?v=3"></script>
-  <script src="js/particles.js"></script>
-  <script src="js/scroll-expand.js"></script>
+  <!-- particles.js removed (replaced by liquid ether) -->
+  <script src="js/scroll-expand.js?v=2"></script>
+  <script src="js/text-type.js"></script>
+  <script src="js/floating-lines.js"></script>
+  <script src="js/blur-text.js"></script>
+  <script src="js/animated-nav.js"></script>
+  <script src="js/feature-carousel.js"></script>
+  <script src="js/interactive-selector.js"></script>
+  <script>
+  /* Initialize FloatingLines as full-page background */
+  (function () {
+    if (typeof FloatingLines === "undefined") return;
+    function initLines() {
+      var el = document.getElementById("dotGridBg");
+      if (!el || el._lines) return;
+      el._lines = new FloatingLines(el, {
+        enabledWaves: ["top", "middle", "bottom"],
+        lineCount: 8,
+        lineDistance: 8,
+        bendRadius: 8,
+        bendStrength: -2,
+        interactive: true,
+        parallax: true,
+        animationSpeed: 1,
+        linesGradient: ["#4561f5", "#6f6f6f", "#6a6a6a"]
+      });
+    }
+    if (document.querySelector(".hero--reveal")) {
+      initLines();
+    } else {
+      var iv = setInterval(function () {
+        if (document.querySelector(".hero--reveal")) { initLines(); clearInterval(iv); }
+      }, 200);
+    }
+  })();
+  </script>
   <script src="js/cinematic-hero.js"></script>
   <script>
   (function () {
@@ -1222,7 +1294,7 @@
       done = true;
       gsap.from('.hero__hint', { opacity: 0, y: 15, duration: 0.5, ease: 'power3.out', delay: 0.7 });
       gsap.from('.hero__card', { opacity: 0, scale: 0.85, duration: 0.7, ease: 'power3.out', delay: 0.15 });
-      gsap.from('.hero__bg', { opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.1 });
+      gsap.from('.hero__bg-overlay', { opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.1 });
     }
     go();
     var i = 0;
@@ -1231,7 +1303,6 @@
   </script>
   <script src="js/main.js"></script>
   <script src="js/chat-config.js"></script>
-  <script src="js/tracing-beams.js"></script>
   <script src="js/floating-sections.js"></script>
   <script>
   /* ============================================================
@@ -1503,5 +1574,151 @@
     }
   })();
   </script>
+  <script>
+  /* Scroll Progress Bar */
+  (function () {
+    var bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+    window.addEventListener('scroll', function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      var p = h > 0 ? (window.scrollY / h) * 100 : 0;
+      bar.style.width = p + '%';
+    }, { passive: true });
+  })();
+  </script>
+
+  <script>
+  /* Scroll Progress Bar */
+  (function () {
+    var bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+    window.addEventListener('scroll', function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      var p = h > 0 ? (window.scrollY / h) * 100 : 0;
+      bar.style.width = p + '%';
+    }, { passive: true });
+  })();
+  </script>
+
+  <script>
+  /* Mouse Cursor Aura */
+  (function () {
+    var aura = document.getElementById('cursorAura');
+    if (!aura) return;
+    document.addEventListener('mousemove', function (e) {
+      aura.style.left = e.clientX + 'px';
+      aura.style.top = e.clientY + 'px';
+      aura.style.opacity = '1';
+    }, { passive: true });
+    document.addEventListener('mouseleave', function () {
+      aura.style.opacity = '0';
+    });
+  })();
+  </script>
+
+  </script>
+
+  <!-- Per-Card Galaxy Particle Canvases -->
+  <script>
+  (function(){
+    var canvases = document.querySelectorAll('.bd-card__galaxy');
+    if (!canvases.length) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var instances = [];
+
+    canvases.forEach(function(canvas){
+      var card = canvas.parentElement;
+      var ctx = canvas.getContext('2d');
+      var particles = [];
+      var COUNT = 50;
+      var mouse = { x: -999, y: -999, active: false };
+      var time = 0;
+
+      function resize() {
+        var w = card.offsetWidth, h = card.offsetHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+        ctx.setTransform(1,0,0,1,0,0); ctx.scale(dpr, dpr);
+      }
+
+      function create() {
+        particles = [];
+        var w = card.offsetWidth, h = card.offsetHeight;
+        var cx = w / 2, cy = h / 2;
+        for (var i = 0; i < COUNT; i++) {
+          var a = Math.random() * Math.PI * 2;
+          var r = Math.pow(Math.random(), 0.5) * Math.min(cx, cy) * 0.9;
+          particles.push({
+            x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r,
+            size: Math.random() * 1.8 + 0.3,
+            hue: 200 + Math.random() * 60,
+            alpha: Math.random() * 0.6 + 0.2,
+            twinkle: Math.random() * Math.PI * 2,
+            twinkleRate: 0.015 + Math.random() * 0.04,
+            orbitAngle: a, orbitRadius: r,
+            orbitSpeed: 0.0003 + Math.random() * 0.0008
+          });
+        }
+      }
+
+      function draw(p) {
+        var alpha = p.alpha * (0.5 + 0.5 * Math.sin(time * p.twinkleRate + p.twinkle));
+        var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 4);
+        g.addColorStop(0, 'hsla('+p.hue+',70%,75%,'+(alpha*0.9)+')');
+        g.addColorStop(0.25, 'hsla('+p.hue+',50%,55%,'+(alpha*0.35)+')');
+        g.addColorStop(1, 'hsla('+p.hue+',40%,30%,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(p.x-p.size*4, p.y-p.size*4, p.size*8, p.size*8);
+        ctx.fillStyle = 'hsla('+p.hue+',30%,90%,'+alpha+')';
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+      }
+
+      function update() {
+        time++;
+        var w = card.offsetWidth, h = card.offsetHeight;
+        var cx = w / 2, cy = h / 2;
+        ctx.clearRect(0,0,w,h);
+        for (var i=0; i<particles.length; i++){
+          var p = particles[i];
+          p.orbitAngle += p.orbitSpeed;
+          var tx = cx + Math.cos(p.orbitAngle) * p.orbitRadius;
+          var ty = cy + Math.sin(p.orbitAngle) * p.orbitRadius;
+          if (mouse.active) {
+            var dx = tx - mouse.x, dy = ty - mouse.y;
+            var dist = Math.sqrt(dx*dx+dy*dy);
+            if (dist < 150) {
+              var force = Math.pow(1-dist/150,2)*60;
+              tx += (dx/(dist+0.01))*force;
+              ty += (dy/(dist+0.01))*force;
+            }
+          }
+          p.x += (tx-p.x)*0.05; p.y += (ty-p.y)*0.05;
+          draw(p);
+        }
+        requestAnimationFrame(update);
+      }
+
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        mouse.x = e.clientX - r.left;
+        mouse.y = e.clientY - r.top;
+        mouse.active = true;
+      }, {passive:true});
+      card.addEventListener('mouseleave', function(){ mouse.active = false; });
+
+      resize(); create(); update();
+      instances.push({canvas:canvas, resize:resize, create:create});
+    });
+
+    var rt;
+    window.addEventListener('resize', function(){
+      clearTimeout(rt);
+      rt = setTimeout(function(){
+        instances.forEach(function(inst){ inst.resize(); inst.create(); });
+      }, 300);
+    });
+  })();
+  </script>
+
 </body>
 </html>
