@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Loader         from '@/components/ui/Loader';
 import CursorAura     from '@/components/ui/CursorAura';
 import ScrollProgress from '@/components/ui/ScrollProgress';
