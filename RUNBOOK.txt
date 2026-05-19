@@ -1,0 +1,415 @@
+================================================================================
+WEBDIGIO v5 — PROJECT RUNBOOK
+================================================================================
+Last updated: May 19, 2026
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+1. PROJECT OVERVIEW
+────────────────────────────────────────────────────────────────────────────────
+
+Name:       Webdigio v5
+Purpose:    Marketing/landing website for Webdigio digital agency (Portugal)
+Location:   C:\Claude\webdigiov5
+Live URL:   https://webdigio.pt (production target)
+Dev URL:    http://localhost:3002 (or next available port)
+Package:    webdigiov5 (package.json)
+
+
+────────────────────────────────────────────────────────────────────────────────
+2. TECH STACK
+────────────────────────────────────────────────────────────────────────────────
+
+Framework:      Next.js 15.5.18 (App Router, TypeScript)
+Styling:        Tailwind CSS v4 (@import "tailwindcss", @theme inline {})
+Animation:      GSAP 3 + ScrollTrigger (always dynamically imported for SSR)
+3D:             Three.js + @types/three
+Database:       Supabase (PostgreSQL) — cloud-hosted
+Auth:           Supabase Auth (email + password)
+AI Chat:        Groq API (llama3-8b-8192 model)
+Utilities:      clsx + tailwind-merge (cn() helper in lib/utils.ts)
+Node version:   v24+ (check with: node --version)
+Package mgr:    npm
+
+
+────────────────────────────────────────────────────────────────────────────────
+3. ENVIRONMENT VARIABLES
+────────────────────────────────────────────────────────────────────────────────
+
+File: C:\Claude\webdigiov5\.env.local
+
+NEXT_PUBLIC_SUPABASE_URL=https://qbcqsdakghzmcmqetuac.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGci...  (public, safe in client)
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGci...      (NEVER expose in client code)
+GROQ_API_KEY=your_groq_api_key             (replace with real key for AI chat)
+
+IMPORTANT: SUPABASE_SERVICE_ROLE_KEY bypasses all RLS policies.
+           Only use it in server-side code (API routes, server components).
+           Never import it in 'use client' components.
+
+
+────────────────────────────────────────────────────────────────────────────────
+4. RUNNING THE PROJECT
+────────────────────────────────────────────────────────────────────────────────
+
+Development server:
+  npm --prefix "C:\Claude\webdigiov5" run dev -- --port 3002
+
+  Or from the project directory:
+  cd C:\Claude\webdigiov5
+  npm run dev
+
+Build for production:
+  npm run build
+
+Start production build:
+  npm run start
+
+Type check (no emit):
+  npx tsc --noEmit
+
+Lint check:
+  npx next lint
+
+NOTE: Port 3000 and 3002 may be in use. Use --port 3003 or higher if needed.
+      Check which port is running: netstat -ano | findstr ":300"
+      Kill a process on a port: Stop-Process -Id <PID> -Force
+
+
+────────────────────────────────────────────────────────────────────────────────
+5. PROJECT STRUCTURE
+────────────────────────────────────────────────────────────────────────────────
+
+C:\Claude\webdigiov5\
+│
+├── app\                            Next.js App Router pages
+│   ├── layout.tsx                  Root layout (async, fetches CMS content)
+│   ├── page.tsx                    Main landing page (assembles all sections)
+│   ├── globals.css                 Global styles + CSS variables + Tailwind
+│   ├── admin\                      Admin panel (protected by middleware)
+│   │   ├── layout.tsx              Admin shell (sidebar + auth check)
+│   │   ├── page.tsx                Dashboard
+│   │   ├── login\page.tsx          Login page
+│   │   ├── content\page.tsx        CMS content editor (all website text)
+│   │   ├── chatbot\page.tsx        Chatbot config
+│   │   ├── seo\page.tsx            SEO settings
+│   │   ├── pricing\page.tsx        Pricing editor
+│   │   └── services\page.tsx       Services editor
+│   └── api\
+│       ├── chat\route.ts           Groq AI chat endpoint
+│       └── admin\
+│           ├── content\route.ts    CMS content save endpoint
+│           ├── pricing\route.ts    Pricing save endpoint
+│           ├── chatbot\route.ts    Chatbot config save endpoint
+│           └── seo\route.ts        SEO save endpoint
+│
+├── components\
+│   ├── layout\
+│   │   └── Navbar.tsx              Navigation bar
+│   ├── sections\                   All landing page sections
+│   │   ├── HeroPortal.tsx          Hero scroll-expand animation
+│   │   ├── InnerHero.tsx           Content inside device mockup
+│   │   ├── CinematicExpertise.tsx  Expertise + stats section
+│   │   ├── Services.tsx            Service cards + before/after
+│   │   ├── WhyWebdigio.tsx         Accordion pills + visual panels
+│   │   ├── ProcessSection.tsx      4-step process carousel
+│   │   ├── Industries.tsx          Industry cards
+│   │   ├── Pricing.tsx             Pricing card + upsells
+│   │   ├── FAQ.tsx                 Accordion FAQ
+│   │   ├── TechStack.tsx           Tech logo marquee
+│   │   ├── CTAFooter.tsx           Footer with curtain reveal
+│   │   └── GridScan.tsx            Animated grid background
+│   ├── admin\
+│   │   ├── AdminSidebar.tsx        Sidebar nav + logout
+│   │   ├── ContentForm.tsx         Full CMS content editor
+│   │   ├── ChatbotForm.tsx         Chatbot config form
+│   │   ├── SeoForm.tsx             SEO form
+│   │   └── PricingForm.tsx         Pricing form
+│   ├── providers\
+│   │   └── ThemeProvider.tsx       Dark/light theme context
+│   └── ui\
+│       ├── Loader.tsx              Initial loading screen
+│       └── ChatWidget.tsx          Floating AI chat widget
+│
+├── lib\
+│   ├── i18n\
+│   │   ├── translations.ts         All 200+ PT/EN translation key-value pairs
+│   │   └── LangContext.tsx         Language context + useLang() hook
+│   ├── supabase\
+│   │   ├── client.ts               Browser Supabase client
+│   │   └── server.ts               Server client (SSR) + admin client
+│   ├── hooks.ts                    Shared React hooks
+│   └── utils.ts                    cn() class merger utility
+│
+├── middleware.ts                   Edge auth guard for /admin/* routes
+├── supabase\migrations\
+│   └── 001_initial_schema.sql      Full DB schema (run once in Supabase)
+├── public\assets\                  Images and icons
+├── .env.local                      Environment variables (not in git)
+├── next.config.ts                  Next.js config
+├── tsconfig.json                   TypeScript config
+├── package.json
+├── CHANGELOG.txt                   This project's changelog
+└── RUNBOOK.txt                     This file
+
+
+────────────────────────────────────────────────────────────────────────────────
+6. DATABASE SCHEMA (Supabase)
+────────────────────────────────────────────────────────────────────────────────
+
+Supabase Project: qbcqsdakghzmcmqetuac
+Dashboard URL:    https://supabase.com/dashboard/project/qbcqsdakghzmcmqetuac
+
+Tables:
+
+  site_content
+    id          uuid PK (auto)
+    section     text NOT NULL        (e.g. 'hero', 'pricing', 'faq')
+    key         text NOT NULL        (e.g. 'title', 'cta_title')
+    value_pt    text NOT NULL        Portuguese text
+    value_en    text NOT NULL        English text
+    created_at  timestamptz
+    updated_at  timestamptz
+    UNIQUE(section, key)
+    RLS: public SELECT, authenticated ALL
+
+  services
+    id, title_pt, title_en, desc_pt, desc_en, icon, sort_order, active
+
+  faq
+    id, question_pt, question_en, answer_pt, answer_en, sort_order, active
+
+  industries
+    id, name_pt, name_en, desc_pt, desc_en, icon, image_url, sort_order
+
+  chatbot_config
+    id (= 1), system_prompt, greeting_pt, greeting_en, suggestions_pt,
+    suggestions_en, active
+
+  seo_config
+    id (= 1), meta_title_pt, meta_title_en, meta_desc_pt, meta_desc_en,
+    og_image, canonical_url
+
+  pricing
+    id (= 1), price, currency, plan_name, delivery_days, whatsapp_number,
+    contact_email
+
+  portfolio, testimonials
+    (defined in schema, content TBD)
+
+Migration file: C:\Claude\webdigiov5\supabase\migrations\001_initial_schema.sql
+Run in Supabase: Dashboard → SQL Editor → paste and run
+
+
+────────────────────────────────────────────────────────────────────────────────
+7. ADMIN PANEL
+────────────────────────────────────────────────────────────────────────────────
+
+URL:        http://localhost:3002/admin
+Login URL:  http://localhost:3002/admin/login
+
+Credentials (change after first login):
+  Email:    admin@webdigio.pt
+  Password: Webdigio2024!
+
+  Also exists: joao@admin.pt (same password)
+
+Pages:
+  /admin              Dashboard with stats
+  /admin/content      Edit ALL website text (PT + EN) — main CMS
+  /admin/chatbot      Edit chatbot system prompt and suggestions
+  /admin/seo          Edit meta titles, descriptions, OG image
+  /admin/pricing      Edit price, currency, delivery days, contact info
+  /admin/services     Manage service cards
+
+How content changes propagate:
+  1. Admin edits text in /admin/content
+  2. Clicks "Save [Section]"
+  3. POST /api/admin/content → upserts rows into site_content table
+  4. Next page load of the website: layout.tsx fetches updated rows
+  5. LangProvider receives overrides, t() returns new values
+  6. No redeploy needed — changes are live immediately on next request
+
+To reset a key to the static default:
+  Delete the corresponding row from site_content in Supabase dashboard.
+
+
+────────────────────────────────────────────────────────────────────────────────
+8. I18N / TRANSLATIONS SYSTEM
+────────────────────────────────────────────────────────────────────────────────
+
+Translation keys format: "section.subkey"  (e.g. "hero.title", "faq.q1")
+
+Adding a new key:
+  1. Add to lib/i18n/translations.ts: 'my.key': { PT: '...', EN: '...' }
+  2. Use in component: const { t } = useLang(); ... t('my.key')
+  3. It will automatically appear in /admin/content under the matching section tab
+
+CMS override priority:
+  DB (site_content) > static translations.ts > key string (fallback)
+
+Language toggle:
+  Stored in localStorage under key 'webdigio-lang' ('PT' or 'EN')
+  Toggle button in Navbar top right
+
+Section tabs in /admin/content:
+  Hero (hero.* + inner.*) | Expertise (cinematic.*) | Services (services.*)
+  Why Webdigio (why.*) | Process (process.*) | Industries (industries.*)
+  Pricing (pricing.*) | FAQ (faq.*) | Footer/CTA (footer.* + cta.*)
+  Navigation (nav.*) | Chat Widget (chat.*) | Misc (stack.* + marquee.* + aria.*)
+
+
+────────────────────────────────────────────────────────────────────────────────
+9. ANIMATION SYSTEM
+────────────────────────────────────────────────────────────────────────────────
+
+GSAP Rule: Always dynamically import GSAP to avoid SSR crashes:
+  const { gsap } = await import('gsap');
+  const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+  gsap.registerPlugin(ScrollTrigger);
+
+HeroPortal scroll animation:
+  - Progress 0 → 1 via window.scrollY / window.innerHeight
+  - applyProgress(): scales device, reveals inner content
+  - Dispatches CustomEvent('portal-complete') at progress >= 0.88
+  - Dispatches CustomEvent('portal-reset') when going back below
+  - Navbar listens to these events (show/hide)
+
+CTAFooter curtain reveal (21st.dev pattern):
+  - Wrapper div: h-screen, clipPath: polygon(0% 0, 100% 0%, 100% 100%, 0 100%)
+  - Footer: position:fixed, bottom:0, height:100vh
+  - As page scrolls to wrapper, clip reveals fixed footer naturally
+  - GSAP ScrollTrigger adds parallax on giant "WEBDIGIO" text
+
+MagneticButton:
+  - useRef on anchor/button element
+  - GSAP mousemove: translate + rotationX/Y toward cursor
+  - GSAP mouseleave: elastic.out(1, 0.3) spring back
+
+
+────────────────────────────────────────────────────────────────────────────────
+10. THEMING
+────────────────────────────────────────────────────────────────────────────────
+
+Default theme: dark
+Toggle stored in localStorage under 'webdigio-theme' ('dark' or 'light')
+Applied via: document.documentElement.setAttribute('data-theme', t)
+
+Inline script in <head> prevents FOUC (flash of wrong theme).
+
+CSS variables (defined in globals.css):
+  :root (dark defaults):
+    --color-bg: #050508
+    --color-text: #f1f5f9
+    --color-text-muted: #94a3b8
+    --color-text-dim: #475569
+    --color-surface: #0d0d1a
+    --color-primary-light: #60a5fa
+    --color-primary: #3b82f6
+    --device-lid: #1a1a2e
+    --device-chassis: #0d0d1a
+    --device-phone: #1a1a2e
+
+  [data-theme="light"]:
+    --color-bg: #f8fafc
+    --color-text: #0f172a
+    (... silver/aluminum device colors)
+
+Sections that ignore theme (always dark):
+  HeroPortal background: hardcoded #050508
+  CTAFooter background: hardcoded #050508
+
+
+────────────────────────────────────────────────────────────────────────────────
+11. SUPABASE AUTH / MIDDLEWARE
+────────────────────────────────────────────────────────────────────────────────
+
+middleware.ts handles /admin/* routes:
+  - Unauthenticated + not on login page → redirect to /admin/login
+  - Authenticated + on login page → redirect to /admin
+  - Uses @supabase/ssr createServerClient with request/response cookies
+
+Session management:
+  - Supabase uses HttpOnly cookies managed by @supabase/ssr
+  - Server components use createSupabaseServerClient() (from lib/supabase/server)
+  - Client components use createSupabaseBrowserClient() (from lib/supabase/client)
+  - Admin writes use createSupabaseAdminClient() (service role, bypasses RLS)
+
+Creating new admin users (via PowerShell):
+  $h = @{ "apikey" = "<service_role_key>"; "Authorization" = "Bearer <service_role_key>"; "Content-Type" = "application/json" }
+  Invoke-RestMethod -Method POST -Uri "https://qbcqsdakghzmcmqetuac.supabase.co/auth/v1/admin/users" -Headers $h -Body '{"email":"user@example.com","password":"Pass123!","email_confirm":true}'
+
+Resetting a user's password:
+  $userId = "<user-uuid>"
+  Invoke-RestMethod -Method PUT -Uri "https://qbcqsdakghzmcmqetuac.supabase.co/auth/v1/admin/users/$userId" -Headers $h -Body '{"password":"NewPass123!"}'
+
+
+────────────────────────────────────────────────────────────────────────────────
+12. AI CHAT WIDGET
+────────────────────────────────────────────────────────────────────────────────
+
+Widget:   components/ui/ChatWidget.tsx (floating bottom-right button)
+API:      app/api/chat/route.ts
+Provider: Groq (https://console.groq.com)
+Model:    llama3-8b-8192
+
+To activate: Replace GROQ_API_KEY in .env.local with your real key.
+Config:   /admin/chatbot — edit system prompt, greeting, suggestions
+
+The system prompt in chatbot_config defines the chatbot's personality and
+knowledge about Webdigio's services.
+
+
+────────────────────────────────────────────────────────────────────────────────
+13. KNOWN ISSUES & NOTES
+────────────────────────────────────────────────────────────────────────────────
+
+[WARN]  "self is not defined" in middleware.js — occurs during hot reload in
+        dev mode when middleware is evaluated in Node context. Harmless in
+        production (middleware runs in Edge Runtime where self is defined).
+
+[WARN]  Image width/height warnings — Next.js Image components with CSS
+        width overrides need width="auto" or height="auto" style prop.
+        Non-breaking warning.
+
+[INFO]  Fast Refresh performs full reload when translations.ts is modified
+        (it's imported by both client and non-client modules). Normal behavior.
+
+[INFO]  metadataBase not set — affects OG image URL resolution. Set
+        metadataBase in app/layout.tsx metadata when deploying to production:
+        metadataBase: new URL('https://webdigio.pt')
+
+[INFO]  site_content RLS policy uses auth.role() = 'authenticated' for writes.
+        The API route uses the service role client to bypass this, so the
+        authenticated user check is done at the application level (not RLS).
+
+[INFO]  Translation keys used in CTAFooter (footer.*) use t() from useLang().
+        Some keys (cinematic.badge3/4) were removed from t() calls due to
+        missing translation entries — now use direct lang === 'PT' checks.
+
+
+────────────────────────────────────────────────────────────────────────────────
+14. DEPLOYMENT CHECKLIST
+────────────────────────────────────────────────────────────────────────────────
+
+Before deploying to production:
+
+[ ] Replace GROQ_API_KEY with real key
+[ ] Update metadataBase in app/layout.tsx to production URL
+[ ] Set canonical URL in seo_config (Supabase)
+[ ] Change admin password (admin@webdigio.pt) in Supabase dashboard
+[ ] Update WhatsApp number (currently 351912345678) in:
+    - Pricing.tsx / pricing table in Supabase
+    - CTAFooter.tsx (waNum variable)
+[ ] Update contact email from geral@webdigio.pt if needed
+[ ] Set domain in Supabase Auth settings (allowed redirect URLs)
+[ ] Enable Supabase RLS audit — verify all tables have proper policies
+[ ] Run npm run build locally and confirm zero errors before deploy
+[ ] Set NODE_ENV=production environment variable on hosting platform
+[ ] Configure environment variables on hosting platform (Vercel/etc.)
+
+
+================================================================================
+END OF RUNBOOK
+================================================================================

@@ -1,0 +1,195 @@
+================================================================================
+WEBDIGIO v5 — CHANGELOG
+================================================================================
+Project: webdigiov5
+Stack: Next.js 15 / TypeScript / Tailwind CSS v4 / Supabase / GSAP
+Location: C:\Claude\webdigiov5
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 1 — PROJECT FOUNDATION
+────────────────────────────────────────────────────────────────────────────────
+
+[INIT] Next.js 15.5.18 project scaffolded with TypeScript and App Router
+[INIT] Tailwind CSS v4 configured with @import "tailwindcss" + @theme inline {}
+[INIT] Dependencies installed: gsap, @gsap/react, @supabase/supabase-js,
+       @supabase/ssr, three, @types/three, clsx, tailwind-merge
+
+[DESIGN] globals.css — dark theme default (#050508), custom CSS variables:
+         --color-bg, --color-text, --color-primary-light, --color-surface,
+         --color-text-muted, --color-text-dim, --font-heading
+         Device theme variables: --device-lid, --device-chassis, --device-phone
+         Light theme overrides in [data-theme="light"]
+
+[LAYOUT] app/layout.tsx — root layout with ThemeProvider + LangProvider,
+         inline theme script to prevent FOUC, SEO metadata
+
+[I18N]   lib/i18n/translations.ts — 200+ PT/EN translation keys covering all
+         sections: nav, hero, inner, cinematic, services, why, process,
+         industries, pricing, faq, stack, marquee, footer, cta, chat, aria
+         lib/i18n/LangContext.tsx — client context with useLang() hook,
+         localStorage persistence, PT/EN toggle
+
+[DB]     lib/supabase/client.ts — browser Supabase client
+         lib/supabase/server.ts — server Supabase client (cookies-based SSR)
+                                  + admin client (service role, bypasses RLS)
+         supabase/migrations/001_initial_schema.sql — full schema with tables:
+         site_content, services, portfolio, testimonials, faq, industries,
+         chatbot_config, seo_config, pricing (all with RLS policies)
+
+[COMP]   components/layout/Navbar.tsx — responsive navbar, shows after
+         portal-complete event, hides before (opacity/translate transition),
+         theme toggle, language toggle, share button
+         components/ui/Loader.tsx — initial loading screen
+         components/providers/ThemeProvider.tsx — dark/light theme context
+
+[HERO]   components/sections/HeroPortal.tsx — GSAP scroll-expand animation,
+         device mockups (LaptopFrame + IPhoneFrame using CSS variables),
+         bigWBlogowhite.png in headRef at top-[8%],
+         dispatches portal-complete (progress >= 0.88) / portal-reset events
+         components/sections/InnerHero.tsx — CTA content inside device mockup
+
+[SECT]   components/sections/CinematicExpertise.tsx — morphing words animation,
+         4 stat badges, floating emoji badges, price counter animation
+         components/sections/Services.tsx — 6 service cards + before/after slider
+         components/sections/WhyWebdigio.tsx — 6 accordion pills + visual panels
+         components/sections/ProcessSection.tsx — 4-step carousel with images
+         components/sections/Industries.tsx — 6 industry cards with images
+         components/sections/Pricing.tsx — pricing card + upsell add-ons
+         components/sections/FAQ.tsx — accordion FAQ (6 questions)
+         components/sections/TechStack.tsx — animated logo marquee
+         components/sections/GridScan.tsx — animated grid background effect
+
+[FOOTER] components/sections/CTAFooter.tsx — cinematic footer with:
+         fixed positioning + clip-path polygon curtain-reveal technique,
+         diagonal animated marquee strip, giant "WEBDIGIO" parallax text,
+         GSAP ScrollTrigger content reveal, MagneticButton (GSAP elastic hover),
+         WhatsApp CTA button, Email button, nav pills, scroll-to-top
+
+[CHAT]   components/ui/ChatWidget.tsx — floating AI chat widget
+         app/api/chat/route.ts — Groq API integration (llama3-8b-8192)
+
+[ADMIN]  app/admin/layout.tsx — admin shell with sidebar, auth check
+         app/admin/login/page.tsx — Supabase email/password login
+         app/admin/page.tsx — dashboard with stats (services, faq, industries)
+         app/admin/chatbot/page.tsx — chatbot config editor
+         app/admin/seo/page.tsx — SEO settings editor
+         app/admin/pricing/page.tsx — pricing editor
+         app/admin/services/page.tsx — services editor
+         components/admin/AdminSidebar.tsx — sidebar navigation + logout
+         components/admin/ChatbotForm.tsx — chatbot config form
+         components/admin/SeoForm.tsx — SEO form
+         components/admin/PricingForm.tsx — pricing form
+         middleware.ts — Edge auth guard for /admin/* routes
+
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 2 — BUG FIXES & VISUAL POLISH
+────────────────────────────────────────────────────────────────────────────────
+
+[FIX]    Admin login redirect loop — middleware.ts + admin layout.tsx logic
+         corrected: unauthenticated users → /admin/login, authenticated on
+         login page → /admin
+
+[FIX]    IPhoneFrame reverted to simple bezel design with pill notch
+         (removed complex SVG frame that was breaking layout)
+
+[FIX]    GridScan dark background — hardcoded #050508 so it stays dark
+         regardless of theme toggle (was inheriting light theme color)
+
+[FEAT]   Device theme CSS variables in globals.css — different colors for
+         dark (#1a1a2e lid, #0d0d1a chassis) vs light (silver/aluminum)
+         theme on [data-theme="light"]
+
+[FEAT]   Navbar hidden before portal animation completes — portalDone state,
+         listens to portal-complete / portal-reset custom events,
+         also checks scrollY > 80% viewport height on mount
+
+[FEAT]   Webdigio logo (bigWBlogowhite.png) added to hero initial screen
+         (headRef div at top-[8%]) before portal animation begins
+
+[FIX]    TypeScript error: MagneticButton style prop — added style? to
+         interface and sharedProps spread
+
+[FIX]    TypeScript error: @types/three — installed via npm
+
+[FIX]    Windows-1252 encoding corruption in 3 files (caused by PowerShell
+         Set-Content in previous session writing UTF-8 as cp1252 bytes):
+         - CinematicExpertise.tsx: 'rápido', '—', 'Agência Digital — Portugal',
+           '2–5 Dias', 'Entrega rápida', 'pagamento único', 'Suporte incluído',
+           price counter, floating badge emojis
+         - WhyWebdigio.tsx: pill icons, titles, visual panel texts,
+           '690€', 'Pagamento único', 'tráfego orgânico', all emoji chars
+         - CTAFooter.tsx: all special characters
+
+[FIX]    Translation key badge3/4 showing literal key string — t() returns
+         the key itself when key is missing; fixed by using direct
+         lang === 'PT' ? '...' : '...' checks instead of t() with || fallback
+
+[REBUILD] CTAFooter.tsx completely rewritten with correct 21st.dev
+          CinematicFooter curtain-reveal pattern:
+          - Wrapper div: h-screen + clipPath polygon (normal document flow)
+          - Footer: position:fixed, bottom:0, h-screen (revealed by clip)
+          - GSAP ScrollTrigger: parallax on WEBDIGIO giant text + content stagger
+          - Animated diagonal marquee strip at top
+          - MagneticButton with GSAP elastic hover physics (dynamically imported)
+          - WhatsApp green button + Email glass button
+          - Glass nav pills (Preço/FAQ/Suporte/Portfólio)
+          - Bottom bar: logo + copyright + scroll-to-top button
+
+
+────────────────────────────────────────────────────────────────────────────────
+SESSION 3 — ADMIN PANEL & CMS
+────────────────────────────────────────────────────────────────────────────────
+
+[FIX]    Admin panel 500 error — caused by ESLint error in GridScan.tsx:
+         `let change` → `const change` (prefer-const rule, line 319)
+         This blocked the entire dev server module compilation
+
+[FIX]    Dev server stale state — restarted after ESLint fix
+
+[AUTH]   Supabase admin accounts created via Admin API (service role):
+         - admin@webdigio.pt (password reset to Webdigio2024!)
+         - joao@admin.pt (password reset to Webdigio2024!)
+
+[FEAT]   Full website CMS — edit every text on the site from the admin panel:
+
+         lib/i18n/LangContext.tsx — added overrides: CmsOverrides prop to
+         LangProvider; t() now checks DB overrides first, then static defaults
+
+         app/layout.tsx — made async; fetches all site_content rows from
+         Supabase server-side on every request; builds overrides Record and
+         passes to LangProvider; graceful fallback if Supabase is unavailable
+
+         app/api/admin/content/route.ts — authenticated POST endpoint;
+         verifies user session, then uses admin client to upsert rows into
+         site_content table (bypasses RLS)
+
+         components/admin/ContentForm.tsx — client component with:
+         - 12 section tabs (Hero, Expertise, Services, Why Webdigio, Process,
+           Industries, Pricing, FAQ, Footer/CTA, Navigation, Chat Widget, Misc)
+         - All 200+ translation keys listed with PT + EN inputs
+         - Auto textarea vs input based on text length (>80 chars = textarea)
+         - Yellow dot indicator on tabs with unsaved changes
+         - Per-key "unsaved" label when dirty
+         - Sticky save bar at bottom — saves only active section
+         - Toast notification on save success/error
+
+         app/admin/content/page.tsx — server page; fetches existing DB rows,
+         passes to ContentForm
+
+         components/admin/AdminSidebar.tsx — added "✏️ Content" nav link
+         (second item, between Dashboard and Services)
+
+         app/admin/page.tsx — added "→ Edit Website Content" quick link
+
+[FLOW]   Content change propagation: Admin edits → POST /api/admin/content →
+         Supabase upsert → Next page load of website → layout.tsx fetches
+         updated rows → overrides passed to LangProvider → all t() calls
+         return new values (no deploy required)
+
+
+================================================================================
+END OF CHANGELOG
+================================================================================
