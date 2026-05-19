@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  let overrides: CmsOverrides = {};
+  const overrides: CmsOverrides = {};
   try {
     const supabase = await createSupabaseServerClient();
     const { data } = await supabase
