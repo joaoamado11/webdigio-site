@@ -1,56 +1,51 @@
 'use client';
 
-import { createBrowserClient } from '@supabase/ssr';
+import { createClient } from '@supabase/supabase-js';
 
-let client: ReturnType<typeof createBrowserClient> | null = null;
+const COOKIE_KEY = 'sb-qbcqsdakghzmcmqetuac-auth-token';
 
-function sanitizeHeaders(headers: Record<string, string>): Record<string, string> {
-  const clean: Record<string, string> = {};
-  for (const [key, value] of Object.entries(headers)) {
-    let cleanValue = '';
-    for (let i = 0; i < value.length; i++) {
-      const code = value.charCodeAt(i);
-      if (code <= 255) {
-        cleanValue += value[i];
-      }
-    }
-    if (cleanValue !== value) {
-      console.warn('[supabase] stripped non-ISO-8859-1 chars from header', key);
-    }
-    clean[key] = cleanValue;
-  }
-  return clean;
+let client: ReturnType<typeof createClient> | null = null;
+
+function toBase64URL(str: string): string {
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
-function createSafeFetch(): typeof fetch {
-  return async (input: RequestInfo | URL, init?: RequestInit) => {
-    if (init?.headers) {
-      if (init.headers instanceof Headers) {
-        const plain: Record<string, string> = {};
-        init.headers.forEach((v, k) => { plain[k] = v; });
-        const clean = sanitizeHeaders(plain);
-        const h = new Headers();
-        Object.entries(clean).forEach(([k, v]) => h.set(k, v));
-        init = { ...init, headers: h };
-      } else {
-        init = { ...init, headers: sanitizeHeaders(init.headers as Record<string, string>) };
-      }
-    }
-    return fetch(input, init);
-  };
+function writeSessionCookie(session: object | null) {
+  if (session) {
+    const encoded = 'base64-' + toBase64URL(JSON.stringify(session));
+    document.cookie = `${COOKIE_KEY}=${encodeURIComponent(encoded)}; Path=/; Max-Age=34560000; SameSite=Lax`;
+  } else {
+    document.cookie = `${COOKIE_KEY}=; Path=/; Max-Age=0; SameSite=Lax`;
+  }
 }
 
 export function createSupabaseBrowserClient() {
   if (client) return client;
 
-  client = createBrowserClient(
+  client = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
-      global: {
-        fetch: createSafeFetch(),
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: false,
+        flowType: 'pkce',
       },
     }
   );
+
+  // Mirror session to cookies so the server middleware (using @supabase/ssr) can read it
+  client.auth.onAuthStateChange((event, session) => {
+    if (event === 'INITIAL_SESSION' || event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+      writeSessionCookie(session);
+    } else if (event === 'SIGNED_OUT') {
+      writeSessionCookie(null);
+    }
+  });
+
   return client;
 }
