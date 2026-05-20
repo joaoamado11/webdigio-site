@@ -3,9 +3,10 @@ import { cookies } from 'next/headers';
 
 export async function createSupabaseServerClient() {
   const cookieStore = await cookies();
-  const url = (process.env.NEXT_PUBLIC_SUPABASE_URL ?? '').replace(/^\uFEFF/, '');
-  const key = (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '').replace(/^\uFEFF/, '');
-  return createServerClient(url, key, {
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
       cookies: {
         getAll() { return cookieStore.getAll(); },
         setAll(cookiesToSet) {
@@ -22,9 +23,10 @@ export async function createSupabaseServerClient() {
 
 export async function createSupabaseAdminClient() {
   const cookieStore = await cookies();
-  const url = (process.env.NEXT_PUBLIC_SUPABASE_URL ?? '').replace(/^\uFEFF/, '');
-  const serviceKey = (process.env.SUPABASE_SERVICE_ROLE_KEY ?? '').replace(/^\uFEFF/, '');
-  return createServerClient(url, serviceKey, {
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    {
       cookies: {
         getAll() { return cookieStore.getAll(); },
         setAll(cookiesToSet) {
