@@ -1,8 +1,8 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL!.replace(/^﻿/, '');
-const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!.replace(/^﻿/, '');
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL!.replace(/^\uFEFF/, '');
+const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!.replace(/^\uFEFF/, '');
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
