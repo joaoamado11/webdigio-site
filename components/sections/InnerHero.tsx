@@ -2,12 +2,14 @@
 
 import { useLang } from '@/lib/i18n/LangContext';
 
-// ============================================================
-// InnerHero — The content that lives inside the device mockup.
-// Includes an autoplay background video + CTA buttons.
-// This is rendered at viewport scale and CSS-scaled down by
-// HeroPortal to fit inside the device screen area.
-// ============================================================
+const DEFAULT_VIDEOS = [
+  'https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4',
+  'https://videos.pexels.com/video-files/4549682/4549682-hd_1920_1080_30fps.mp4',
+  'https://videos.pexels.com/video-files/4884236/4884236-uhd_2560_1440_30fps.mp4',
+  'https://videos.pexels.com/video-files/5137045/5137045-uhd_2560_1440_30fps.mp4',
+] as const;
+
+const videoSrc = DEFAULT_VIDEOS[Math.floor(Math.random() * DEFAULT_VIDEOS.length)];
 
 export default function InnerHero() {
   const { t } = useLang();
@@ -17,21 +19,17 @@ export default function InnerHero() {
       className="relative w-screen h-screen flex items-center justify-center overflow-hidden"
       style={{ background: '#060912' }}
     >
-      {/* Autoplay background video */}
+      {/* Random autoplay background video */}
       <video
         className="absolute inset-0 w-full h-full object-cover opacity-35"
         autoPlay
         muted
         loop
         playsInline
+        key={videoSrc}
         aria-hidden="true"
-        poster="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80"
       >
-        {/* Pexels royalty-free video: web design / code */}
-        <source
-          src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4"
-          type="video/mp4"
-        />
+        <source src={videoSrc} type="video/mp4" />
       </video>
 
       {/* Gradient overlay */}
@@ -103,10 +101,7 @@ export default function InnerHero() {
           className="text-lg md:text-xl leading-relaxed max-w-2xl"
           style={{ color: 'rgba(148,163,184,0.9)' }}
         >
-          Websites{' '}
-          <strong style={{ color: '#f1f5f9' }}>rápidos, premium e otimizados</strong>
-          {' '}para Google. Pensados para{' '}
-          <strong style={{ color: '#f1f5f9' }}>gerar clientes</strong>.
+          {t('inner.lead')}
         </p>
 
         <p

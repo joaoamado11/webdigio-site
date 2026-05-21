@@ -18,14 +18,15 @@ export const translations: Record<string, Record<Lang, string>> = {
   // Hero
   'hero.badge':       { PT: 'Agência Digital — Portugal', EN: 'Digital Agency — Portugal' },
   'hero.title':       { PT: 'Bem-vindo à WebDigio',       EN: 'Welcome to WebDigio' },
-  'hero.subtitle':    { PT: 'Entra no futuro digital.',    EN: 'Enter the digital future.' },
+  'hero.subtitle':    { PT: 'Sites que trabalham por ti.', EN: 'Websites that work for you.' },
   'hero.hint':        { PT: 'Scroll para entrar',          EN: 'Scroll to enter' },
+  'hero.video_urls':  { PT: '["https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4","https://videos.pexels.com/video-files/4549682/4549682-hd_1920_1080_30fps.mp4","https://videos.pexels.com/video-files/4884236/4884236-uhd_2560_1440_30fps.mp4","https://videos.pexels.com/video-files/5137045/5137045-uhd_2560_1440_30fps.mp4"]', EN: '["https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4","https://videos.pexels.com/video-files/4549682/4549682-hd_1920_1080_30fps.mp4","https://videos.pexels.com/video-files/4884236/4884236-uhd_2560_1440_30fps.mp4","https://videos.pexels.com/video-files/5137045/5137045-uhd_2560_1440_30fps.mp4"]' },
 
   // Inner hero (inside device mockup)
   'inner.badge':      { PT: 'PRESENÇA DIGITAL',                        EN: 'DIGITAL PRESENCE' },
   'inner.pre':        { PT: 'Conectamos',                               EN: 'We connect' },
   'inner.main':       { PT: 'o teu negócio',                            EN: 'your business' },
-  'inner.lead':       { PT: 'Websites rápidos, premium e otimizados para Google. Pensados para gerar clientes.', EN: 'Fast, premium websites optimised for Google. Built to generate clients.' },
+  'inner.lead':       { PT: 'Websites rápidos, bem desenhados e fáceis de encontrar no Google. Feitos para trazer clientes.', EN: 'Fast, well-designed websites that show up on Google. Built to bring in clients.' },
   'inner.sub':        { PT: 'Pagamento único, entrega em 2–5 dias, sem mensalidades.',                          EN: 'One-time payment, delivery in 2–5 days, no subscriptions.' },
   'inner.cta1':       { PT: 'Começar agora',  EN: 'Get started' },
   'inner.cta2':       { PT: 'Ver preços',     EN: 'See pricing' },
@@ -34,7 +35,7 @@ export const translations: Record<string, Record<Lang, string>> = {
   'cinematic.track':      { PT: 'Design que converte,',             EN: 'Design that converts,' },
   'cinematic.days':       { PT: 'desenvolvimento que entrega.',      EN: 'development that delivers.' },
   'cinematic.desc_title': { PT: 'Parceria digital completa',         EN: 'Complete digital partnership' },
-  'cinematic.desc_text':  { PT: 'Webdigio é a sua agência digital de confiança. Criamos websites profissionais, rápidos e otimizados para conversão — do design ao desenvolvimento, sem complicações.', EN: 'Webdigio is your trusted digital agency. We create professional, fast, conversion-optimised websites — from design to development, no complications.' },
+  'cinematic.desc_text':  { PT: 'Somos uma agência digital portuguesa. Criamos websites rápidos, pensados para converter visitas em clientes. Do design ao desenvolvimento, tratamos de tudo.', EN: 'We are a Portuguese digital agency. We build fast websites designed to turn visits into clients. From design to development, we handle everything.' },
   'cinematic.badge1':     { PT: 'Entrega rápida',    EN: 'Fast delivery' },
   'cinematic.badge1sub':  { PT: '2 a 5 dias',        EN: '2 to 5 days' },
   'cinematic.badge2':     { PT: 'Sem mensalidades',  EN: 'No subscriptions' },
@@ -43,12 +44,12 @@ export const translations: Record<string, Record<Lang, string>> = {
 
   // Services
   'services.tag':    { PT: 'O que fazemos',  EN: 'What we do' },
-  'services.title':  { PT: 'Um website premium.\nSem complicações.\nSem mensalidades.', EN: 'A premium website.\nNo complications.\nNo subscriptions.' },
-  'services.sub':    { PT: 'Criamos a presença digital completa do teu negócio — do design ao SEO, com IA e integrações. Pagas uma vez. O site é teu.', EN: 'We create your business\'s complete digital presence — from design to SEO, with AI and integrations. Pay once. The site is yours.' },
+  'services.title':  { PT: 'Um site como deve ser.\nPagas uma vez.\nÉ teu.', EN: 'A site done right.\nPay once.\nIt\'s yours.' },
+  'services.sub':    { PT: 'Tratamos do design, dos textos, do SEO e das integrações com WhatsApp e redes sociais. Pagas uma vez e o site fica pronto em dias.', EN: 'We handle design, copy, SEO, and integrations with WhatsApp and social media. Pay once. The site is ready in days.' },
   'services.card1_title': { PT: 'Site Express',         EN: 'Express Site' },
-  'services.card1_text':  { PT: 'Website profissional até 5 páginas. Design moderno, mobile-first e SEO incluído. Entrega em 2 a 5 dias.', EN: 'Professional website up to 5 pages. Modern design, mobile-first and SEO included. Delivery in 2 to 5 days.' },
+  'services.card1_text':  { PT: 'Site até 5 páginas. Design moderno, adaptado a telemóvel e com SEO incluído. Entrega em 2 a 5 dias.', EN: 'Website up to 5 pages. Modern design, mobile-friendly with SEO included. Delivery in 2 to 5 days.' },
   'services.card2_title': { PT: 'SEO + Copywriting IA', EN: 'SEO + AI Copywriting' },
-  'services.card2_text':  { PT: 'Textos otimizados com inteligência artificial para aparecer nas pesquisas do Google. Copywriting profissional incluído.', EN: 'AI-optimised texts to appear in Google searches. Professional copywriting included.' },
+  'services.card2_text':  { PT: 'Textos otimizados com IA para aparecer nas pesquisas do Google. Copywriting profissional incluído.', EN: 'AI-optimised texts to show up in Google searches. Professional copywriting included.' },
   'services.card3_title': { PT: 'Integrações',          EN: 'Integrations' },
   'services.card3_text':  { PT: 'WhatsApp, email, redes sociais, formulários e ferramentas externas — tudo ligado ao teu site.', EN: 'WhatsApp, email, social media, forms and external tools — all connected to your site.' },
   'services.card4_title': { PT: 'WhatsApp + Redes',    EN: 'WhatsApp + Social' },
@@ -66,20 +67,20 @@ export const translations: Record<string, Record<Lang, string>> = {
   'why.pill0_title': { PT: 'Sem mensalidades',               EN: 'No subscriptions' },
   'why.pill0_desc':  { PT: 'Pagamento único. O site é seu. Sem fidelizações, sem custos escondidos, sem surpresas. Ao contrário das agências tradicionais que cobram todos os meses.', EN: 'One-time payment. The site is yours. No lock-ins, no hidden costs, no surprises. Unlike traditional agencies that charge every month.' },
   'why.pill1_title': { PT: 'Entrega em 2 a 5 dias',          EN: 'Delivery in 2 to 5 days' },
-  'why.pill1_desc':  { PT: 'Primeiro lançamos, depois otimizamos. Enquanto outras agências demoram semanas, nós entregamos em dias. Rápido não significa pior — significa eficiente.', EN: 'We launch first, then optimise. While other agencies take weeks, we deliver in days. Fast doesn\'t mean worse — it means efficient.' },
+  'why.pill1_desc':  { PT: 'Primeiro lançamos, depois afinamos. Enquanto outras agências demoram semanas, nós entregamos em dias. Rápido não quer dizer mal feito.', EN: 'We launch first, then refine. While other agencies take weeks, we deliver in days. Fast doesn\'t mean sloppy.' },
   'why.pill2_title': { PT: 'Prospeção Direta',               EN: 'Direct Prospecting' },
-  'why.pill2_desc':  { PT: 'Encontramos negócios no Google Maps, Instagram e presencialmente. Contacto direto, personalizado e sem intermediários.', EN: 'We find businesses on Google Maps, Instagram and in person. Direct, personalised contact with no middlemen.' },
+  'why.pill2_desc':  { PT: 'Encontramos negócios no Google Maps, no Instagram e na rua. Contacto direto com os donos, sem intermediários.', EN: 'We find businesses on Google Maps, Instagram, and in person. Direct contact with owners, no middlemen.' },
   'why.pill3_title': { PT: 'Sistema de Otimização',          EN: 'Optimisation System' },
-  'why.pill3_desc':  { PT: 'Após a entrega, enviamos um formulário estruturado para refinar o conteúdo. Menos bloqueios, mais qualidade, processo padronizado.', EN: 'After delivery, we send a structured form to refine content. Fewer blockers, higher quality, standardised process.' },
+  'why.pill3_desc':  { PT: 'Depois de entregarmos o site, enviamos-te um formulário simples para afinares os textos e as imagens. Sem stresses.', EN: 'After we deliver, we send you a simple form to fine-tune the text and images. No stress.' },
   'why.pill4_title': { PT: 'Foco no que interessa: clientes', EN: 'Focus on what matters: clients' },
-  'why.pill4_desc':  { PT: 'Cada elemento do site é pensado para converter visitas em contactos. Os seus clientes querem resolver um problema — nós fazemos os dois.', EN: 'Every element of the site is designed to convert visits into contacts. Your clients want to solve a problem — we do both.' },
+  'why.pill4_desc':  { PT: 'Cada parte do site é pensada para transformar visitas em contactos. Tu queres clientes. Eles querem resolver um problema. Nós tratamos dos dois.', EN: 'Every part of the site is built to turn visits into contacts. You want clients. They want a solution. We handle both.' },
   'why.pill5_title': { PT: 'Website vs Redes Sociais',        EN: 'Website vs Social Media' },
-  'why.pill5_desc':  { PT: 'Um site próprio transmite profissionalismo e controlo. As redes sociais atraem atenção — o website é onde a confiança e a decisão acontecem.', EN: 'A website conveys professionalism and control. Social media attracts attention — your website is where trust and decisions happen.' },
+  'why.pill5_desc':  { PT: 'Um site próprio passa credibilidade e é teu. As redes sociais atraem atenção. O site é onde fecha a decisão.', EN: 'Your own website signals credibility and you own it. Social media grabs attention. Your site closes the deal.' },
 
   // Process
   'process.tag':    { PT: 'Processo',                         EN: 'Process' },
   'process.title':  { PT: 'Entrega primeiro. Otimiza depois.', EN: 'Deliver first. Optimise later.' },
-  'process.sub':    { PT: 'Um processo pensado para ser rápido e eficiente, sem depender de informação do cliente para começar.', EN: 'A process designed to be fast and efficient, without depending on client information to get started.' },
+  'process.sub':    { PT: 'Um processo pensado para ser rápido. Não precisas de ter tudo pronto para começarmos.', EN: 'A process built for speed. You don\'t need to have everything ready for us to start.' },
   'process.step1_label': { PT: 'Passo 1',      EN: 'Step 1' },
   'process.step1_title': { PT: 'Contacto inicial', EN: 'Initial contact' },
   'process.step1_desc':  { PT: 'Falamos por WhatsApp. Percebemos o seu negócio e objetivos. Sem compromisso, 15 minutos.', EN: 'We talk on WhatsApp. We understand your business and goals. No commitment, 15 minutes.' },
@@ -88,10 +89,10 @@ export const translations: Record<string, Record<Lang, string>> = {
   'process.step2_desc':  { PT: 'Design, desenvolvimento e otimização. Criamos o site completo em 2 a 5 dias úteis.', EN: 'Design, development and optimisation. We create the complete site in 2 to 5 business days.' },
   'process.step3_label': { PT: 'Passo 3',      EN: 'Step 3' },
   'process.step3_title': { PT: 'Refinamento',  EN: 'Refinement' },
-  'process.step3_desc':  { PT: 'Após a entrega, enviamos um formulário estruturado para refinar o conteúdo. Menos bloqueios, mais qualidade.', EN: 'After delivery, we send a structured form to refine the content. Fewer blockers, higher quality.' },
+  'process.step3_desc':  { PT: 'Depois de entregares o formulário, afinamos os textos e imagens. Rápido e sem stresses.', EN: 'After you send the form back, we fine-tune the text and images. Quick and easy.' },
   'process.step4_label': { PT: 'Passo 4',      EN: 'Step 4' },
   'process.step4_title': { PT: 'Entrega final', EN: 'Final delivery' },
-  'process.step4_desc':  { PT: 'Site no ar, otimizado e pronto para gerar clientes. Com suporte pós-entrega incluído.', EN: 'Site live, optimised and ready to generate clients. With post-delivery support included.' },
+  'process.step4_desc':  { PT: 'Site no ar, otimizado e pronto para trazer clientes. Suporte pós-entrega incluído.', EN: 'Site live, optimised and ready to bring in clients. Post-delivery support included.' },
   'process.nav1': { PT: 'Contacto',    EN: 'Contact' },
   'process.nav2': { PT: 'Criação',     EN: 'Creation' },
   'process.nav3': { PT: 'Refinamento', EN: 'Refinement' },
@@ -99,8 +100,8 @@ export const translations: Record<string, Record<Lang, string>> = {
 
   // Industries
   'industries.tag':      { PT: 'Setores',    EN: 'Industries' },
-  'industries.title':    { PT: 'Experiência no que o seu setor precisa', EN: 'Experience in what your industry needs' },
-  'industries.sub':      { PT: 'Conhecemos as necessidades específicas de cada área de negócio.', EN: 'We know the specific needs of each business area.' },
+  'industries.title':    { PT: 'Conhecemos o teu setor', EN: 'We know your industry' },
+  'industries.sub':      { PT: 'Cada setor tem as suas manias. Nós conhecemo-las.', EN: 'Every industry has its quirks. We know them.' },
   'industries.card1':    { PT: 'Saúde & Clínicas',             EN: 'Health & Clinics' },
   'industries.card1_desc': { PT: 'Médicos, dentistas, fisioterapeutas e clínicas especializadas.', EN: 'Doctors, dentists, physiotherapists and specialist clinics.' },
   'industries.card2':    { PT: 'Estética & Bem-Estar',          EN: 'Beauty & Wellness' },
@@ -116,7 +117,7 @@ export const translations: Record<string, Record<Lang, string>> = {
 
   // Pricing
   'pricing.tag':      { PT: 'Preço',                              EN: 'Pricing' },
-  'pricing.title':    { PT: 'Claro. Direto. Definitivo.',          EN: 'Clear. Direct. Definitive.' },
+  'pricing.title':    { PT: 'Claro. Direto. Sem letras pequenas.',  EN: 'Clear. Straightforward. No small print.' },
   'pricing.sub':      { PT: 'Pagamento único. Sem mensalidades. Sem surpresas.', EN: 'One-time payment. No subscriptions. No surprises.' },
   'pricing.badge':    { PT: 'Site Express',                        EN: 'Express Site' },
   'pricing.name':     { PT: 'O seu site profissional',             EN: 'Your professional website' },
@@ -134,7 +135,7 @@ export const translations: Record<string, Record<Lang, string>> = {
   'pricing.item8':    { PT: 'Suporte pós-entrega',                  EN: 'Post-delivery support' },
   'pricing.extras':   { PT: 'Serviços Adicionais',                  EN: 'Additional Services' },
   'pricing.extra1':   { PT: 'SEO Avançado',                         EN: 'Advanced SEO' },
-  'pricing.extra1d':  { PT: 'Otimização contínua para aparecer nas primeiras posições do Google', EN: 'Continuous optimisation to appear in top Google positions' },
+  'pricing.extra1d':  { PT: 'Otimização contínua para aparecer nas primeiras posições do Google', EN: 'Ongoing optimisation to appear at the top of Google' },
   'pricing.extra2':   { PT: 'Páginas Extra',                        EN: 'Extra Pages' },
   'pricing.extra2d':  { PT: 'Mais páginas além das 5 incluídas no pacote base', EN: 'More pages beyond the 5 included in the base package' },
   'pricing.extra3':   { PT: 'Automações',                           EN: 'Automations' },
@@ -143,7 +144,7 @@ export const translations: Record<string, Record<Lang, string>> = {
   // FAQ
   'faq.tag':   { PT: 'FAQ',                     EN: 'FAQ' },
   'faq.title': { PT: 'Perguntas frequentes',     EN: 'Frequently asked questions' },
-  'faq.sub':   { PT: 'Respostas diretas às dúvidas mais comuns sobre os nossos serviços.', EN: 'Direct answers to the most common questions about our services.' },
+  'faq.sub':   { PT: 'Respostas diretas. Sem rodriguinhos.', EN: 'Straight answers. No fluff.' },
   'faq.q1':    { PT: 'Como funciona o processo?', EN: 'How does the process work?' },
   'faq.a1':    { PT: 'Falamos 15 minutos, percebemos o seu negócio, criamos o site em 2 a 5 dias e entregamos. Depois enviamos um formulário para refinar o conteúdo. Simples, rápido e sem complicações.', EN: 'We talk for 15 minutes, understand your business, create the site in 2 to 5 days and deliver. Then we send a form to refine the content. Simple, fast and no complications.' },
   'faq.q2':    { PT: 'Quanto custa um site?', EN: 'How much does a website cost?' },
@@ -159,7 +160,7 @@ export const translations: Record<string, Record<Lang, string>> = {
 
   // Tech stack
   'stack.tag':   { PT: 'Stack tecnológico',          EN: 'Tech stack' },
-  'stack.title': { PT: 'Tecnologia de ponta. Sem atalhos.', EN: 'Cutting-edge technology. No shortcuts.' },
+  'stack.title': { PT: 'Tecnologia moderna. Sem atalhos.', EN: 'Modern tech. No shortcuts.' },
 
   // CTA / Footer
   'cta.heading':   { PT: 'Pronto para dar o\npróximo passo?', EN: 'Ready to take the\nnext step?' },
@@ -183,7 +184,7 @@ export const translations: Record<string, Record<Lang, string>> = {
   'marquee.6': { PT: 'Suporte real',                 EN: 'Real support' },
 
   // Loader
-  'loader.text': { PT: 'A preparar algo incrível…', EN: 'Preparing something incredible…' },
+  'loader.text': { PT: 'A preparar o teu site…', EN: 'Getting your site ready…' },
 
   // Aria
   'aria.theme_light': { PT: 'Mudar para modo claro', EN: 'Switch to light mode' },
@@ -259,7 +260,7 @@ export const translations: Record<string, Record<Lang, string>> = {
   // Footer
   'footer.tag':       { PT: 'Vamos Trabalhar Juntos', EN: 'Let\'s Work Together' },
   'footer.cta_title': { PT: 'O próximo negócio a crescer online pode ser o teu.', EN: 'The next business to grow online can be yours.' },
-  'footer.cta_sub':   { PT: 'Fala connosco hoje. Sem compromisso, sem complicações.', EN: 'Talk to us today. No commitment, no complications.' },
+  'footer.cta_sub':   { PT: 'Fala connosco. Sem compromisso.', EN: 'Talk to us. No strings attached.' },
   'footer.wa_msg':    { PT: 'Olá! Tenho interesse num website da Webdigio. Podem ajudar?', EN: 'Hi! I\'m interested in a Webdigio website. Can you help?' },
   'footer.rights':    { PT: 'Todos os direitos reservados.',  EN: 'All rights reserved.' },
   'footer.top':       { PT: 'Topo',  EN: 'Top' },

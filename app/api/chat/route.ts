@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
-import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { createSupabaseClient } from '@/lib/supabase/server';
 
 export const runtime = 'nodejs';
 
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     const lang: string = typeof body?.lang === 'string' ? body.lang : 'PT';
 
     // Fetch system prompt from Supabase (chatbot_config row id=1)
-    const supabase = await createSupabaseServerClient();
+    const supabase = createSupabaseClient();
     const { data: config } = await supabase
       .from('chatbot_config')
       .select('system_prompt_pt, system_prompt_en')

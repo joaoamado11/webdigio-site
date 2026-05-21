@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useLang } from '@/lib/i18n/LangContext';
 import { useInView } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
+import RotatingText from '@/components/ui/RotatingText';
 
 const PILLS_PT = [
   { title: 'Sem mensalidades',                 icon: '✓' },
@@ -282,7 +283,24 @@ export default function WhyWebdigio() {
         {/* Header */}
         <div className={cn('flex flex-col items-center text-center mb-16 transition-all duration-700', inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10')}>
           <span className="section-tag">{t('why.tag')}</span>
-          <h2 className="section-title">{t('why.title')}</h2>
+          <h2 className="section-title text-3xl md:text-4xl font-bold tracking-tight leading-tight mt-3 mb-4" style={{ fontFamily:'var(--font-heading)', color:'var(--color-text)' }}>
+            {lang === 'PT' ? 'Nós criamos' : 'We create'}{' '}
+            <RotatingText
+              texts={lang === 'PT'
+                ? ['Websites modernos', 'Design cuidado', 'Resultados reais', 'Mais clientes']
+                : ['Modern websites', 'Careful design', 'Real results', 'More clients']
+              }
+              mainClassName="inline-flex"
+              staggerFrom="last"
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '-120%' }}
+              staggerDuration={0.025}
+              splitLevelClassName="overflow-hidden pb-0.5"
+              transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+              rotationInterval={2400}
+            />
+          </h2>
         </div>
 
         <div className={cn('grid md:grid-cols-[1fr_auto] gap-10 items-start transition-all duration-700', inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12')}>

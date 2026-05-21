@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { LangProvider, type CmsOverrides } from "@/lib/i18n/LangContext";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { getSiteContent } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "Webdigio — Agência Digital Premium | Design & Desenvolvimento",
@@ -23,16 +23,11 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const overrides: CmsOverrides = {};
   try {
-    const supabase = await createSupabaseServerClient();
-    const { data } = await supabase
-      .from("site_content")
-      .select("section, key, value_pt, value_en");
-    if (data) {
-      data.forEach(r => {
-        const fullKey = `${r.section}.${r.key}`;
-        overrides[fullKey] = { PT: r.value_pt, EN: r.value_en };
-      });
-    }
+    const data = await getSiteContent();
+    data.forEach(r => {
+      const fullKey = `${r.section}.${r.key}`;
+      overrides[fullKey] = { PT: r.value_pt, EN: r.value_en };
+    });
   } catch {
     // Gracefully fall back to static translations if Supabase is unavailable
   }

@@ -1,7 +1,7 @@
-import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { createSupabaseAdminClient } from '@/lib/supabase/server';
 
 export default async function ServicesAdminPage() {
-  const supabase = await createSupabaseServerClient();
+  const supabase = createSupabaseAdminClient();
   const { data: services } = await supabase.from('services').select('*').order('sort_order');
 
   return (

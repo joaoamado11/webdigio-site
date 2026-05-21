@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { createSupabaseBrowserClient } from '@/lib/supabase/client';
 import { cn } from '@/lib/utils';
 
 const NAV = [
@@ -18,10 +17,9 @@ const NAV = [
 export default function AdminSidebar({ email }: { email: string }) {
   const pathname = usePathname();
   const router   = useRouter();
-  const supabase = createSupabaseBrowserClient();
 
   async function logout() {
-    await supabase.auth.signOut();
+    await fetch('/api/admin/logout', { method: 'POST' });
     router.push('/admin/login');
     router.refresh();
   }

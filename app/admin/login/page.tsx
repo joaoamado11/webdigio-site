@@ -3,27 +3,35 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { createSupabaseBrowserClient } from '@/lib/supabase/client';
 
 export default function AdminLoginPage() {
-  const router   = useRouter();
-  const supabase = createSupabaseBrowserClient();
-  const [email, setEmail]   = useState('');
-  const [pass,  setPass]    = useState('');
-  const [error, setError]   = useState('');
-  const [busy,  setBusy]    = useState(false);
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+  const [error, setError] = useState('');
+  const [busy, setBusy] = useState(false);
 
   async function submit(e: FormEvent) {
     e.preventDefault();
     setBusy(true);
     setError('');
-    const { error: err } = await supabase.auth.signInWithPassword({ email, password: pass });
-    if (err) {
-      setError(err.message);
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password: pass }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error ?? 'Erro de autenticação.');
+        setBusy(false);
+      } else {
+        router.push('/admin');
+        router.refresh();
+      }
+    } catch {
+      setError('Erro de ligação. Tente novamente.');
       setBusy(false);
-    } else {
-      router.push('/admin');
-      router.refresh();
     }
   }
 

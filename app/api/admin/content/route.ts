@@ -1,10 +1,8 @@
-import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { createSupabaseAdminClient } from '@/lib/supabase/server';
+import { getAdminUser } from '@/lib/auth/admin';
+import { createSupabaseAdminClient, clearSiteContentCache } from '@/lib/supabase/server';
 
 export async function POST(req: Request) {
-  // Verify the user is authenticated
-  const supabase = await createSupabaseServerClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const user = await getAdminUser();
   if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { rows } = await req.json() as {
@@ -15,12 +13,12 @@ export async function POST(req: Request) {
     return Response.json({ error: 'No rows provided' }, { status: 400 });
   }
 
-  // Use admin client to bypass RLS for writing
   const admin = await createSupabaseAdminClient();
   const { error } = await admin
     .from('site_content')
     .upsert(rows, { onConflict: 'section,key' });
 
   if (error) return Response.json({ error: error.message }, { status: 500 });
+  clearSiteContentCache();
   return Response.json({ ok: true });
 }

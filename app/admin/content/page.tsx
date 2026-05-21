@@ -1,8 +1,8 @@
-import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { createSupabaseClient } from '@/lib/supabase/server';
 import ContentForm from '@/components/admin/ContentForm';
 
 export default async function ContentPage() {
-  const supabase = await createSupabaseServerClient();
+  const supabase = createSupabaseClient();
   const { data: existing, error } = await supabase
     .from('site_content')
     .select('section, key, value_pt, value_en')

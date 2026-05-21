@@ -272,7 +272,7 @@ export default function HeroPortal() {
       {/* Headline */}
       <div
         ref={headRef}
-        className="absolute top-[8%] left-0 right-0 flex flex-col items-center gap-3 z-20 px-4 text-center"
+        className="absolute top-[4%] left-0 right-0 flex flex-col items-center gap-2 z-20 px-4 text-center"
         style={{ transition:'none', pointerEvents:'none' }}
       >
         {/* Big Webdigio logo */}
@@ -299,9 +299,6 @@ export default function HeroPortal() {
             um site melhor.
           </span>
         </h1>
-        <p className="text-base md:text-lg" style={{ color:'var(--color-text-muted)' }}>
-          Scroll para ver como ficaria o teu site.
-        </p>
       </div>
 
       {/* Device shell — 3D perspective wrapper */}
